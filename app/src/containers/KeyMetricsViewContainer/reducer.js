@@ -1,19 +1,35 @@
 import {
-  KEYMETRICSVIEW_DEFAULT_ACTION,
+  LOAD_CUSTOMER_DATA_INITIATION,
+  LOAD_CUSTOMER_DATA_SUCCESS,
+  LOAD_CUSTOMER_DATA_FAILURE,
 } from './constants';
 
 const initialState = {
-  // Initial State goes here!
+  data: [],
+  error: null,
+  isLoading: false,
 };
 
-const keyMetricsViewReducer =
+const keyMetricsReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case DEFAULT_ACTION:
-        return state;
+      case LOAD_CUSTOMER_DATA_INITIATION:
+        return Object.assign({}, state, {
+          isLoading: true,
+        });
+      case LOAD_CUSTOMER_DATA_SUCCESS:
+        return Object.assign({}, state, {
+          isLoading: false,
+          data: action.data,
+        });
+      case LOAD_CUSTOMER_DATA_FAILURE:
+        return Object.assign({}, state, {
+          isLoading: true,
+          error: action.error,
+        });
       default:
         return state;
     }
-};
+  };
 
-export default keyMetricsViewReducer;
+export default keyMetricsReducer;

@@ -15,6 +15,16 @@ const initialState = {
       index: 0,
     },
   },
+  keyMetrics: {
+    data: [],
+    isLoading: false,
+    error: null,
+  },
+  dataView: {
+    data: [],
+    isLoading: false,
+    error: null,
+  },
 };
 
 /* Commonly used middlewares and enhancers */
