@@ -7,10 +7,10 @@ import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from './reducers';
 
 const initialState = {
-  featureComponent: {
+  employees: {
+    data: [],
     isLoading: false,
-    data: {},
-    error: {},
+    error: null,
   },
 };
 

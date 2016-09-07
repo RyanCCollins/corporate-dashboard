@@ -3,11 +3,11 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
 // Import all of your reducers here:
-import featureComponent from 'containers/FeatureFirstContainer/reducer';
+import employees from 'containers/GeoSpatialViewContainer/reducer';
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
-  featureComponent,
+  employees,
   routing: routerReducer,
   form: formReducer,
 });
