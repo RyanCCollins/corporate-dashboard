@@ -1,13 +1,11 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
+import { DataViewContainer } from 'containers';
 
-
-// Pages map directly to Routes, i.e. one page equals on Route
-
-const DataPage = (props) => (
+const DataPage = () => (
   <div className={styles.container}>
-    Hello from DataPage !
+    <DataViewContainer />
   </div>
 );
 
