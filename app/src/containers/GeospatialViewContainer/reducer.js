@@ -2,12 +2,16 @@ import {
   LOAD_EMPLOYEE_DATA_INITIATION,
   LOAD_EMPLOYEE_DATA_SUCCESS,
   LOAD_EMPLOYEE_DATA_FAILURE,
+  SELECT_EMPLOYEE_INDEX,
 } from './constants';
 
 export const initialState = {
   data: [],
   isLoading: false,
   error: null,
+  chart: {
+    index: 0,
+  },
 };
 
 const employeesReducer =
@@ -26,6 +30,12 @@ const employeesReducer =
         return Object.assign({}, state, {
           isLoading: false,
           error: action.error,
+        });
+      case SELECT_EMPLOYEE_INDEX:
+        return Object.assign({}, state, {
+          chart: {
+            index: action.index,
+          },
         });
       default:
         return state;

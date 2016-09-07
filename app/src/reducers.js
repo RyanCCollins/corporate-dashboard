@@ -6,7 +6,6 @@ import { reducer as formReducer } from 'redux-form';
 import employees from 'containers/GeoSpatialViewContainer/reducer';
 
 const rootReducer = combineReducers({
-  // Apply all of the reducers here.
   employees,
   routing: routerReducer,
   form: formReducer,

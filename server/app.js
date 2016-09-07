@@ -20,19 +20,29 @@ function csvToJson(csv) {
 }
 
 app.use(express.static(__dirname + '/public'));
-app.use('/data', express.static(__dirname + '/data'));
 
-app.get('/api/:type', (req, res) => {
-  if(req.params.type === 'customers') {
-    const filename = req.params.type + '.csv';
-    const filePath = path.join(__dirname, '/data/' + filename)
-    const file = fs.readFileSync(filePath, { encoding: 'utf-8' });
-    const jsonData = csvToJson(file);
-    res.send(jsonData);
-  } else {
-    res.sendFile(getFile(req.params.type));
-  }
-});
+if (isDeveloping) {
+  app.all('*', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  });
+
+  app.use('/data', express.static(__dirname + '/data'));
+
+  app.get('/api/:type', (req, res) => {
+    if(req.params.type === 'customers') {
+      const filename = req.params.type + '.csv';
+      const filePath = path.join(__dirname, '/data/' + filename)
+      const file = fs.readFileSync(filePath, { encoding: 'utf-8' });
+      const jsonData = csvToJson(file);
+      res.send(jsonData);
+    } else {
+      res.sendFile(getFile(req.params.type));
+    }
+  });
+}
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));

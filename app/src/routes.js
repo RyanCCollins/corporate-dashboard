@@ -11,7 +11,10 @@ const routes = (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Pages.LandingPage} />
+        <IndexRoute path="/" component={Pages.LandingPage} name="Home" />
+        <Route path="/geo-spatial" component={Pages.GeoSpatialPage} />
+        <Route path="/key-metrics" component={Pages.KeyMetricsPage} name="KeyMetrics" />
+        <Route path="/data" component={Pages.DataPage} name="Data" />
         <Route path="*" component={Pages.NotFoundPage} />
       </Route>
     </Router>

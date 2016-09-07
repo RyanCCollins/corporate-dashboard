@@ -11,6 +11,9 @@ const initialState = {
     data: [],
     isLoading: false,
     error: null,
+    chart: {
+      index: 0,
+    },
   },
 };
 
