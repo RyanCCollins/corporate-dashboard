@@ -53,10 +53,10 @@ class DataView extends Component {
         :
           <Section>
             <FilterIssueTable
-              statuses={['active', 'inActive']}
+              statuses={['Active', 'Inactive']}
               employees={issues.map(i => i.employee.name)}
               customers={issues.map(i => i.customer.name)}
-              orders={['Asscending Date', 'Descending Date']}
+              orders={['Ascending Date', 'Descending Date']}
               onFilter={this.handleFiltering}
               onClearFilter={this.handleClearFilter}
               onApplyFilters={this.applyFilters}

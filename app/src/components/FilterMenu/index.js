@@ -57,7 +57,7 @@ class FilterMenu extends Component {
               onSelectItem({ value: item.value })
             }
           >
-            {item.value}
+            {item}
           </Anchor>
         )}
       </Menu>

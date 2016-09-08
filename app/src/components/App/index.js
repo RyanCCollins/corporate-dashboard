@@ -2,13 +2,19 @@ import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions';
-import { SidebarNav } from 'components';
+import { SidebarNav, Logo } from 'components';
 import App from 'grommet/components/App';
 import { updatePageTitle, getTitleFromRoute } from 'utils/a11y';
+import Header from 'grommet/components/Header';
+import Title from 'grommet/components/Title';
 
 class Main extends Component {
   constructor() {
     super();
+    this.handleToggleNav = this.handleToggleNav.bind(this);
+    this.state = {
+      navIsActive: false,
+    };
   }
   componentDidMount() {
     const {
@@ -25,15 +31,37 @@ class Main extends Component {
       updatePageTitle(getTitleFromRoute(newPathname));
     }
   }
+  handleToggleNav() {
+    const {
+      navIsActive,
+    } = this.state;
+    this.setState({
+      navIsActive: !navIsActive,
+    });
+  }
   render() {
+    const {
+      navIsActive,
+    } = this.state;
     return (
-      <div>
-        <SidebarNav>
-          <App>
-            {React.cloneElement(this.props.children, this.props)}
-          </App>
+      <App centered={false}>
+        <SidebarNav navActive={navIsActive} onToggleNav={this.handleToggleNav}>
+          <Header
+            direction="row"
+            justify="between"
+            large
+            pad={{ horizontal: 'medium', between: 'small' }}
+          >
+            {!navIsActive &&
+              <Title onClick={this.handleToggleNav} a11yTitle="Open Menu">
+                <Logo inverse={false} />
+                Dashboard
+              </Title>
+            }
+          </Header>
+          {React.cloneElement(this.props.children, this.props)}
         </SidebarNav>
-      </div>
+      </App>
     );
   }
 }

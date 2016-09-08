@@ -1,4 +1,5 @@
 /* Assemble all components for export */
+export Logo from './Logo';
 export FilterIssueTable from './FilterIssueTable';
 export FilterMenu from './FilterMenu';
 export IssueTable from './IssueTable';

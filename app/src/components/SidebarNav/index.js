@@ -6,88 +6,63 @@ import Split from 'grommet/components/Split';
 import Sidebar from 'grommet/components/Sidebar';
 import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
+import Title from 'grommet/components/Title';
 import Button from 'grommet/components/Button';
+import Anchor from 'grommet/components/Anchor';
 import CloseIcon from 'grommet/components/icons/base/Close';
 import { Link } from 'react-router';
+import { Logo } from 'components';
 
 class SidebarNav extends Component {
   constructor() {
     super();
-    this.handleMenuOpen = this.handleMenuOpen.bind(this);
-    this.handleSetResponsive = this.handleSetResponsive.bind(this);
-    this.handleCloseMenu = this.handleCloseMenu.bind(this);
-    this.state = {
-      showMenu: true,
-      responsive: 'multiple',
-    };
+    this.renderMenu = this.renderMenu.bind(this);
   }
-  handleMenuOpen() {
-    this.setState({
-      showMenu: true,
-    });
-  }
-  handleCloseMenu() {
-    this.setState({
-      showMenu: false,
-    });
-  }
-  handleSetResponsive(responsive) {
-    this.setState({
-      responsive,
-    });
-    if (responsive === 'multiple') {
-      this.setState({
-        showMenu: true,
-      });
-    }
-    if (responsive === 'single') {
-      this.setState({
-        showMenu: false,
-      });
-    }
+  renderMenu() {
+    const {
+      onToggleNav,
+    } = this.props;
+    return (
+      <Sidebar size="medium" colorIndex="neutral-1" fixed seperator="right">
+        <Header justify="between" pad={{ horizontal: 'medium' }} large>
+          <Title>
+            <Logo inverse />
+            <Anchor href="#" onClick={onToggleNav}>
+              Dashboard
+            </Anchor>
+          </Title>
+          <Menu responsive={false} className={styles.navCloser}>
+            <Button
+              plain
+              icon={<CloseIcon />}
+              onClick={onToggleNav}
+            />
+          </Menu>
+        </Header>
+        <Menu primary>
+          <Link to="geo-spatial" activeClassName="active">
+            Geospatial View
+          </Link>
+          <Link to="key-metrics" activeClassName="active">
+            Key Metrics
+          </Link>
+          <Link to="data" activeClassName="active">
+            Data
+          </Link>
+        </Menu>
+      </Sidebar>
+    );
   }
   render() {
     const {
-      responsive,
-      showMenu,
-    } = this.state;
-    const {
+      navActive,
       children,
     } = this.props;
-    const priority = responsive === 'single' && showMenu ?
-      'left' : 'right';
     return (
-      <Split flex="right" priority={priority} onResponsive={this.handleSetResponsive}>
-        {responsive === 'single' &&
-          <Header justify="between" size="large" pad={{ horizontal: 'large' }}>
-            <Menu direction="row" responsive={false}>
-              <a href="#" onClick={this.handleMenuOpen}>Menu</a>
-            </Menu>
-          </Header>
+      <Split flex="right" priority="right">
+        {navActive &&
+          this.renderMenu()
         }
-        <Sidebar size="small" colorIndex="neutral-1">
-          <Header justify="between" pad={{ horizontal: 'medium' }}>
-            <Link to="/">
-              Dashboard
-            </Link>
-            <Button
-              style={responsive === 'single' && { display: 'none' }}
-              icon={<CloseIcon />}
-              onClick={this.handleCloseMenu}
-            />
-          </Header>
-          <Menu primary>
-            <Link to="geo-spatial" activeClassName="active">
-              Geospatial View
-            </Link>
-            <Link to="key-metrics" activeClassName="active">
-              Key Metrics
-            </Link>
-            <Link to="data" activeClassName="active">
-              Data
-            </Link>
-          </Menu>
-        </Sidebar>
         <Section>
           {children}
         </Section>
@@ -99,6 +74,8 @@ class SidebarNav extends Component {
 
 SidebarNav.propTypes = {
   children: PropTypes.node.isRequired,
+  navActive: PropTypes.bool.isRequired,
+  onToggleNav: PropTypes.func.isRequired,
 };
 
 export default cssModules(SidebarNav, styles);
