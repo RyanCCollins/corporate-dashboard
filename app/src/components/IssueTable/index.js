@@ -3,6 +3,7 @@ import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Table from 'grommet/components/Table';
 import { parseIssue } from 'utils/parsing';
+import Status from 'grommet/components/icons/Status';
 
 const IssueTable = ({
   issues,
@@ -11,31 +12,26 @@ const IssueTable = ({
   <Table>
     <thead>
       <tr>
-        {headers.map(item =>
-          <th>
-            {item}
-          </th>
+        {headers.map((item, i) =>
+          <th key={i}>{item}</th>
         )}
       </tr>
     </thead>
     <tbody>
-      {issues.map(i => parseIssue(i)).map(item =>
-        <tr>
+      {issues.map(i => parseIssue(i)).map((issue, i) =>
+        <tr key={i}>
+          <td>{issue.submitted}</td>
+          <td>{issue.closed}</td>
           <td>
-            {item.submitted}
+            <Status
+              value={issue.status}
+              size="medium"
+              a11yTitle={`Issue ${issue.customer} -- Status ${issue.status}`}
+            />
           </td>
-          <td>
-            {item.closed}
-          </td>
-          <td>
-            {item.employee}
-          </td>
-          <td>
-            {item.customer}
-          </td>
-          <td>
-            {item.description}
-          </td>
+          <td>{issue.employee}</td>
+          <td>{issue.customer}</td>
+          <td>{issue.description}</td>
         </tr>
       )}
     </tbody>

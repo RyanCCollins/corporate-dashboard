@@ -33,6 +33,7 @@ const initialState = {
     tableHeaders: [
       'Submitted',
       'Closed',
+      'Status',
       'Employee',
       'Customer',
       'Description',
