@@ -32,7 +32,7 @@ class KeyMetricsView extends Component {
         {isLoading ?
           <Heading tag="h2" align="center">Loading</Heading>
         :
-          <LineChart data={data} activeData={data} labels={areaChartLabels} />
+          <LineChart data={data} labels={areaChartLabels} />
         }
 
       </div>

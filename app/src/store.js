@@ -20,10 +20,23 @@ const initialState = {
     isLoading: false,
     error: null,
   },
-  dataView: {
-    data: [],
+  issues: {
+    issues: [],
+    filters: {
+      status: 'All',
+      employee: 'All',
+      customer: 'All',
+      order: 'All',
+    },
     isLoading: false,
     error: null,
+    tableHeaders: [
+      'Submitted',
+      'Closed',
+      'Employee',
+      'Customer',
+      'Description',
+    ],
   },
 };
 

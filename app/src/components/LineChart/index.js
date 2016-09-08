@@ -23,6 +23,13 @@ class LineChart extends Component {
     super();
     this.setActive = this.setActive.bind(this);
     this.stateFromActive = this.stateFromActive.bind(this);
+    this.state = {
+      active: 0,
+      activeValues: [],
+      index: 1,
+    };
+  }
+  componentDidMount() {
     const active = { start: 10, end: 14 };
     this.state = this.stateFromActive(active);
   }
@@ -33,6 +40,9 @@ class LineChart extends Component {
     const {
       labels,
     } = this.props;
+    if (!labels) {
+      return undefined;
+    }
     const activeValues = labels.slice(active.start, active.end + 1).map(o => o.num_customers);
     return {
       active,
@@ -60,8 +70,16 @@ class LineChart extends Component {
         <Chart vertical>
           <Base height="small" width="full" />
           <Layers>
-            <Area min={7000} max={22000} values={data.map(i => parseInt(i.num_customers, 10))} />
-            <Range count={52} active={active} onActive={(index) => this.setActive(index)} />
+            <Area
+              min={7000}
+              max={22000}
+              values={data.map(i => parseInt(i.num_customers, 10))}
+            />
+            <Range
+              count={52}
+              active={active}
+              onActive={(index) => this.setActive(index)}
+            />
           </Layers>
         </Chart>
         <Chart vertical>
@@ -78,12 +96,13 @@ class LineChart extends Component {
           </Layers>
         </Chart>
       </Box>
-    )
+    );
   }
 }
 
 LineChart.propTypes = {
   labels: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default cssModules(LineChart, styles);
