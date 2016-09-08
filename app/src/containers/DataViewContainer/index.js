@@ -7,15 +7,25 @@ import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
-import { IssueTable } from 'components';
+import { IssueTable, FilterIssueTable } from 'components';
 
 class DataView extends Component {
   constructor() {
     super();
     this.handleLoadingData = this.handleLoadingData.bind(this);
+    this.handleFiltering = this.handleFiltering.bind(this);
   }
   componentDidMount() {
     this.handleLoadingData();
+  }
+  handleFiltering(type) {
+    switch (type) {
+      case expression:
+
+        break;
+      default:
+
+    }
   }
   handleLoadingData() {
     const {
@@ -29,6 +39,7 @@ class DataView extends Component {
       isLoading,
       error,
       headers,
+      currentFilter,
     } = this.props;
     return (
       <div className={styles.dataView}>
@@ -41,6 +52,16 @@ class DataView extends Component {
           </Heading>
         :
           <Section>
+            <FilterIssueTable
+              statuses={['active', 'inActive']}
+              employees={issues.map(i => i.employee.name)}
+              customers={issues.map(i => i.customer.name)}
+              orders={['Asscending Date', 'Descending Date']}
+              onFilter={this.handleFiltering}
+              onClearFilter={this.handleClearFilter}
+              onApplyFilters={this.applyFilters}
+              filter={currentFilter}
+            />
             <IssueTable issues={issues} headers={headers} />
           </Section>
         }
@@ -55,6 +76,7 @@ DataView.propTypes = {
   headers: PropTypes.array.isRequired,
   error: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
+  currentFilter: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -63,6 +85,7 @@ const mapStateToProps = (state) => ({
   headers: state.dataView.tableHeaders,
   error: state.dataView.error,
   isLoading: state.dataView.isLoading,
+  currentFilter: state.dataView.currentFilter,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

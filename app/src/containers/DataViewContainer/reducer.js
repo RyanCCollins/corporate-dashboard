@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   issues: [],
-  filters: {
+  currentFilter: {
     status: 'All',
     employee: 'All',
     customer: 'All',

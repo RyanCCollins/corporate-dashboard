@@ -20,9 +20,9 @@ const initialState = {
     isLoading: false,
     error: null,
   },
-  issues: {
+  dataView: {
     issues: [],
-    filters: {
+    currentFilter: {
       status: 'All',
       employee: 'All',
       customer: 'All',
