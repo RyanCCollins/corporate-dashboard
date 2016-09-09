@@ -15,6 +15,7 @@ class DataView extends Component {
     this.handleLoadingData = this.handleLoadingData.bind(this);
     this.handleFiltering = this.handleFiltering.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.handleSelectItem = this.handleSelectItem.bind(this);
     this.getWindowWidth = this.getWindowWidth.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
@@ -38,6 +39,9 @@ class DataView extends Component {
     this.setState({
       isMobile: width <= 768,
     });
+  }
+  handleSelectItem(item) {
+    console.log(`Clicked with ${item}`);
   }
   handleFiltering(type) {
     switch (type) {
@@ -85,7 +89,10 @@ class DataView extends Component {
               filter={currentFilter}
             />
             <Box align="end">
-              <DataFilter items={filterItems} />
+              <DataFilter
+                onSelectItem={this.handleSelectItem}
+                items={filterItems}
+              />
             </Box>
             <IssueTable issues={issues} headers={headers} isMobile={this.state.isMobile} />
           </Section>
