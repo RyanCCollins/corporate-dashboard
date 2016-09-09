@@ -1,2 +1,2 @@
 # corporate-dashboard
-A corporate dashboard web application, built with a focus on component oriented design.
+A corporate dashboard web application, built with a focus on component oriented design.  MVP for a client. 
