@@ -22,11 +22,10 @@ const initialState = {
   },
   dataView: {
     issues: [],
+    filteredIssues: null,
     currentFilter: {
-      status: 'All',
       employee: 'All',
       customer: 'All',
-      order: 'All',
     },
     isLoading: false,
     error: null,
@@ -38,24 +37,29 @@ const initialState = {
       'Customer',
       'Description',
     ],
-    filterItems: {
-      statuses: [
-        'All',
-        'Critical',
-        'Warning',
-        'Ok',
-        'Disabled',
-        'Unknown',
-      ],
-      states: [
-        'All',
-        'Active',
-        'Inactive',
-      ],
-      orders: [
-        'Ascending',
-        'Descending',
-      ],
+    secondaryFilter: {
+      status: 'All',
+      state: 'All',
+      order: 'Ascending',
+      options: {
+        statuses: [
+          'All',
+          'Critical',
+          'Warning',
+          'Ok',
+          'Disabled',
+          'Unknown',
+        ],
+        states: [
+          'All',
+          'Active',
+          'Inactive',
+        ],
+        orders: [
+          'Ascending',
+          'Descending',
+        ],
+      },
     },
   },
 };

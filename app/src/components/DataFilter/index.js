@@ -22,6 +22,7 @@ const StatusLabel = ({
 const DataFilter = ({
   items,
   onSelectItem,
+  filter,
 }) => (
   <Menu
     className={styles.dataFilter}
@@ -40,7 +41,8 @@ const DataFilter = ({
             <CheckBox
               key={i}
               label={<StatusLabel status={item} />}
-              onChange={() => onSelectItem(item)} // eslint-disable-line
+              checked={filter.status === item}
+              onChange={() => onSelectItem({ item, type: 'status' })} // eslint-disable-line
             />
           )}
         </Box>
@@ -55,7 +57,8 @@ const DataFilter = ({
             <CheckBox
               key={i}
               label={item}
-              onChange={() => onSelectItem(item)} // eslint-disable-line
+              checked={filter.state === item}
+              onChange={() => onSelectItem({ item, type: 'state' })} // eslint-disable-line
             />
           )}
         </Box>
@@ -70,7 +73,8 @@ const DataFilter = ({
             <CheckBox
               key={i}
               label={item}
-              onChange={() => onSelectItem(item)} // eslint-disable-line
+              checked={filter.order === item}
+              onChange={() => onSelectItem({ item, type: 'order' })} // eslint-disable-line
             />
           )}
         </Box>
@@ -82,6 +86,7 @@ const DataFilter = ({
 DataFilter.propTypes = {
   items: PropTypes.object.isRequired,
   onSelectItem: PropTypes.func.isRequired,
+  filter: PropTypes.object.isRequired,
 };
 
 export default cssModules(DataFilter, styles);

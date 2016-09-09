@@ -40,17 +40,14 @@ class DataView extends Component {
       isMobile: width <= 768,
     });
   }
-  handleSelectItem(item) {
-    console.log(`Clicked with ${item}`);
+  handleSelectItem({ item, type }) {
+    const {
+      setSecondaryFilter,
+    } = this.props.actions;
+    setSecondaryFilter(item, type);
   }
   handleFiltering(type) {
-    switch (type) {
-      case expression:
 
-        break;
-      default:
-
-    }
   }
   handleLoadingData() {
     const {
@@ -61,11 +58,15 @@ class DataView extends Component {
   render() {
     const {
       issues,
+      filteredIssues,
       isLoading,
       error,
       headers,
       currentFilter,
-      filterItems,
+      filterOptions,
+      employees,
+      customers,
+      secondaryFilter,
     } = this.props;
     return (
       <div className={styles.dataView}>
@@ -79,10 +80,8 @@ class DataView extends Component {
         :
           <Section>
             <FilterIssueTable
-              statuses={['Active', 'Inactive']}
-              employees={issues.map(i => i.employee.name)}
-              customers={issues.map(i => i.customer.name)}
-              orders={['Ascending Date', 'Descending Date']}
+              employees={employees}
+              customers={customers}
               onFilter={this.handleFiltering}
               onClearFilter={this.handleClearFilter}
               onApplyFilters={this.applyFilters}
@@ -90,11 +89,16 @@ class DataView extends Component {
             />
             <Box align="end">
               <DataFilter
+                filter={secondaryFilter}
                 onSelectItem={this.handleSelectItem}
-                items={filterItems}
+                items={filterOptions}
               />
             </Box>
-            <IssueTable issues={issues} headers={headers} isMobile={this.state.isMobile} />
+            <IssueTable
+              issues={filteredIssues != null ? filteredIssues : issues} // eslint-disable-line
+              headers={headers}
+              isMobile={this.state.isMobile}
+            />
           </Section>
         }
       </div>
@@ -105,21 +109,29 @@ class DataView extends Component {
 DataView.propTypes = {
   actions: PropTypes.object.isRequired,
   issues: PropTypes.array.isRequired,
+  filteredIssues: PropTypes.array,
+  employees: PropTypes.array.isRequired,
+  customers: PropTypes.array.isRequired,
   headers: PropTypes.array.isRequired,
   error: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   currentFilter: PropTypes.object.isRequired,
-  filterItems: PropTypes.object.isRequired,
+  filterOptions: PropTypes.object.isRequired,
+  secondaryFilter: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   issues: state.dataView.issues,
+  filteredIssues: state.dataView.filteredIssues,
   headers: state.dataView.tableHeaders,
   error: state.dataView.error,
   isLoading: state.dataView.isLoading,
   currentFilter: state.dataView.currentFilter,
-  filterItems: state.dataView.filterItems,
+  filterOptions: state.dataView.secondaryFilter.options,
+  employees: state.dataView.issues.map(i => i.employee.name),
+  customers: state.dataView.issues.map(i => i.customer.name),
+  secondaryFilter: state.dataView.secondaryFilter,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
