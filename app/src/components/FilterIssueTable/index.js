@@ -10,10 +10,8 @@ import Footer from 'grommet/components/Footer';
 import shouldBeEnabled from 'utils/filter';
 
 const FilterIssueTable = ({
-  statuses,
   employees,
   customers,
-  orders,
   onFilter,
   filter,
   onApplyFilters,
@@ -31,11 +29,6 @@ const FilterIssueTable = ({
         closeOnClick={false}
       >
         <FilterMenu
-          menuItems={statuses}
-          onSelectItem={(onFilter.bind('status'))}
-          label="Status"
-        />
-        <FilterMenu
           menuItems={employees}
           onSelectItem={onFilter.bind('employee')}
           label="Employee"
@@ -44,11 +37,6 @@ const FilterIssueTable = ({
           menuItems={customers}
           onSelectItem={onFilter.bind('customer')}
           label="Customer"
-        />
-        <FilterMenu
-          menuItems={orders}
-          onSelectItem={onFilter.bind('order')}
-          label="Order"
         />
       </Menu>
       <Footer className={styles.footerContainer}>
@@ -76,10 +64,8 @@ const FilterIssueTable = ({
 );
 
 FilterIssueTable.propTypes = {
-  statuses: PropTypes.array.isRequired,
   employees: PropTypes.array.isRequired,
   customers: PropTypes.array.isRequired,
-  orders: PropTypes.array.isRequired,
   onFilter: PropTypes.func.isRequired,
   filter: PropTypes.object.isRequired,
   onApplyFilters: PropTypes.func.isRequired,

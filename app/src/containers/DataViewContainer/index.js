@@ -7,16 +7,37 @@ import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
-import { IssueTable, FilterIssueTable } from 'components';
+import { IssueTable, FilterIssueTable, DataFilter } from 'components';
 
 class DataView extends Component {
   constructor() {
     super();
     this.handleLoadingData = this.handleLoadingData.bind(this);
     this.handleFiltering = this.handleFiltering.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+    this.getWindowWidth = this.getWindowWidth.bind(this);
+    this.state = {
+      isMobile: this.getWindowWidth() <= 768,
+    };
   }
   componentDidMount() {
     this.handleLoadingData();
+    window.addEventListener('resize', this.handleResize);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+  getWindowWidth() {
+    if (!window) {
+      return undefined;
+    }
+    return window.innerWidth || document.body.clientWidth;
+  }
+  handleResize() {
+    const width = this.getWindowWidth();
+    this.setState({
+      isMobile: width <= 768,
+    });
   }
   handleFiltering(type) {
     switch (type) {
@@ -40,6 +61,7 @@ class DataView extends Component {
       error,
       headers,
       currentFilter,
+      filterItems,
     } = this.props;
     return (
       <div className={styles.dataView}>
@@ -62,7 +84,10 @@ class DataView extends Component {
               onApplyFilters={this.applyFilters}
               filter={currentFilter}
             />
-            <IssueTable issues={issues} headers={headers} />
+            <Box align="end">
+              <DataFilter items={filterItems} />
+            </Box>
+            <IssueTable issues={issues} headers={headers} isMobile={this.state.isMobile} />
           </Section>
         }
       </div>
@@ -77,6 +102,7 @@ DataView.propTypes = {
   error: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   currentFilter: PropTypes.object.isRequired,
+  filterItems: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -86,6 +112,7 @@ const mapStateToProps = (state) => ({
   error: state.dataView.error,
   isLoading: state.dataView.isLoading,
   currentFilter: state.dataView.currentFilter,
+  filterItems: state.dataView.filterItems,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

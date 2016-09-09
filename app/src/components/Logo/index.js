@@ -12,7 +12,7 @@ const Logo = ({
         y="0"
         width="120"
         height="120"
-      ></rect>
+      />
       <g stroke={inverse ? '#FFFFFF' : '#01A982'} className="paths" strokeWidth="4">
         <path d="M54,96 L54,106 L14,106 L14,66 L24,66"></path>
         <path d="M24,36 L84,36 L84,96 L24,96 L24,36"></path>

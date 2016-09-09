@@ -38,6 +38,25 @@ const initialState = {
       'Customer',
       'Description',
     ],
+    filterItems: {
+      statuses: [
+        'All',
+        'Critical',
+        'Warning',
+        'Ok',
+        'Disabled',
+        'Unknown',
+      ],
+      states: [
+        'All',
+        'Active',
+        'Inactive',
+      ],
+      orders: [
+        'Ascending',
+        'Descending',
+      ],
+    },
   },
 };
 
