@@ -6,6 +6,10 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 const _ = require('lodash');
+const graphql = require('graphql').graphql;
+const graphqlHTTP = require('express-graphql');
+const query = 'query { employees { id, employees, location }}';
+const schema = require('./schema/schema');
 
 function getFile(filename, ext = '.json') {
   return path.join(__dirname + '/data/' + filename + ext);
@@ -21,28 +25,34 @@ function csvToJson(csv) {
 
 app.use(express.static(__dirname + '/public'));
 
-if (isDeveloping) {
-  app.all('*', (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  });
+// if (isDeveloping) {
+//   app.all('*', (req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+//   });
+//
+//   app.use('/data', express.static(__dirname + '/data'));
+//
+//   app.get('/api/:type', (req, res) => {
+//     if(req.params.type === 'customers') {
+//       const filename = req.params.type + '.csv';
+//       const filePath = path.join(__dirname, '/data/' + filename)
+//       const file = fs.readFileSync(filePath, { encoding: 'utf-8' });
+//       const jsonData = csvToJson(file);
+//       res.send(jsonData);
+//     } else {
+//       res.sendFile(getFile(req.params.type));
+//     }
+//   });
+// }
 
-  app.use('/data', express.static(__dirname + '/data'));
+graphql(schema, query).then((result) => {
+  console.log(JSON.stringify(result))
+});
 
-  app.get('/api/:type', (req, res) => {
-    if(req.params.type === 'customers') {
-      const filename = req.params.type + '.csv';
-      const filePath = path.join(__dirname, '/data/' + filename)
-      const file = fs.readFileSync(filePath, { encoding: 'utf-8' });
-      const jsonData = csvToJson(file);
-      res.send(jsonData);
-    } else {
-      res.sendFile(getFile(req.params.type));
-    }
-  });
-}
+app.use('/api', graphqlHTTP({ schema, pretty: true, graphiql: true }))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));

@@ -1,49 +1,49 @@
 [{
-  "_id": "57d02b4e2742984e15e0b805",
-  "employees": 293,
+  "id": "57d02b4e2742984e15e0b805",
+  "numemployees": 293,
   "location": "Norwood"
 }, {
-  "_id": "57d02b4eafd9fad06655b484",
-  "employees": 166,
+  "id": "57d02b4eafd9fad06655b484",
+  "numemployees": 166,
   "location": "Carrsville"
 }, {
-  "_id": "57d02b4efa0d7943ef049abb",
-  "employees": 248,
+  "id": "57d02b4efa0d7943ef049abb",
+  "numemployees": 248,
   "location": "Nord"
 }, {
-  "_id": "57d02b4e18ed194ce993496a",
-  "employees": 341,
+  "id": "57d02b4e18ed194ce993496a",
+  "numemployees": 341,
   "location": "Cassel"
 }, {
-  "_id": "57d02b4e2c9b99498702d331",
-  "employees": 212,
+  "id": "57d02b4e2c9b99498702d331",
+  "numemployees": 212,
   "location": "Madrid"
 }, {
-  "_id": "57d02b4e11c47016be0a6577",
-  "employees": 290,
+  "id": "57d02b4e11c47016be0a6577",
+  "numemployees": 290,
   "location": "Falmouth"
 }, {
-  "_id": "57d02b4ea514d399f1e47103",
-  "employees": 288,
+  "id": "57d02b4ea514d399f1e47103",
+  "numemployees": 288,
   "location": "Dale"
 }, {
-  "_id": "57d02b4e82b4b5b6a5db7f16",
-  "employees": 223,
+  "id": "57d02b4e82b4b5b6a5db7f16",
+  "numemployees": 223,
   "location": "Devon"
 }, {
-  "_id": "57d02b4e737be284278d187d",
-  "employees": 176,
+  "id": "57d02b4e737be284278d187d",
+  "numemployees": 176,
   "location": "Frystown"
 }, {
-  "_id": "57d02b4e4851f93e9f905483",
-  "employees": 203,
+  "id": "57d02b4e4851f93e9f905483",
+  "numemployees": 203,
   "location": "Trucksville"
 }, {
-  "_id": "57d02b4e560933018325ca16",
-  "employees": 361,
+  "id": "57d02b4e560933018325ca16",
+  "numemployees": 361,
   "location": "Eggertsville"
 }, {
-  "_id": "57d02b4ee26ae28ac2cc2db9",
-  "employees": 331,
+  "id": "57d02b4ee26ae28ac2cc2db9",
+  "numemployees": 331,
   "location": "Dixonville"
 }]
