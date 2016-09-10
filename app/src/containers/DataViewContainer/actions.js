@@ -5,21 +5,20 @@ import {
   SET_SECONDARY_FILTER_STATUS,
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
-  GET_FILTERED_ISSUES,
 } from './constants';
 
 const issueUrl = 'http://0.0.0.0:1338/api/issues';
 
-const loadIssueDataInitiation = () => ({
+export const loadIssueDataInitiation = () => ({
   type: LOAD_ISSUE_DATA_INITIATION,
 });
 
-const loadIssueDataSuccess = (issues) => ({
+export const loadIssueDataSuccess = (issues) => ({
   type: LOAD_ISSUE_DATA_SUCCESS,
   issues,
 });
 
-const loadIssueDataFailure = (error) => ({
+export const loadIssueDataFailure = (error) => ({
   type: LOAD_ISSUE_DATA_FAILURE,
   error,
 });
@@ -44,27 +43,21 @@ export const loadIssueData = () =>
   };
 
 // setSecondaryFilterStatus :: String -> {Action}
-const setSecondaryFilterStatus = (status) => ({
+export const setSecondaryFilterStatus = (status) => ({
   type: SET_SECONDARY_FILTER_STATUS,
   status,
 });
 
 // setSecondaryFilterState :: String -> {Action}
-const setSecondaryFilterState = (state) => ({
+export const setSecondaryFilterState = (state) => ({
   type: SET_SECONDARY_FILTER_STATE,
   state,
 });
 
 // setSecondaryFilterOrder :: String -> {Action}
-const setSecondaryFilterOrder = (order) => ({
+export const setSecondaryFilterOrder = (order) => ({
   type: SET_SECONDARY_FILTER_ORDER,
   order,
-});
-
-const getFilterdIssues = ({ filter, filterType }) => ({
-  type: GET_FILTERED_ISSUES,
-  filter,
-  filterType,
 });
 
 export const setSecondaryFilter = (filter, type) =>
@@ -82,5 +75,4 @@ export const setSecondaryFilter = (filter, type) =>
       default:
         break;
     }
-    dispatch(getFilterdIssues({ filter, filterType: type }));
   };

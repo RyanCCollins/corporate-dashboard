@@ -1,9 +1,5 @@
 import expect from 'expect';
-import dataViewReducer from '../reducer';
-
-const initialState = {
-  // Initial State goes here!
-};
+import dataViewReducer, { initialState } from '../reducer';
 
 describe('dataViewReducer', () => {
   it('returns the initial state', () => {
