@@ -5,23 +5,10 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const _ = require('lodash');
 const graphql = require('graphql').graphql;
 const graphqlHTTP = require('express-graphql');
 const query = 'query { employees { id, employees, location }}';
 const schema = require('./schema/schema');
-
-function getFile(filename, ext = '.json') {
-  return path.join(__dirname + '/data/' + filename + ext);
-}
-
-function csvToJson(csv) {
-  const content = csv.split('\n');
-  const header = content[0].split(',');
-  return _.tail(content).map((row) => {
-    return _.zipObject(header, row.split(','));
-  })
-}
 
 app.use(express.static(__dirname + '/public'));
 
