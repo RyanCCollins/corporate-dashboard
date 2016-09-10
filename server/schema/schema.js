@@ -8,7 +8,7 @@ const EmployeeType = new graphql.GraphQLObjectType({
   name: 'employee',
   fields: () => ({
     id: { type: graphql.GraphQLString },
-    employees: { type: graphql.GraphQLInt },
+    numemployees: { type: graphql.GraphQLInt },
     location: { type: graphql.GraphQLString },
   }),
 });
