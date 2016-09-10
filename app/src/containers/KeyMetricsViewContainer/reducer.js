@@ -4,7 +4,7 @@ import {
   LOAD_CUSTOMER_DATA_FAILURE,
 } from './constants';
 
-const initialState = {
+export const initialState = {
   data: [],
   error: null,
   isLoading: false,
