@@ -1,14 +1,10 @@
 import expect from 'expect';
-import keyMetricsViewReducer from '../reducer';
-
-const initialState = {
-  // Initial State goes here!
-};
+import reducer, { initialState } from '../reducer';
 
 describe('keyMetricsViewReducer', () => {
   it('returns the initial state', () => {
     expect(
-      keyMetricsViewReducer(undefined, {})
+      reducer(undefined, {})
     ).toEqual(initialState);
   });
 });

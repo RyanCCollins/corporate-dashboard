@@ -5,18 +5,21 @@ import {
   SELECT_EMPLOYEE_INDEX,
 } from './constants';
 
-const employeeUrl = `http://0.0.0.0:1338/api/employees`;
+export const employeeUrl = 'http://0.0.0.0:1338/api/employees';
 
-const loadEmployeeDataInitiation = () => ({
+// loadEmployeeDataInitiation :: None -> {Action}
+export const loadEmployeeDataInitiation = () => ({
   type: LOAD_EMPLOYEE_DATA_INITIATION,
 });
 
-const loadEmployeeDataSuccess = (data) => ({
+// loadEmployeeDataSuccess :: Array -> {Action}
+export const loadEmployeeDataSuccess = (data) => ({
   type: LOAD_EMPLOYEE_DATA_SUCCESS,
   data,
 });
 
-const loadEmployeeDataFailure = (error) => ({
+// loadEmployeeDataFailure :: Error -> {Action}
+export const loadEmployeeDataFailure = (error) => ({
   type: LOAD_EMPLOYEE_DATA_FAILURE,
   error,
 });
@@ -40,12 +43,13 @@ export const loadEmployeeData = () =>
       });
   };
 
-// selectEmployeeIndex :: Int -> {Action}
-const selectIndex = (index) => ({
+// selectIndex :: Int -> {Action}
+export const selectIndex = (index) => ({
   type: SELECT_EMPLOYEE_INDEX,
   index,
 });
 
+// selectEmployeeIndex :: Int -> Func -> {Action}
 export const selectEmployeeIndex = (index) =>
   (dispatch) => {
     dispatch(

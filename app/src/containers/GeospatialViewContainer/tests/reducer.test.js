@@ -1,6 +1,5 @@
 import expect from 'expect';
-import employeesReducer from '../reducer';
-import { initialState } from '../reducer';
+import employeesReducer, { initialState } from '../reducer';
 import {
   LOAD_EMPLOYEE_DATA_INITIATION,
   LOAD_EMPLOYEE_DATA_SUCCESS,
@@ -15,9 +14,12 @@ describe('geospatialViewReducer', () => {
   });
   it('sets isLoading to true', () => {
     const stateAfter = {
-      isLoading: true,
       data: [],
+      isLoading: true,
       error: null,
+      chart: {
+        index: 0,
+      },
     };
     expect(
       employeesReducer(initialState, {
@@ -30,6 +32,9 @@ describe('geospatialViewReducer', () => {
       isLoading: false,
       data: [],
       error: null,
+      chart: {
+        index: 0,
+      },
     };
     expect(
       employeesReducer(initialState, {
@@ -55,6 +60,9 @@ describe('geospatialViewReducer', () => {
       isLoading: false,
       data,
       error: null,
+      chart: {
+        index: 0,
+      },
     };
     expect(
       employeesReducer(initialState, {
@@ -64,14 +72,19 @@ describe('geospatialViewReducer', () => {
     ).toEqual(stateAfter);
   });
   it('stops loading on failure', () => {
+    const error = { message: 'An error occured 🤔' };
     const stateAfter = {
       isLoading: false,
       data: [],
-      error: null,
+      error,
+      chart: {
+        index: 0,
+      },
     };
     expect(
       employeesReducer(initialState, {
         type: LOAD_EMPLOYEE_DATA_FAILURE,
+        error,
       })
     ).toEqual(stateAfter);
   });
@@ -81,6 +94,9 @@ describe('geospatialViewReducer', () => {
       isLoading: false,
       error,
       data: [],
+      chart: {
+        index: 0,
+      },
     };
     expect(
       employeesReducer(initialState, {

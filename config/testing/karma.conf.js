@@ -4,6 +4,7 @@ const path = require('path');
 
 module.exports = (config) => {
   config.set({
+    failOnEmptyTestSuite: false,
     frameworks: ['mocha'],
     reporters: ['coverage', 'mocha'],
     browsers: process.env.TRAVIS // eslint-disable-line no-nested-ternary
