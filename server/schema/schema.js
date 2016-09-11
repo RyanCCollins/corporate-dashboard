@@ -11,6 +11,7 @@ import employeesJSON from '../data/employees.json';
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
+let store = {};
 
 const csvToJson = (csv) => {
   const content = csv.split('\n');
@@ -29,9 +30,9 @@ const loadCsv = () => {
   const jsonData = csvToJson(file);
   const data = jsonData.slice(0, jsonData.length - 1);
   data.forEach((item, index) => {
-    Object.keys(item).forEach((key) =>
-      data[index][key] = parseInt(data[index][key], 10)
-    );
+    Object.keys(item).forEach((key) => {
+      data[index][key] = parseInt(data[index][key], 10);
+    });
   });
   return data;
 };
@@ -87,8 +88,8 @@ const IssueType = new GraphQLObjectType({
   }),
 });
 
-const QueryType = new GraphQLObjectType({
-  name: 'Query',
+const StoreType = new GraphQLObjectType({
+  name: 'Store',
   fields: () => ({
     employees: {
       type: new GraphQLList(EmployeeType),
@@ -107,5 +108,5 @@ const QueryType = new GraphQLObjectType({
 
 
 export default new GraphQLSchema({
-  query: QueryType,
+  query: StoreType,
 });

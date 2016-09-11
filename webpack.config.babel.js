@@ -22,10 +22,11 @@ module.exports = {
         include: path.resolve(ROOT_PATH, './app')
       }
     ],
-    loaders: [{
+    loaders: [
+    {
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loaders: ['react-hot', 'babel']
+      loaders: ['react-hot', 'babel?plugins[]=' + path.join(__dirname, './server/babelRelayPlugin')]
     },
     {
       test: /\.svg$/,

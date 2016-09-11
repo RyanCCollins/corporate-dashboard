@@ -8,6 +8,7 @@ import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
 import { IssueTable, FilterIssueTable, DataFilter } from 'components';
+import Relay from 'react-relay';
 
 class DataView extends Component {
   constructor() {
@@ -144,7 +145,21 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Container = cssModules(DataView, styles);
 
-export default connect(
+const DataViewContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Container);
+
+console.log(
+  Relay.QL`
+    query Employees {
+      employees {
+        id
+        numemployees
+        location
+      }
+    }
+  `
+);
+
+export default DataViewContainer;
