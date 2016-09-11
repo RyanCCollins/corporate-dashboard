@@ -2,11 +2,34 @@
   "data": {
     "__schema": {
       "queryType": {
-        "name": "Store"
+        "name": "Query"
       },
       "mutationType": null,
       "subscriptionType": null,
       "types": [
+        {
+          "kind": "OBJECT",
+          "name": "Query",
+          "description": null,
+          "fields": [
+            {
+              "name": "store",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Store",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
         {
           "kind": "OBJECT",
           "name": "Store",
@@ -163,7 +186,7 @@
               "deprecationReason": null
             },
             {
-              "name": "close",
+              "name": "closed",
               "description": null,
               "args": [],
               "type": {
@@ -192,7 +215,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "IssueCustomer",
+                "name": "Person",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -204,7 +227,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "IssueEmployee",
+                "name": "Person",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -230,66 +253,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "IssueCustomer",
-          "description": null,
-          "fields": [
-            {
-              "name": "name",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "email",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "avatar",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "company",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "IssueEmployee",
+          "name": "Person",
           "description": null,
           "fields": [
             {

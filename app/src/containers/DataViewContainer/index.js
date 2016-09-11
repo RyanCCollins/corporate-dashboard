@@ -150,16 +150,4 @@ const DataViewContainer = connect(
   mapDispatchToProps
 )(Container);
 
-console.log(
-  Relay.QL`
-    query Employees {
-      employees {
-        id
-        numemployees
-        location
-      }
-    }
-  `
-);
-
 export default DataViewContainer;

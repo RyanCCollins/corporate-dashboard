@@ -6,8 +6,34 @@ import {
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
 } from './constants';
+import fetch from 'graphql-fetch';
 
-const issueUrl = 'http://0.0.0.0:1338/api/issues';
+const apiUrl = 'http://0.0.0.0:1338/api';
+
+const query = `
+{
+  store {
+    issues {
+      id
+      submission
+      closed
+      status
+      customer {
+        ...Person
+      }
+      employee {
+        ...Person
+      }
+      description
+    }
+  }
+}
+
+fragment Person on Person {
+  name
+  avatar
+}
+`;
 
 export const loadIssueDataInitiation = () => ({
   type: LOAD_ISSUE_DATA_INITIATION,
@@ -28,11 +54,10 @@ export const loadIssueData = () =>
     dispatch(
       loadIssueDataInitiation()
     );
-    return fetch(issueUrl)
-      .then(res => res.json())
-      .then(data => {
+    return fetch(apiUrl)(query)
+      .then(res => {
         dispatch(
-          loadIssueDataSuccess(data)
+          loadIssueDataSuccess(res.issues)
         );
       })
       .catch(error => {

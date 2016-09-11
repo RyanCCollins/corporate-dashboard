@@ -47,6 +47,15 @@ const CustomerType = new GraphQLObjectType({
   }),
 });
 
+const PersonType = new GraphQLObjectType({
+  name: 'Person',
+  fields: () => ({
+    name: { type: GraphQLString },
+    avatar: { type: GraphQLString },
+    company: { type: GraphQLString },
+  }),
+});
+
 const EmployeeType = new GraphQLObjectType({
   name: 'Employee',
   fields: () => ({
@@ -56,34 +65,15 @@ const EmployeeType = new GraphQLObjectType({
   }),
 });
 
-const IssueCustomerType = new GraphQLObjectType({
-  name: 'IssueCustomer',
-  fields: () => ({
-    name: { type: GraphQLString },
-    email: { type: GraphQLString },
-    avatar: { type: GraphQLString },
-    company: { type: GraphQLString },
-  }),
-});
-
-const IssueEmployeeType = new GraphQLObjectType({
-  name: 'IssueEmployee',
-  fields: () => ({
-    name: { type: GraphQLString },
-    avatar: { type: GraphQLString },
-    company: { type: GraphQLString },
-  }),
-});
-
 const IssueType = new GraphQLObjectType({
   name: 'issue',
   fields: () => ({
     id: { type: GraphQLString },
     submission: { type: GraphQLString },
-    close: { type: GraphQLString },
+    closed: { type: GraphQLString },
     status: { type: GraphQLString },
-    customer: { type: IssueCustomerType },
-    employee: { type: IssueEmployeeType },
+    customer: { type: PersonType },
+    employee: { type: PersonType },
     description: { type: GraphQLString },
   }),
 });
@@ -106,7 +96,16 @@ const StoreType = new GraphQLObjectType({
   }),
 });
 
+const QueryType = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    store: {
+      type: StoreType,
+      resolve: () => store,
+    },
+  }),
+});
 
 export default new GraphQLSchema({
-  query: StoreType,
+  query: QueryType,
 });
