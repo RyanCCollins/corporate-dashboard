@@ -4,12 +4,13 @@ import {
   GraphQLInt,
   GraphQLString,
   GraphQLList,
-} from 'graphql';
+} from '../../node_modules/graphql';
 
 import issuesJSON from '../data/issues.json';
 import employeesJSON from '../data/employees.json';
-import customerCsv from '../data/customers.csv';
 import _ from 'lodash';
+import fs from 'fs';
+import path from 'path';
 
 const csvToJson = (csv) => {
   const content = csv.split('\n');
@@ -18,6 +19,24 @@ const csvToJson = (csv) => {
     _.zipObject(header, row.split(','))
   );
 };
+
+const loadCsv = () => {
+  const filename = 'customers.csv';
+  const filePath = path.join(__dirname, `../data/${filename}`);
+  const file = fs.readFileSync(filePath, {
+    encoding: 'utf-8',
+  });
+  const jsonData = csvToJson(file);
+  const data = jsonData.slice(0, jsonData.length - 1);
+  data.forEach((item, index) => {
+    Object.keys(item).forEach((key) =>
+      data[index][key] = parseInt(data[index][key], 10)
+    );
+  });
+  return data;
+};
+
+const customerJson = loadCsv();
 
 const CustomerType = new GraphQLObjectType({
   name: 'Customer',
@@ -81,7 +100,7 @@ const QueryType = new GraphQLObjectType({
     },
     customers: {
       type: new GraphQLList(CustomerType),
-      resolve: () => csvToJson(customerCsv),
+      resolve: () => customerJson,
     },
   }),
 });
