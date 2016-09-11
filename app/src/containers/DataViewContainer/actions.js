@@ -35,6 +35,11 @@ fragment Person on Person {
 }
 `;
 
+const options = {
+  method: 'GET',
+  mode: 'no-cors',
+};
+
 export const loadIssueDataInitiation = () => ({
   type: LOAD_ISSUE_DATA_INITIATION,
 });
@@ -54,8 +59,9 @@ export const loadIssueData = () =>
     dispatch(
       loadIssueDataInitiation()
     );
-    return fetch(apiUrl)(query)
+    return fetch(apiUrl)(query, options)
       .then(res => {
+        console.log(res);
         dispatch(
           loadIssueDataSuccess(res.issues)
         );

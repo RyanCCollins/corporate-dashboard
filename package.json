@@ -130,6 +130,7 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
     "mocha": "^2.3.4",
+    "morgan": "^1.7.0",
     "nock": "^8.0.0",
     "npm-install-webpack-plugin": "^4.0.3",
     "null-loader": "0.1.1",

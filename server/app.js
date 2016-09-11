@@ -6,6 +6,7 @@ import fs from 'fs';
 import { graphql } from 'graphql';
 import { introspectionQuery } from 'graphql/utilities';
 import schema from './schema/schema';
+import morgan from 'morgan';
 
 // constants needed
 const isDeveloping = process.env.NODE_ENV !== 'production';
@@ -21,6 +22,7 @@ if (isDeveloping) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
   });
+  app.use(morgan('combined'));
 }
 
 app.use(express.static(__dirname + '/public'));
