@@ -6,12 +6,18 @@ import {
   GraphQLList,
 } from '../../node_modules/graphql';
 
+import {
+  connectionDefinitions,
+  connectionArgs,
+  connectionFromPromisedArray,
+} from 'graphql-relay';
+
 import issuesJSON from '../data/issues.json';
 import employeesJSON from '../data/employees.json';
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
-let store = {};
+const store = {};
 
 const csvToJson = (csv) => {
   const content = csv.split('\n');
@@ -66,7 +72,7 @@ const EmployeeType = new GraphQLObjectType({
 });
 
 const IssueType = new GraphQLObjectType({
-  name: 'issue',
+  name: 'Issue',
   fields: () => ({
     id: { type: GraphQLString },
     submission: { type: GraphQLString },
@@ -78,6 +84,11 @@ const IssueType = new GraphQLObjectType({
   }),
 });
 
+const IssueConnection = connectionDefinitions({
+  name: 'Issue',
+  nodeType: IssueType,
+});
+
 const StoreType = new GraphQLObjectType({
   name: 'Store',
   fields: () => ({
@@ -85,9 +96,15 @@ const StoreType = new GraphQLObjectType({
       type: new GraphQLList(EmployeeType),
       resolve: () => employeesJSON,
     },
-    issues: {
-      type: new GraphQLList(IssueType),
-      resolve: () => issuesJSON,
+    issueConnect: {
+      // type: new GraphQLList(IssueType),
+      // resolve: () => issuesJSON,
+      type: IssueConnection.connectionType,
+      args: connectionArgs,
+      resolve: (__, args) => connectionFromPromisedArray(
+        issuesJSON,
+        args,
+      ),
     },
     customers: {
       type: new GraphQLList(CustomerType),

@@ -59,9 +59,8 @@ export const loadIssueData = () =>
     dispatch(
       loadIssueDataInitiation()
     );
-    return fetch(apiUrl)(query, options)
+    return fetch(apiUrl)(query)
       .then(res => {
-        console.log(res);
         dispatch(
           loadIssueDataSuccess(res.issues)
         );
