@@ -3,8 +3,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
-import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from './reducers';
+import client from './apolloClient';
 
 const initialState = {
   employees: {
@@ -16,19 +16,14 @@ const initialState = {
     },
   },
   keyMetrics: {
-    data: [],
-    isLoading: false,
-    error: null,
+    areaChartLabels: [],
   },
   dataView: {
-    issues: [],
     filteredIssues: null,
     currentFilter: {
       employee: 'All',
       customer: 'All',
     },
-    isLoading: false,
-    error: null,
     tableHeaders: [
       'Submitted',
       'Closed',
@@ -67,7 +62,7 @@ const initialState = {
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
 const loggerMiddleware = createLogger();
-const middlewares = [thunk, promiseMiddleware(), loggerMiddleware];
+const middlewares = [thunk, loggerMiddleware, client.middleware()];
 
 /* Everyone should use redux dev tools */
 /* https://github.com/gaearon/redux-devtools */

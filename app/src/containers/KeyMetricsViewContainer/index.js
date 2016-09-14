@@ -2,56 +2,48 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as KeyMetricsViewActionCreators from './actions';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import { LineChart } from 'components';
-import { areaChartLabels } from './constants';
 
 class KeyMetricsView extends Component {
-  componentDidMount() {
-    this.handleLoadingData();
-  }
-  handleLoadingData() {
-    const {
-      loadCustomerData,
-    } = this.props.actions;
-    loadCustomerData();
-  }
   render() {
     const {
-      isLoading,
-      data,
-      error,
+      loading,
+      store,
+      areaChartLabels,
     } = this.props;
     return (
       <div className={styles.keyMetricsView}>
         <Heading align="center">
           Key Metrics
         </Heading>
-        {isLoading ?
+        {loading ?
           <Heading tag="h2" align="center">Loading</Heading>
         :
-          <LineChart data={data} labels={areaChartLabels} />
+          <LineChart
+            data={store.customers}
+            labels={areaChartLabels}
+          />
         }
-
       </div>
     );
   }
 }
 
 KeyMetricsView.propTypes = {
-  data: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  error: PropTypes.object.isRequired,
-  actions: PropTypes.func.isRequired,
+  store: PropTypes.array.isRequired,
+  areaChartLabels: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.object,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  data: state.keyMetrics.data,
-  isLoading: state.keyMetrics.isLoading,
-  error: state.keyMetrics.error,
+  areaChartLabels: state.keyMetrics.areaChartLabels,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -62,9 +54,27 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-const Container = cssModules(KeyMetricsView, styles);
+const allCustomers = gql`
+  query allCustomer {
+    store {
+      customers {
+        week_num
+        num_customers
+      }
+    }
+  }
+`;
+
+const ContainerWithData = graphql(allCustomers, {
+  props: ({ data: { loading, store } }) => ({
+    store,
+    loading,
+  }),
+})(KeyMetricsView);
+
+const Container = cssModules(ContainerWithData, styles);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Container);
