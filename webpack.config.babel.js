@@ -6,7 +6,7 @@ import Visualizer from 'webpack-visualizer-plugin';
 const ROOT_PATH = path.resolve(__dirname);
 
 const env = process.env.NODE_ENV || 'development';
-const PORT = process.env.PORT || 1337;
+const PORT = process.env.PORT || 2000;
 const HOST = '0.0.0.0'; // Set to localhost if need be.
 
 module.exports = {

@@ -84,11 +84,6 @@ const IssueType = new GraphQLObjectType({
   }),
 });
 
-const IssueConnection = connectionDefinitions({
-  name: 'Issue',
-  nodeType: IssueType,
-});
-
 const StoreType = new GraphQLObjectType({
   name: 'Store',
   fields: () => ({
@@ -96,15 +91,9 @@ const StoreType = new GraphQLObjectType({
       type: new GraphQLList(EmployeeType),
       resolve: () => employeesJSON,
     },
-    issueConnect: {
-      // type: new GraphQLList(IssueType),
-      // resolve: () => issuesJSON,
-      type: IssueConnection.connectionType,
-      args: connectionArgs,
-      resolve: (__, args) => connectionFromPromisedArray(
-        issuesJSON,
-        args,
-      ),
+    issues: {
+      type: new GraphQLList(IssueType),
+      resolve: () => issuesJSON,
     },
     customers: {
       type: new GraphQLList(CustomerType),

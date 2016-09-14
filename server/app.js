@@ -24,7 +24,6 @@ if (isDeveloping) {
     next();
   });
   app.use(morgan('combined'));
-  app.use(cors);
 }
 
 app.use(express.static(__dirname + '/public'));
@@ -35,7 +34,7 @@ graphql(schema, query).then((result) => {
 
 (async () => {
   try {
-    app.use('/api', graphqlHTTP({ schema, pretty: true, graphiql: true }))
+    app.use('/api', cors(), graphqlHTTP({ schema, pretty: true, graphiql: true }))
 
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, 'public/index.html'));
