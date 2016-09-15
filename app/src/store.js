@@ -19,6 +19,7 @@ const initialState = {
     areaChartLabels: [],
   },
   dataView: {
+    offsetValue: 0,
     filteredIssues: null,
     currentFilter: {
       employee: 'All',

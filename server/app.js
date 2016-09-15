@@ -34,7 +34,11 @@ graphql(schema, query).then((result) => {
 
 (async () => {
   try {
-    app.use('/api', cors(), graphqlHTTP({ schema, pretty: true, graphiql: true }))
+    app.use(
+      '/api',
+      cors(),
+      graphqlHTTP({ schema, pretty: true, graphiql: true })
+    );
 
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, 'public/index.html'));
@@ -42,7 +46,10 @@ graphql(schema, query).then((result) => {
 
     app.listen(port, '0.0.0.0', (err) => {
       if (err) { return console.warn(err); };
-      return console.info(`==> 😎 Listening on port ${port}. Open http://0.0.0.0:${port}/ in your browser.`);
+      return console.info(
+        `==> 😎 Listening on port ${port}.
+          Open http://0.0.0.0:${port}/ in your browser.`
+      );
     });
 
     let json = await graphql(schema, introspectionQuery);

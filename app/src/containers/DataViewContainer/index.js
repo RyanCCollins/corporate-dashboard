@@ -18,6 +18,7 @@ class DataView extends Component {
     this.handleResize = this.handleResize.bind(this);
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.getWindowWidth = this.getWindowWidth.bind(this);
+    this.handleRequestMore = this.handleRequestMore.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
     };
@@ -49,9 +50,14 @@ class DataView extends Component {
   handleFiltering(type) {
 
   }
+  handleRequestMore() {
+    const {
+      store,
+    } = this.props;
+    store.refetch();
+  }
   render() {
     const {
-      filteredIssues,
       headers,
       currentFilter,
       filterOptions,
@@ -70,7 +76,7 @@ class DataView extends Component {
           </Heading>
         :
           <Section>
-            <FilterIssueTable
+            {/* <FilterIssueTable
               // employees={employees}
               // customers={customers}
               onFilter={this.handleFiltering}
@@ -84,11 +90,13 @@ class DataView extends Component {
                 onSelectItem={this.handleSelectItem}
                 items={filterOptions}
               />
-            </Box>
+            </Box> */}
             <IssueTable
               issues={store.issues} // eslint-disable-line
               headers={headers}
               isMobile={this.state.isMobile}
+              isLoadingMore={loading}
+              onRequestMore={this.handleRequestMore}
             />
           </Section>
         }
@@ -98,8 +106,6 @@ class DataView extends Component {
 }
 
 DataView.propTypes = {
-  actions: PropTypes.object.isRequired,
-  issues: PropTypes.array.isRequired,
   filteredIssues: PropTypes.array,
   employees: PropTypes.array.isRequired,
   customers: PropTypes.array.isRequired,
@@ -130,8 +136,8 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-const allIssues = gql`
-  {
+const MoreIssuesQuery = gql`
+  query MoreIssues($offset: Int, $limit: Int) {
     store {
       issues {
         id
@@ -155,11 +161,23 @@ const allIssues = gql`
   }
 `;
 
-const ContainerWithData = graphql(allIssues, {
-  options: () => ({ pollInterval: 20000 }),
-  props: ({ data: { loading, store } }) => ({
+const ContainerWithData = graphql(MoreIssuesQuery, {
+  options: (props) => ({
+    variables: {
+      offset: props.store.issues.length,
+      limit: 90,
+    },
+  }),
+  props: ({ data: { loading, store, fetchMore } }) => ({
     store,
     loading,
+    loadMoreEntries: () =>
+      fetchMore({
+        variables: {
+          offset: store.issues.length,
+          limit: 90,
+        },
+      }),
   }),
 })(DataView);
 

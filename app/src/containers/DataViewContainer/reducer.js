@@ -5,6 +5,7 @@ import {
 } from './constants';
 
 export const initialState = {
+  offsetValue: 0,
   filteredIssues: null,
   currentFilter: {
     employee: 'All',
