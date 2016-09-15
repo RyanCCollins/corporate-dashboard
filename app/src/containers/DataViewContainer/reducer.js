@@ -1,21 +1,16 @@
 import {
-  LOAD_ISSUE_DATA_INITIATION,
-  LOAD_ISSUE_DATA_SUCCESS,
-  LOAD_ISSUE_DATA_FAILURE,
   SET_SECONDARY_FILTER_STATUS,
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
 } from './constants';
 
 export const initialState = {
-  issues: [],
+  offsetValue: 0,
   filteredIssues: null,
   currentFilter: {
     employee: 'All',
     customer: 'All',
   },
-  isLoading: false,
-  error: null,
   tableHeaders: [
     'Submitted',
     'Closed',
@@ -82,20 +77,6 @@ const secondaryFilter =
 const issueReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case LOAD_ISSUE_DATA_INITIATION:
-        return Object.assign({}, state, {
-          isLoading: true,
-        });
-      case LOAD_ISSUE_DATA_SUCCESS:
-        return Object.assign({}, state, {
-          isLoading: false,
-          issues: action.issues,
-        });
-      case LOAD_ISSUE_DATA_FAILURE:
-        return Object.assign({}, state, {
-          isLoading: false,
-          error: action.error,
-        });
       case SET_SECONDARY_FILTER_STATUS:
         return Object.assign({}, state, {
           secondaryFilter: secondaryFilter(state.secondaryFilter, action),

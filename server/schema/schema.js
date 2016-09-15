@@ -4,13 +4,7 @@ import {
   GraphQLInt,
   GraphQLString,
   GraphQLList,
-} from '../../node_modules/graphql';
-
-import {
-  connectionDefinitions,
-  connectionArgs,
-  connectionFromPromisedArray,
-} from 'graphql-relay';
+} from 'graphql';
 
 import issuesJSON from '../data/issues.json';
 import employeesJSON from '../data/employees.json';

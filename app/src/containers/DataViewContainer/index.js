@@ -8,22 +8,22 @@ import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
 import { IssueTable, FilterIssueTable, DataFilter } from 'components';
-import Relay from 'react-relay';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
 class DataView extends Component {
   constructor() {
     super();
-    this.handleLoadingData = this.handleLoadingData.bind(this);
     this.handleFiltering = this.handleFiltering.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.getWindowWidth = this.getWindowWidth.bind(this);
+    this.handleRequestMore = this.handleRequestMore.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
     };
   }
   componentDidMount() {
-    this.handleLoadingData();
     window.addEventListener('resize', this.handleResize);
   }
   componentWillUnmount() {
@@ -50,39 +50,35 @@ class DataView extends Component {
   handleFiltering(type) {
 
   }
-  handleLoadingData() {
+  handleRequestMore() {
     const {
-      loadIssueData,
-    } = this.props.actions;
-    loadIssueData();
+      store,
+    } = this.props;
+    store.refetch();
   }
   render() {
     const {
-      issues,
-      filteredIssues,
-      isLoading,
-      error,
       headers,
       currentFilter,
       filterOptions,
-      employees,
-      customers,
       secondaryFilter,
+      store,
+      loading,
     } = this.props;
     return (
       <div className={styles.dataView}>
         <Heading align="center">
           Data View
         </Heading>
-        {isLoading ?
+        {loading ?
           <Heading tag="h2" align="center">
             Loading...
           </Heading>
         :
           <Section>
-            <FilterIssueTable
-              employees={employees}
-              customers={customers}
+            {/* <FilterIssueTable
+              // employees={employees}
+              // customers={customers}
               onFilter={this.handleFiltering}
               onClearFilter={this.handleClearFilter}
               onApplyFilters={this.applyFilters}
@@ -94,11 +90,13 @@ class DataView extends Component {
                 onSelectItem={this.handleSelectItem}
                 items={filterOptions}
               />
-            </Box>
+            </Box> */}
             <IssueTable
-              issues={filteredIssues != null ? filteredIssues : issues} // eslint-disable-line
+              issues={store.issues} // eslint-disable-line
               headers={headers}
               isMobile={this.state.isMobile}
+              isLoadingMore={loading}
+              onRequestMore={this.handleRequestMore}
             />
           </Section>
         }
@@ -108,8 +106,6 @@ class DataView extends Component {
 }
 
 DataView.propTypes = {
-  actions: PropTypes.object.isRequired,
-  issues: PropTypes.array.isRequired,
   filteredIssues: PropTypes.array,
   employees: PropTypes.array.isRequired,
   customers: PropTypes.array.isRequired,
@@ -123,15 +119,12 @@ DataView.propTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  issues: state.dataView.issues,
-  filteredIssues: state.dataView.filteredIssues,
+  // filteredIssues: state.dataView.filteredIssues,
   headers: state.dataView.tableHeaders,
-  error: state.dataView.error,
-  isLoading: state.dataView.isLoading,
   currentFilter: state.dataView.currentFilter,
   filterOptions: state.dataView.secondaryFilter.options,
-  employees: state.dataView.issues.map(i => i.employee.name),
-  customers: state.dataView.issues.map(i => i.customer.name),
+  // employees: state.dataView.issues.map(i => i.employee.name),
+  // customers: state.dataView.issues.map(i => i.customer.name),
   secondaryFilter: state.dataView.secondaryFilter,
 });
 
@@ -143,7 +136,52 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-const Container = cssModules(DataView, styles);
+const MoreIssuesQuery = gql`
+  query MoreIssues($offset: Int, $limit: Int) {
+    store {
+      issues {
+        id
+        submission
+        closed
+        status
+        customer {
+          ...Person
+        }
+        employee {
+          ...Person
+        }
+        description
+      }
+    }
+  }
+
+  fragment Person on Person {
+    name
+    avatar
+  }
+`;
+
+const ContainerWithData = graphql(MoreIssuesQuery, {
+  options: (props) => ({
+    variables: {
+      offset: props.store.issues.length,
+      limit: 90,
+    },
+  }),
+  props: ({ data: { loading, store, fetchMore } }) => ({
+    store,
+    loading,
+    loadMoreEntries: () =>
+      fetchMore({
+        variables: {
+          offset: store.issues.length,
+          limit: 90,
+        },
+      }),
+  }),
+})(DataView);
+
+const Container = cssModules(ContainerWithData, styles);
 
 const DataViewContainer = connect(
   mapStateToProps,

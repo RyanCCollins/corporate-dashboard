@@ -1,76 +1,9 @@
 import {
-  LOAD_ISSUE_DATA_INITIATION,
-  LOAD_ISSUE_DATA_SUCCESS,
-  LOAD_ISSUE_DATA_FAILURE,
   SET_SECONDARY_FILTER_STATUS,
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
+  UPDATE_CURRENT_CURSOR,
 } from './constants';
-import fetch from 'graphql-fetch';
-
-const apiUrl = 'http://0.0.0.0:1338/api';
-
-const query = `
-{
-  store {
-    issues {
-      id
-      submission
-      closed
-      status
-      customer {
-        ...Person
-      }
-      employee {
-        ...Person
-      }
-      description
-    }
-  }
-}
-
-fragment Person on Person {
-  name
-  avatar
-}
-`;
-
-const options = {
-  method: 'GET',
-  mode: 'no-cors',
-};
-
-export const loadIssueDataInitiation = () => ({
-  type: LOAD_ISSUE_DATA_INITIATION,
-});
-
-export const loadIssueDataSuccess = (issues) => ({
-  type: LOAD_ISSUE_DATA_SUCCESS,
-  issues,
-});
-
-export const loadIssueDataFailure = (error) => ({
-  type: LOAD_ISSUE_DATA_FAILURE,
-  error,
-});
-
-export const loadIssueData = () =>
-  (dispatch) => {
-    dispatch(
-      loadIssueDataInitiation()
-    );
-    return fetch(apiUrl)(query)
-      .then(res => {
-        dispatch(
-          loadIssueDataSuccess(res.issues)
-        );
-      })
-      .catch(error => {
-        dispatch(
-          loadIssueDataFailure(error)
-        );
-      });
-  };
 
 // setSecondaryFilterStatus :: String -> {Action}
 export const setSecondaryFilterStatus = (status) => ({
@@ -88,6 +21,12 @@ export const setSecondaryFilterState = (state) => ({
 export const setSecondaryFilterOrder = (order) => ({
   type: SET_SECONDARY_FILTER_ORDER,
   order,
+});
+
+// updateCurrentCursor :: Int -> {Action}
+export const updateCurrentCursor = (next) => ({
+  type: UPDATE_CURRENT_CURSOR,
+  next,
 });
 
 export const setSecondaryFilter = (filter, type) =>

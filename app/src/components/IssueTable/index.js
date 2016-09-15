@@ -8,11 +8,14 @@ import Tiles from 'grommet/components/Tiles';
 import Tile from 'grommet/components/Tile';
 import Box from 'grommet/components/Box';
 import Section from 'grommet/components/Section';
+import Spinning from 'grommet/components/icons/Spinning';
 
 const IssueTable = ({
   issues,
   headers,
   isMobile,
+  isLoadingMore,
+  onRequestMore,
 }) => (
   <Section>
     {isMobile ?
@@ -66,6 +69,9 @@ const IssueTable = ({
         </tbody>
       </Table>
     }
+    {isLoadingMore &&
+      <Spinning />
+    }
   </Section>
 );
 
@@ -73,6 +79,12 @@ IssueTable.propTypes = {
   issues: PropTypes.array.isRequired,
   headers: PropTypes.array.isRequired,
   isMobile: PropTypes.bool.isRequired,
+  isLoadingMore: PropTypes.bool.isRequired,
+  onRequestMore: PropTypes.func.isRequired,
+};
+
+IssueTable.defaultProps = {
+  isLoadingMore: false,
 };
 
 export default cssModules(IssueTable, styles);
