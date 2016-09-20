@@ -8,49 +8,6 @@ describe('dataViewReducer', () => {
       reducer(undefined, {})
     ).toEqual(initialState);
   });
-  it('should handle LOAD_ISSUE_DATA_INITIATION', () => {
-    const stateBefore = {
-      isLoading: false,
-    };
-    const stateAfter = {
-      isLoading: true,
-    };
-    expect(
-      reducer(stateBefore, {
-        type: types.LOAD_ISSUE_DATA_INITIATION,
-      })
-    ).toEqual(stateAfter);
-  });
-  it('should handle LOAD_ISSUE_DATA_SUCCESS', () => {
-    const data = [{}, {}, {}];
-    const stateBefore = {
-      issues: [],
-      isLoading: true,
-    };
-    const stateAfter = {
-      isssues: data,
-      isLoading: false,
-    };
-    expect(
-      reducer(stateBefore, {
-        type: types.LOAD_ISSUE_DATA_SUCCESS,
-        data,
-      })
-    ).toEqual(stateAfter);
-  });
-  it('should handle LOAD_ISSUE_DATA_FAILURE', () => {
-    const error = new Error('An error has occured');
-    const stateAfter = Object.assign({}, initialState, {
-      error,
-      isLoading: false,
-    });
-    expect(
-      reducer(initialState, {
-        type: types.LOAD_ISSUE_DATA_FAILURE,
-        error,
-      })
-    ).toEqual(stateAfter);
-  });
   it('should handle SET_SECONDARY_FILTER_STATUS', () => {
     const status = 'Critical';
     const stateAfter = Object.assign({}, initialState, {

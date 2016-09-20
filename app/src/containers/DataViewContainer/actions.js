@@ -3,6 +3,7 @@ import {
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
   UPDATE_CURRENT_CURSOR,
+  INCREMENT_DATA_VIEW_PAGE,
 } from './constants';
 
 // setSecondaryFilterStatus :: String -> {Action}
@@ -45,3 +46,8 @@ export const setSecondaryFilter = (filter, type) =>
         break;
     }
   };
+
+// incrementPage :: None -> {Action}
+export const incrementPage = () => ({
+  type: INCREMENT_DATA_VIEW_PAGE,
+});

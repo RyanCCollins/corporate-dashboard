@@ -2,10 +2,12 @@ import {
   SET_SECONDARY_FILTER_STATUS,
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
+  INCREMENT_DATA_VIEW_PAGE,
 } from './constants';
 
 export const initialState = {
-  offsetValue: 0,
+  pageIncrementor: 9,
+  currentPage: 0,
   filteredIssues: null,
   currentFilter: {
     employee: 'All',
@@ -77,6 +79,10 @@ const secondaryFilter =
 const issueReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case INCREMENT_DATA_VIEW_PAGE:
+        return Object.assign({}, state, {
+          currentPage: state.currentPage + 1,
+        });
       case SET_SECONDARY_FILTER_STATUS:
         return Object.assign({}, state, {
           secondaryFilter: secondaryFilter(state.secondaryFilter, action),

@@ -5,59 +5,14 @@ import { browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers';
 import client from './apolloClient';
+import { initialState as dataView } from './containers/DataViewContainer/reducer';
+import { initialState as employees } from './containers/GeospatialViewContainer/reducer';
+import { initialState as keyMetrics } from './containers/KeyMetricsViewContainer/reducer';
 
 const initialState = {
-  employees: {
-    data: [],
-    isLoading: false,
-    error: null,
-    chart: {
-      index: 0,
-    },
-  },
-  keyMetrics: {
-    areaChartLabels: [],
-  },
-  dataView: {
-    offsetValue: 0,
-    filteredIssues: null,
-    currentFilter: {
-      employee: 'All',
-      customer: 'All',
-    },
-    tableHeaders: [
-      'Submitted',
-      'Closed',
-      'Status',
-      'Employee',
-      'Customer',
-      'Description',
-    ],
-    secondaryFilter: {
-      status: 'All',
-      state: 'All',
-      order: 'Ascending',
-      options: {
-        statuses: [
-          'All',
-          'Critical',
-          'Warning',
-          'Ok',
-          'Disabled',
-          'Unknown',
-        ],
-        states: [
-          'All',
-          'Active',
-          'Inactive',
-        ],
-        orders: [
-          'Ascending',
-          'Descending',
-        ],
-      },
-    },
-  },
+  employees,
+  keyMetrics,
+  dataView,
 };
 
 /* Commonly used middlewares and enhancers */

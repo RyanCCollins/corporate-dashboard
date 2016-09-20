@@ -52,9 +52,9 @@ class DataView extends Component {
   }
   handleRequestMore() {
     const {
-      store,
+      actions,
     } = this.props;
-    store.refetch();
+    actions.incrementPage();
   }
   render() {
     const {
@@ -62,9 +62,15 @@ class DataView extends Component {
       currentFilter,
       filterOptions,
       secondaryFilter,
-      store,
       loading,
+      currentPage,
+      store,
+      pageIncrementor,
     } = this.props;
+    const visibleIssues = store &&
+    store.issues.slice(0, currentPage * pageIncrementor);
+    const employees = store && store.issues.map(i => i.employee.name);
+    const customers = store && store.issues.map(i => i.customer.name);
     return (
       <div className={styles.dataView}>
         <Heading align="center">
@@ -76,9 +82,9 @@ class DataView extends Component {
           </Heading>
         :
           <Section>
-            {/* <FilterIssueTable
-              // employees={employees}
-              // customers={customers}
+            <FilterIssueTable
+              employees={employees}
+              customers={customers}
               onFilter={this.handleFiltering}
               onClearFilter={this.handleClearFilter}
               onApplyFilters={this.applyFilters}
@@ -90,14 +96,16 @@ class DataView extends Component {
                 onSelectItem={this.handleSelectItem}
                 items={filterOptions}
               />
-            </Box> */}
-            <IssueTable
-              issues={store.issues} // eslint-disable-line
-              headers={headers}
-              isMobile={this.state.isMobile}
-              isLoadingMore={loading}
-              onRequestMore={this.handleRequestMore}
-            />
+            </Box>
+            {store &&
+              <IssueTable
+                issues={visibleIssues} // eslint-disable-line
+                headers={headers}
+                isMobile={this.state.isMobile}
+                isLoadingMore={loading}
+                onRequestMore={this.handleRequestMore}
+              />
+            }
           </Section>
         }
       </div>
@@ -106,6 +114,7 @@ class DataView extends Component {
 }
 
 DataView.propTypes = {
+  currentPage: PropTypes.number.isRequired,
   filteredIssues: PropTypes.array,
   employees: PropTypes.array.isRequired,
   customers: PropTypes.array.isRequired,
@@ -115,17 +124,21 @@ DataView.propTypes = {
   currentFilter: PropTypes.object.isRequired,
   filterOptions: PropTypes.object.isRequired,
   secondaryFilter: PropTypes.object.isRequired,
+  store: PropTypes.object,
+  actions: PropTypes.object.isRequired,
+  pageIncrementor: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  // filteredIssues: state.dataView.filteredIssues,
+  filteredIssues: state.dataView.filteredIssues,
   headers: state.dataView.tableHeaders,
   currentFilter: state.dataView.currentFilter,
   filterOptions: state.dataView.secondaryFilter.options,
-  // employees: state.dataView.issues.map(i => i.employee.name),
-  // customers: state.dataView.issues.map(i => i.customer.name),
   secondaryFilter: state.dataView.secondaryFilter,
+  currentPage: state.dataView.currentPage,
+  pageIncrementor: state.dataView.pageIncrementor,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -164,7 +177,7 @@ const MoreIssuesQuery = gql`
 const ContainerWithData = graphql(MoreIssuesQuery, {
   options: (props) => ({
     variables: {
-      offset: props.store.issues.length,
+      offset: 90,
       limit: 90,
     },
   }),
@@ -174,7 +187,7 @@ const ContainerWithData = graphql(MoreIssuesQuery, {
     loadMoreEntries: () =>
       fetchMore({
         variables: {
-          offset: store.issues.length,
+          offset: 90,
           limit: 90,
         },
       }),
