@@ -1,4 +1,5 @@
 /* Assemble all components for export */
+export LoadingIndicator from './LoadingIndicator';
 export DataFilter from './DataFilter';
 export Logo from './Logo';
 export FilterIssueTable from './FilterIssueTable';

@@ -7,7 +7,7 @@ import { graphql } from 'react-apollo';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
-import { LineChart } from 'components';
+import { LineChart, LoadingIndicator } from 'components';
 
 class KeyMetricsView extends Component {
   render() {
@@ -22,7 +22,7 @@ class KeyMetricsView extends Component {
           Key Metrics
         </Heading>
         {loading ?
-          <Heading tag="h2" align="center">Loading</Heading>
+          <LoadingIndicator isLoading={loading} />
         :
           <LineChart
             data={store.customers}
