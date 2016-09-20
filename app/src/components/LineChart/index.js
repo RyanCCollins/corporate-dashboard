@@ -30,20 +30,37 @@ class LineChart extends Component {
     };
   }
   componentDidMount() {
-    const active = { start: 10, end: 14 };
+    const active = { start: 8, end: 16 };
     this.state = this.stateFromActive(active);
   }
-  setActive(index) {
-
+  setActive({ start, end }) {
+    const {
+      data,
+    } = this.props;
+    this.setState({
+      active: {
+        start,
+        end,
+      },
+      activeValues: data.slice(start, end).map(o => o.num_customers),
+    });
   }
   stateFromActive(active) {
     const {
-      labels,
+      data,
     } = this.props;
-    if (!labels) {
-      return undefined;
+    if (!data) {
+      return {};
     }
-    const activeValues = labels.slice(active.start, active.end + 1).map(o => o.num_customers);
+    const {
+      start,
+      end,
+    } = active;
+    const getActiveValues = () =>
+      data
+        .slice(start, end)
+        .map(o => o.num_customers);
+    const activeValues = getActiveValues();
     return {
       active,
       activeValues,
@@ -78,7 +95,7 @@ class LineChart extends Component {
             <Range
               count={52}
               active={active}
-              onActive={(index) => this.setActive(index)}
+              onActive={(a) => this.setActive(a)}
             />
           </Layers>
         </Chart>
@@ -91,7 +108,6 @@ class LineChart extends Component {
             <HotSpots
               count={activeValues.length}
               activeIndex={index}
-              onActive={(i) => this.setActive(i)}
             />
           </Layers>
         </Chart>

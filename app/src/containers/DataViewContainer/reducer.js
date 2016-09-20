@@ -48,7 +48,7 @@ export const initialState = {
 };
 
 const filteredIssues = (state, action) =>
-  state.filter(item =>
+  action.issues.filter(item =>
     state.secondaryFilter.status !== 'All' ?
       item.status === action.status : true
   ).filter(item =>

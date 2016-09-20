@@ -43,9 +43,10 @@ class DataView extends Component {
   }
   handleSelectItem({ item, type }) {
     const {
-      setSecondaryFilter,
-    } = this.props.actions;
-    setSecondaryFilter(item, type);
+      actions,
+      store,
+    } = this.props;
+    actions.setSecondaryFilter(item, type, store.issues);
   }
   handleFiltering(type) {
 

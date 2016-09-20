@@ -7,21 +7,24 @@ import {
 } from './constants';
 
 // setSecondaryFilterStatus :: String -> {Action}
-export const setSecondaryFilterStatus = (status) => ({
+export const setSecondaryFilterStatus = (status, issues) => ({
   type: SET_SECONDARY_FILTER_STATUS,
   status,
+  issues,
 });
 
 // setSecondaryFilterState :: String -> {Action}
-export const setSecondaryFilterState = (state) => ({
+export const setSecondaryFilterState = (state, issues) => ({
   type: SET_SECONDARY_FILTER_STATE,
   state,
+  issues,
 });
 
 // setSecondaryFilterOrder :: String -> {Action}
-export const setSecondaryFilterOrder = (order) => ({
+export const setSecondaryFilterOrder = (order, issues) => ({
   type: SET_SECONDARY_FILTER_ORDER,
   order,
+  issues,
 });
 
 // updateCurrentCursor :: Int -> {Action}
@@ -30,17 +33,17 @@ export const updateCurrentCursor = (next) => ({
   next,
 });
 
-export const setSecondaryFilter = (filter, type) =>
+export const setSecondaryFilter = (filter, type, issues) =>
   (dispatch) => {
     switch (type) {
       case 'status':
-        dispatch(setSecondaryFilterStatus(filter));
+        dispatch(setSecondaryFilterStatus(filter, issues));
         break;
       case 'state':
-        dispatch(setSecondaryFilterState(filter));
+        dispatch(setSecondaryFilterState(filter, issues));
         break;
       case 'order':
-        dispatch(setSecondaryFilterOrder(filter));
+        dispatch(setSecondaryFilterOrder(filter, issues));
         break;
       default:
         break;
