@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import * as GeospatialViewActionCreators from './actions';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
-import { EmployeeLocationChart, EmployeeTable } from 'components';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { EmployeeLocationChart, EmployeeTable, LoadingIndicator } from 'components';
 import sortByNumber from 'utils/sortByNumber';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
@@ -22,10 +24,10 @@ class GeospatialView extends Component {
   }
   getCurrentValue() {
     const {
-      data,
+      store,
       selectedIndex,
     } = this.props;
-    return sortByNumber(data, 'employees')
+    return sortByNumber(store.employees, 'employees')
       .map(i => i.employees)[selectedIndex];
   }
   handleLoadingData() {
@@ -44,8 +46,8 @@ class GeospatialView extends Component {
   }
   render() {
     const {
-      data,
-      isLoading,
+      store,
+      loading,
       error,
       selectedIndex,
     } = this.props;
@@ -54,17 +56,17 @@ class GeospatialView extends Component {
         <Heading align="center">
           Geospatial View
         </Heading>
-        {isLoading ?
-          <h1>Loading...</h1>
+        {loading ?
+          <LoadingIndicator isLoading={loading} />
         :
           <Section>
             <Box direction="row" alignContent="between" justify="center" responsive>
-              <EmployeeTable employees={data} />
+              <EmployeeTable employees={store.employees} />
               <EmployeeLocationChart
                 selectedIndex={selectedIndex}
                 currentValue={this.getCurrentValue()}
                 onSelectItem={this.handleChartSelection}
-                sortedEmployees={sortByNumber(data, 'employees')}
+                sortedEmployees={sortByNumber(store.employees, 'employees')}
               />
             </Box>
           </Section>
@@ -75,8 +77,8 @@ class GeospatialView extends Component {
 }
 
 GeospatialView.propTypes = {
-  data: PropTypes.array,
-  isLoading: PropTypes.bool.isRequired,
+  store: PropTypes.object,
+  loading: PropTypes.bool.isRequired,
   error: PropTypes.object,
   actions: PropTypes.object.isRequired,
   selectedIndex: PropTypes.number.isRequired,
@@ -84,8 +86,6 @@ GeospatialView.propTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  data: state.employees.data,
-  isLoading: state.employees.isLoading,
   error: state.employees.error,
   selectedIndex: state.employees.chart.index,
 });
@@ -100,7 +100,26 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Container = cssModules(GeospatialView, styles);
 
+const allEmployees = gql`
+  query allCustomer {
+    store {
+      employees {
+        id
+        numemployees
+        location
+      }
+    }
+  }
+`;
+
+const ContainerWithData = graphql(allCustomer, {
+  props: ({ data: { loading, store } }) => ({
+    store,
+    loading,
+  }),
+})(Container);
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Container);
+)(ContainerWithData);
