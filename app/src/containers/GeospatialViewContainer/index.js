@@ -101,7 +101,7 @@ const mapDispatchToProps = (dispatch) => ({
 const Container = cssModules(GeospatialView, styles);
 
 const allEmployees = gql`
-  query allCustomer {
+  query allEmployees {
     store {
       employees {
         id
