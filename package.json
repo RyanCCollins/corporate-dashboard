@@ -26,7 +26,7 @@
     "generate:page": "plop --plopfile config/generators/index.js page",
     "lint": "eslint . --ext .js --ext .jsx; exit 0",
     "deploy": "cross-env NODE_ENV=production webpack -p",
-    "start": "npm run dev",
+    "start": "npm run dev && node server",
     "clean": "rm -rf app/dist app/build",
     "setup": "npm install",
     "serve:bundle": "cross-env NODE_ENV=production PORT=1337 node server.js"

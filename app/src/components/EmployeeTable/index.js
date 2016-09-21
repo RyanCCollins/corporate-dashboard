@@ -7,6 +7,8 @@ import TableRow from 'grommet/components/TableRow';
 
 const EmployeeTable = ({
   employees,
+  onSelectItem,
+  selectedIndex,
 }) => (
   <Box
     pad={{ horizontal: 'large', vertical: 'medium' }}
@@ -14,7 +16,11 @@ const EmployeeTable = ({
     justify="center"
     className={styles.employeeTable}
   >
-    <Table selectable={false}>
+    <Table
+      selectable
+      onSelect={(index) => onSelectItem(index)}
+      selected={selectedIndex}
+    >
       <thead>
         <th>
           Location
@@ -30,7 +36,7 @@ const EmployeeTable = ({
               {employee.location}
             </td>
             <td>
-              {employee.employees}
+              {employee.numemployees}
             </td>
           </TableRow>
         )}
@@ -41,6 +47,8 @@ const EmployeeTable = ({
 
 EmployeeTable.propTypes = {
   employees: PropTypes.array.isRequired,
+  onSelectItem: PropTypes.func.isRequired,
+  selectedIndex: PropTypes.number.isRequired,
 };
 
 export default cssModules(EmployeeTable, styles);

@@ -24,25 +24,6 @@ export const loadEmployeeDataFailure = (error) => ({
   error,
 });
 
-export const loadEmployeeData = () =>
-  (dispatch) => {
-    dispatch(
-      loadEmployeeDataInitiation()
-    );
-    return fetch(employeeUrl)
-      .then(res => res.json())
-      .then(data => {
-        dispatch(
-          loadEmployeeDataSuccess(data)
-        );
-      })
-      .catch(error => {
-        dispatch(
-          loadEmployeeDataFailure(error)
-        );
-      });
-  };
-
 // selectIndex :: Int -> {Action}
 export const selectIndex = (index) => ({
   type: SELECT_EMPLOYEE_INDEX,

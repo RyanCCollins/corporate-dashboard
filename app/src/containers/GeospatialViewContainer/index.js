@@ -15,26 +15,16 @@ import Heading from 'grommet/components/Heading';
 class GeospatialView extends Component {
   constructor() {
     super();
-    this.handleLoadingData = this.handleLoadingData.bind(this);
     this.handleChartSelection = this.handleChartSelection.bind(this);
     this.getCurrentValue = this.getCurrentValue.bind(this);
-  }
-  componentDidMount() {
-    this.handleLoadingData();
   }
   getCurrentValue() {
     const {
       store,
       selectedIndex,
     } = this.props;
-    return sortByNumber(store.employees, 'employees')
-      .map(i => i.employees)[selectedIndex];
-  }
-  handleLoadingData() {
-    const {
-      loadEmployeeData,
-    } = this.props.actions;
-    loadEmployeeData();
+    return sortByNumber(store.employees, 'numemployees')
+      .map(i => i.numemployees)[selectedIndex];
   }
   handleChartSelection(index) {
     const {
@@ -61,12 +51,16 @@ class GeospatialView extends Component {
         :
           <Section>
             <Box direction="row" alignContent="between" justify="center" responsive>
-              <EmployeeTable employees={store.employees} />
+              <EmployeeTable
+                employees={store.employees}
+                selectedIndex={selectedIndex}
+                onSelectItem={this.handleChartSelection}
+              />
               <EmployeeLocationChart
                 selectedIndex={selectedIndex}
                 currentValue={this.getCurrentValue()}
                 onSelectItem={this.handleChartSelection}
-                sortedEmployees={sortByNumber(store.employees, 'employees')}
+                sortedEmployees={sortByNumber(store.employees, 'numemployees')}
               />
             </Box>
           </Section>
@@ -87,7 +81,7 @@ GeospatialView.propTypes = {
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   error: state.employees.error,
-  selectedIndex: state.employees.chart.index,
+  selectedIndex: state.employees.selectedIndex,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -112,7 +106,7 @@ const allEmployees = gql`
   }
 `;
 
-const ContainerWithData = graphql(allCustomer, {
+const ContainerWithData = graphql(allEmployees, {
   props: ({ data: { loading, store } }) => ({
     store,
     loading,

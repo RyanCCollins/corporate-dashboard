@@ -6,12 +6,9 @@ import {
 } from './constants';
 
 export const initialState = {
-  data: [],
-  isLoading: false,
+  selectedIndex: 0,
   error: null,
-  chart: {
-    index: 0,
-  },
+  isLoading: false,
 };
 
 const employeesReducer =
@@ -24,7 +21,6 @@ const employeesReducer =
       case LOAD_EMPLOYEE_DATA_SUCCESS:
         return Object.assign({}, state, {
           isLoading: false,
-          data: action.data,
         });
       case LOAD_EMPLOYEE_DATA_FAILURE:
         return Object.assign({}, state, {
@@ -33,9 +29,7 @@ const employeesReducer =
         });
       case SELECT_EMPLOYEE_INDEX:
         return Object.assign({}, state, {
-          chart: {
-            index: action.index,
-          },
+          selectedIndex: action.index,
         });
       default:
         return state;

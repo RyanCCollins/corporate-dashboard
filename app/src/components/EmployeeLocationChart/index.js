@@ -41,7 +41,7 @@ const EmployeeLocationChart = ({
         <Bar
           min={100}
           max={400}
-          values={sortedEmployees.map(item => item.employees)}
+          values={sortedEmployees.map(item => item.numemployees)}
           activeIndex={selectedIndex}
         />
         <HotSpots
