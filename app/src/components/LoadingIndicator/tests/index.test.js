@@ -1,11 +1,13 @@
 import LoadingIndicator from '../index';
-
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 
 describe('<LoadingIndicator />', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('should render with an h2', () => {
+    const component = shallow(<LoadingIndicator />);
+    expect(
+      component.find('h2')
+    ).toExist();
   });
 });

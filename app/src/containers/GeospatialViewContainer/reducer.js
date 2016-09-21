@@ -1,35 +1,23 @@
 import {
-  LOAD_EMPLOYEE_DATA_INITIATION,
-  LOAD_EMPLOYEE_DATA_SUCCESS,
-  LOAD_EMPLOYEE_DATA_FAILURE,
   SELECT_EMPLOYEE_INDEX,
+  TOGGLE_MOBILE_MODE,
 } from './constants';
 
 export const initialState = {
   selectedIndex: 0,
-  error: null,
-  isLoading: false,
+  isMobile: false,
 };
 
 const employeesReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case LOAD_EMPLOYEE_DATA_INITIATION:
-        return Object.assign({}, state, {
-          isLoading: true,
-        });
-      case LOAD_EMPLOYEE_DATA_SUCCESS:
-        return Object.assign({}, state, {
-          isLoading: false,
-        });
-      case LOAD_EMPLOYEE_DATA_FAILURE:
-        return Object.assign({}, state, {
-          isLoading: false,
-          error: action.error,
-        });
       case SELECT_EMPLOYEE_INDEX:
         return Object.assign({}, state, {
           selectedIndex: action.index,
+        });
+      case TOGGLE_MOBILE_MODE:
+        return Object.assign({}, state, {
+          isMobile: action.isMobile,
         });
       default:
         return state;

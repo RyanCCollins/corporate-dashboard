@@ -11,12 +11,27 @@ import sortByNumber from 'utils/sortByNumber';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
+import isMobileCheck from 'utils/isMobile';
 
 class GeospatialView extends Component {
   constructor() {
     super();
     this.handleChartSelection = this.handleChartSelection.bind(this);
     this.getCurrentValue = this.getCurrentValue.bind(this);
+    this.handleSetMobile = this.handleSetMobile.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+  }
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', this.handleResize);
+    }
+    const mobileMode = isMobileCheck();
+    this.handleSetMobile(mobileMode);
+  }
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.handleResize);
+    }
   }
   getCurrentValue() {
     const {
@@ -26,6 +41,10 @@ class GeospatialView extends Component {
     return sortByNumber(store.employees, 'numemployees')
       .map(i => i.numemployees)[selectedIndex];
   }
+  handleResize() {
+    const mobileMode = isMobileCheck();
+    this.handleSetMobile(mobileMode);
+  }
   handleChartSelection(index) {
     const {
       selectEmployeeIndex,
@@ -34,33 +53,42 @@ class GeospatialView extends Component {
       selectEmployeeIndex(index);
     }
   }
+  handleSetMobile(mobile) {
+    const {
+      toggleMobileMode,
+    } = this.props.actions;
+    toggleMobileMode(mobile);
+  }
   render() {
     const {
       store,
       loading,
-      error,
       selectedIndex,
+      isMobile,
     } = this.props;
     return (
       <div className={styles.geospatialView}>
-        <Heading align="center">
+        <Heading tag="h1" align="center">
           Geospatial View
         </Heading>
         {loading ?
           <LoadingIndicator isLoading={loading} />
         :
           <Section>
-            <Box direction="row" alignContent="between" justify="center" responsive>
-              <EmployeeTable
-                employees={store.employees}
-                selectedIndex={selectedIndex}
-                onSelectItem={this.handleChartSelection}
-              />
+            <Box direction="row" alignContent="between" justify="center">
               <EmployeeLocationChart
                 selectedIndex={selectedIndex}
                 currentValue={this.getCurrentValue()}
                 onSelectItem={this.handleChartSelection}
                 sortedEmployees={sortByNumber(store.employees, 'numemployees')}
+              />
+            </Box>
+            <Box direction="row" alignContent="between" justify="center">
+              <EmployeeTable
+                isMobile={isMobile}
+                employees={store.employees}
+                selectedIndex={selectedIndex}
+                onSelectItem={this.handleChartSelection}
               />
             </Box>
           </Section>
@@ -73,15 +101,15 @@ class GeospatialView extends Component {
 GeospatialView.propTypes = {
   store: PropTypes.object,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.object,
   actions: PropTypes.object.isRequired,
   selectedIndex: PropTypes.number.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  error: state.employees.error,
   selectedIndex: state.employees.selectedIndex,
+  isMobile: state.employees.isMobile,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

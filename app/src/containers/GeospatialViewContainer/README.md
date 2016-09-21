@@ -1,5 +1,5 @@
 ## GeospatialViewContainer
-A container that does ...
+A container that manages state for the GeospatialViewContainer.
 
 ### Example Usage
 
@@ -9,3 +9,4 @@ A container that does ...
 
 
 ### Other Information
+N/A
