@@ -4,7 +4,7 @@ import ApolloClient, {
 } from 'apollo-client';
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://0.0.0.0:1338/api'),
+  networkInterface: createNetworkInterface('https://corporate-dashboard-client.herokuapp.com/api'),
   queryTransformer: addTypeName,
 });
 
