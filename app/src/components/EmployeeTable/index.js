@@ -9,7 +9,6 @@ const EmployeeTable = ({
   employees,
   onSelectItem,
   selectedIndex,
-  isMobile,
 }) => (
   <Box
     pad={{ horizontal: 'large', vertical: 'medium' }}
@@ -17,63 +16,47 @@ const EmployeeTable = ({
     justify="center"
     className={styles.employeeTable}
   >
-    {isMobile ?
-      <Table
-        selectable
-        onSelect={(index) => onSelectItem(index)}
-        selected={selectedIndex}
-      >
-        <thead>
-          <th>
-            Location
-          </th>
-          <th>
-            Num Employees
-          </th>
-        </thead>
-        <tbody>
-          {employees.map((employee, i) =>
-            <TableRow key={i}>
-              <td>
+    <Table>
+      <tbody>
+        <TableRow>
+          <tr>
+            <th></th>
+            {employees.map((employee, i) =>
+              <th key={i}>
                 {employee.location}
+              </th>
+            )}
+          </tr>
+          <tr>
+            <th>
+              Index
+            </th>
+            {employees.map((_, i) =>
+              <td
+                key={i}
+                className={selectedIndex === i ? 'grommetux-td--selected' : ''}
+              >
+                {i}
               </td>
-              <td>
+            )}
+          </tr>
+          <tr>
+            <th>
+              Num Employees
+            </th>
+            {employees.map((employee, i) =>
+              <td
+                key={i}
+                onClick={() => onSelectItem(i)}
+                className={selectedIndex === i ? 'grommetux-td--selected' : ''}
+              >
                 {employee.numemployees}
               </td>
-            </TableRow>
-          )}
-        </tbody>
-      </Table>
-    :
-      <Table
-        selectable
-        onSelect={(index) => onSelectItem(index)}
-        selected={selectedIndex}
-      >
-        <tbody>
-          <TableRow>
-            <tr>
-              <th></th>
-              {employees.map((employee, i) =>
-                <th key={i}>
-                  {employee.location}
-                </th>
-              )}
-            </tr>
-            <tr>
-              <th>
-                Num Employees
-              </th>
-              {employees.map((employee, i) =>
-                <td key={i}>
-                  {employee.numemployees}
-                </td>
-              )}
-            </tr>
-          </TableRow>
-        </tbody>
-      </Table>
-    }
+            )}
+          </tr>
+        </TableRow>
+      </tbody>
+    </Table>
   </Box>
 );
 
@@ -81,11 +64,6 @@ EmployeeTable.propTypes = {
   employees: PropTypes.array.isRequired,
   onSelectItem: PropTypes.func.isRequired,
   selectedIndex: PropTypes.number.isRequired,
-  isMobile: PropTypes.bool.isRequired,
-};
-
-EmployeeTable.defaultProps = {
-  isMobile: false,
 };
 
 export default cssModules(EmployeeTable, styles);

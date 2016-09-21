@@ -13,14 +13,4 @@ describe('GeospatialView actions', () => {
       actions.selectIndex(index)
     ).toEqual(expectedAction);
   });
-  it('has a type of TOGGLE_MOBILE_MODE', () => {
-    const isMobile = false;
-    const expectedAction = {
-      type: types.TOGGLE_MOBILE_MODE,
-      isMobile,
-    };
-    expect(
-      actions.toggleMobileMode(isMobile)
-    ).toEqual(expectedAction);
-  });
 });

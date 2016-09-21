@@ -6676,6 +6676,11 @@ html.rtl .grommetux-form-field__contents>.grommetux-number-input {
     display: inline-block
 }
 
+.grommetux-table {
+  max-width: 100%;
+  overflow: scroll;
+}
+
 .grommetux-form-field__contents>.grommetux-table--selectable {
     font-size: 16px;
     font-size: 1rem;
@@ -11714,6 +11719,11 @@ section:not(.grommetux-section):first-of-type {
 .grommetux-table--selectable tbody tr.grommetux-table-row--selected td {
     background-color: #ccbaee;
     color: #333
+}
+
+td.grommetux-td--selected {
+  background-color: #ccbaee;
+  color: #333
 }
 
 [class*="background-color-index-"]:not([class*="background-color-index-accent"]):not([class*="background-color-index-light"]):not([class*="background-color-index-warning"]):not([class*="background-color-index-disabled"]):not([class*="background-color-index-unknown"]) .grommetux-table--selectable tbody tr.grommetux-table-row--selected td {

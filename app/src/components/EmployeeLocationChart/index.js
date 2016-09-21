@@ -21,6 +21,7 @@ const EmployeeLocationChart = ({
   selectedIndex,
   onSelectItem,
   currentValue,
+  isMobile,
 }) => (
   <Box pad={{ horizontal: 'large', vertical: 'medium' }} align="center" justify="center">
     <Chart vertical={false} full>
@@ -42,7 +43,7 @@ const EmployeeLocationChart = ({
             <Value value={currentValue} />
           }
         />
-        <Base height="medium" width="large" />
+      <Base height="medium" width="full" />
         <Layers>
           <Grid rows={3} columns={4} />
           <Marker
@@ -67,7 +68,7 @@ const EmployeeLocationChart = ({
           ticks
           count={sortedEmployees.length}
           labels={sortedEmployees.map((item, index) =>
-            ({ index, label: item.location })
+            ({ index, label: item.location.slice(0, 3) })
           )}
         />
       </Chart>
@@ -80,6 +81,7 @@ EmployeeLocationChart.propTypes = {
   selectedIndex: PropTypes.number.isRequired,
   onSelectItem: PropTypes.func.isRequired,
   currentValue: PropTypes.number.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 export default cssModules(EmployeeLocationChart, styles);

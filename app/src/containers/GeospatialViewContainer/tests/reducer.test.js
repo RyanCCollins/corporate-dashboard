@@ -8,4 +8,16 @@ describe('geospatialViewReducer', () => {
       employeesReducer(undefined, {})
     ).toEqual(initialState);
   });
+  it('should handle the SELECT_EMPLOYEE_INDEX action', () => {
+    const index = 1;
+    const stateAfter = {
+      selectedIndex: index,
+    };
+    expect(
+      employeesReducer(initialState, {
+        type: types.SELECT_EMPLOYEE_INDEX,
+        index,
+      })
+    ).toEqual(stateAfter);
+  });
 });
