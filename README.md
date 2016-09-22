@@ -5,6 +5,6 @@
 A corporate dashboard web application, built with a focus on component oriented design.  MVP for a client data analytic platform.  In development
 
 ## Screen Shots
-![Geospatial](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/geospatialview-top.png?raw=true)
-![Data View](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/dataview-top.png?raw=true)
+![Geospatial](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/geospatialview-main.png?raw=true)
+![Data View](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/dataview-main.png?raw=true)
 ![Key Metrics](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/keymetrics-main.png?raw=true)
