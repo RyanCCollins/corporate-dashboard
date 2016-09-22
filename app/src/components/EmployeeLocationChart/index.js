@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Box from 'grommet/components/Box';
-import Label from 'grommet/components/Label';
 import Chart,
 {
   Layers,
@@ -21,9 +20,12 @@ const EmployeeLocationChart = ({
   selectedIndex,
   onSelectItem,
   currentValue,
-  isMobile,
 }) => (
-  <Box pad={{ horizontal: 'large', vertical: 'medium' }} align="center" justify="center">
+  <Box
+    pad={{ horizontal: 'large', vertical: 'medium' }}
+    align="center"
+    justify="center"
+  >
     <Chart vertical={false} full>
       <Axis
         vertical
@@ -81,7 +83,6 @@ EmployeeLocationChart.propTypes = {
   selectedIndex: PropTypes.number.isRequired,
   onSelectItem: PropTypes.func.isRequired,
   currentValue: PropTypes.number.isRequired,
-  isMobile: PropTypes.bool.isRequired,
 };
 
 export default cssModules(EmployeeLocationChart, styles);
