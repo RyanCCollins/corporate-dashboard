@@ -5,7 +5,6 @@ import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
 import Title from 'grommet/components/Title';
 import Button from 'grommet/components/Button';
-import Anchor from 'grommet/components/Anchor';
 import CloseIcon from 'grommet/components/icons/base/Close';
 import { Logo } from 'components';
 
@@ -13,12 +12,15 @@ import { Logo } from 'components';
 const AppHeader = ({
   onToggleNav,
 }) => (
-  <Header justify="between" pad={{ horizontal: 'medium' }} large>
-    <Title>
+  <Header
+    justify="between"
+    pad={{ horizontal: 'medium' }}
+    large
+    className={styles.navHeader}
+  >
+    <Title onClick={onToggleNav}>
       <Logo inverse />
-      <Anchor href="#" onClick={onToggleNav}>
-        Dashboard
-      </Anchor>
+      Dashboard
     </Title>
     <Menu responsive={false} className={styles.navCloser}>
       <Button

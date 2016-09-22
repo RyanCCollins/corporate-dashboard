@@ -17,6 +17,22 @@ class GeospatialView extends Component {
     super();
     this.handleChartSelection = this.handleChartSelection.bind(this);
     this.getCurrentValue = this.getCurrentValue.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+    this.handleMobileToggle = this.handleMobileToggle.bind(this);
+    this.state = {
+      isMobile: true,
+    };
+  }
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', this.handleResize);
+      this.handleMobileToggle();
+    }
+  }
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.handleResize);
+    }
   }
   getCurrentValue() {
     const {
@@ -25,6 +41,17 @@ class GeospatialView extends Component {
     } = this.props;
     return sortByNumber(store.employees, 'numemployees')
       .map(i => i.numemployees)[selectedIndex];
+  }
+  handleResize() {
+    if (typeof window !== 'undefined') {
+      this.handleMobileToggle();
+    }
+  }
+  handleMobileToggle() {
+    const isMobile = window.innerWidth <= 800;
+    this.setState({
+      isMobile,
+    });
   }
   handleChartSelection(index) {
     const {
@@ -40,10 +67,16 @@ class GeospatialView extends Component {
       loading,
       selectedIndex,
     } = this.props;
+    const {
+      isMobile,
+    } = this.state;
     return (
       <div className={styles.geospatialView}>
         <Heading tag="h1" align="center">
           Geospatial View
+        </Heading>
+        <Heading tag="h3" align="center">
+          Number of Employees per Location
         </Heading>
         {loading ?
           <LoadingIndicator isLoading={loading} />
@@ -57,6 +90,7 @@ class GeospatialView extends Component {
             >
               <EmployeeLocationChart
                 selectedIndex={selectedIndex}
+                isMobile={isMobile}
                 currentValue={this.getCurrentValue()}
                 onSelectItem={this.handleChartSelection}
                 sortedEmployees={sortByNumber(store.employees, 'numemployees')}

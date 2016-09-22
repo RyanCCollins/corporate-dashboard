@@ -15,11 +15,20 @@ import Chart,
 } from 'grommet/components/chart/Chart';
 import Value from 'grommet/components/Value';
 
+const VerticalLabel = ({
+  label,
+}) => (
+  <span className={styles.tiltLabel}>
+    {label}
+  </span>
+);
+
 const EmployeeLocationChart = ({
   sortedEmployees,
   selectedIndex,
   onSelectItem,
   currentValue,
+  isMobile,
 }) => (
   <Box
     pad={{ horizontal: 'large', vertical: 'medium' }}
@@ -69,8 +78,12 @@ const EmployeeLocationChart = ({
         <Axis
           ticks
           count={sortedEmployees.length}
-          labels={sortedEmployees.map((item, index) =>
-            ({ index, label: item.location.slice(0, 3) })
+          labels={isMobile ? null :
+            sortedEmployees.map((item, index) =>
+              ({
+                index,
+                label: <VerticalLabel label={item.location.slice(0, 5)} />,
+              })
           )}
         />
       </Chart>
@@ -83,6 +96,11 @@ EmployeeLocationChart.propTypes = {
   selectedIndex: PropTypes.number.isRequired,
   onSelectItem: PropTypes.func.isRequired,
   currentValue: PropTypes.number.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+};
+
+EmployeeLocationChart.defaultProps = {
+  isMobile: true,
 };
 
 export default cssModules(EmployeeLocationChart, styles);
