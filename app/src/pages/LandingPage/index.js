@@ -14,9 +14,14 @@ class LandingPage extends Component {
     } = this.context;
     return (
       <div className={styles.container}>
-        <Heading align="center">
-          Welcome!
-        </Heading>
+        <Box pad={{ vertical: 'medium' }}>
+          <Heading align="center">
+            Welcome!
+          </Heading>
+          <Heading align="center" tag="h3">
+            Choose a Page to Get Started
+          </Heading>
+        </Box>
         <Footer>
           <Box align="center" justify="center" full="horizontal">
             <Menu direction="row"> {/* eslint-disable */}

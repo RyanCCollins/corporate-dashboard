@@ -7,7 +7,12 @@ import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
-import { IssueTable, FilterIssueTable, DataFilter } from 'components';
+import {
+  LoadingIndicator,
+  IssueTable,
+  FilterIssueTable,
+  DataFilter,
+} from 'components';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -82,9 +87,7 @@ class DataView extends Component {
           Data View
         </Heading>
         {loading ?
-          <Heading tag="h2" align="center">
-            Loading...
-          </Heading>
+          <LoadingIndicator isLoading={loading} />
         :
           <Section>
             <FilterIssueTable

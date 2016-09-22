@@ -1,4 +1,6 @@
 /* Assemble all components for export */
+export AboutInfo from './AboutInfo';
+export AppHeader from './AppHeader';
 export LoadingIndicator from './LoadingIndicator';
 export DataFilter from './DataFilter';
 export Logo from './Logo';
