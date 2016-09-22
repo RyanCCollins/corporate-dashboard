@@ -49,7 +49,11 @@ class DataView extends Component {
     actions.setSecondaryFilter(item, type, store.issues);
   }
   handleFiltering(type) {
-
+    switch (type) {
+      case 'employee':
+      case 'customer':
+      default: break;
+    }
   }
   handleRequestMore() {
     const {

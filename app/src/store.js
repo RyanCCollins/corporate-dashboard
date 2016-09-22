@@ -30,8 +30,8 @@ if (isProduction) {
 /* https://github.com/gaearon/redux-devtools */
 /* https://medium.com/@meagle/understanding-87566abcfb7a */
 const enhancers = [];
-const devToolsExtension = window.devToolsExtension;
-if (typeof devToolsExtension === 'function' && !isProduction) {
+if (typeof devToolsExtension === 'function') {
+  const devToolsExtension = window.devToolsExtension;
   enhancers.push(devToolsExtension());
 }
 

@@ -2,7 +2,6 @@ import {
   SET_SECONDARY_FILTER_STATUS,
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
-  UPDATE_CURRENT_CURSOR,
   INCREMENT_DATA_VIEW_PAGE,
 } from './constants';
 
@@ -25,12 +24,6 @@ export const setSecondaryFilterOrder = (order, issues) => ({
   type: SET_SECONDARY_FILTER_ORDER,
   order,
   issues,
-});
-
-// updateCurrentCursor :: Int -> {Action}
-export const updateCurrentCursor = (next) => ({
-  type: UPDATE_CURRENT_CURSOR,
-  next,
 });
 
 export const setSecondaryFilter = (filter, type, issues) =>

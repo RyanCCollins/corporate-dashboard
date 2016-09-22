@@ -7,6 +7,7 @@ import App from 'grommet/components/App';
 import { updatePageTitle, getTitleFromRoute } from 'utils/a11y';
 import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
+import MenuIcon from 'grommet/components/icons/base/Menu';
 
 class Main extends Component {
   constructor() {
@@ -45,19 +46,27 @@ class Main extends Component {
     } = this.state;
     return (
       <App centered={false}>
-        <SidebarNav navActive={navIsActive} onToggleNav={this.handleToggleNav}>
+        <SidebarNav
+          navActive={navIsActive}
+          onToggleNav={this.handleToggleNav}
+        >
           <Header
             direction="row"
             justify="between"
             large
             pad={{ horizontal: 'medium', between: 'small' }}
           >
-            {!navIsActive &&
-              <Title onClick={this.handleToggleNav} a11yTitle="Open Menu">
+            {navIsActive ?
+              <div />
+            :
+              <Title onClick={this.handleToggleNav} a11yTitle="Open Menu Left">
                 <Logo inverse={false} />
                 Dashboard
               </Title>
             }
+            <Title onClick={this.handleToggleNav} a11yTitle="Open Menu Right">
+              <MenuIcon colorIndex="brand" size="medium" type="control" />
+            </Title>
           </Header>
           {React.cloneElement(this.props.children, this.props)}
         </SidebarNav>
