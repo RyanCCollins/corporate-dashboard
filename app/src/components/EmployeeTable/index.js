@@ -34,6 +34,8 @@ const EmployeeTable = ({
             {employees.map((_, i) =>
               <td
                 key={i}
+                id={`employee-index-td-${i}`}
+                onClick={() => onSelectItem(i)}
                 className={selectedIndex === i ? 'grommetux-td--selected' : ''}
               >
                 {i}
@@ -47,6 +49,7 @@ const EmployeeTable = ({
             {employees.map((employee, i) =>
               <td
                 key={i}
+                id={`employee-num-employees-td-${i}`}
                 onClick={() => onSelectItem(i)}
                 className={selectedIndex === i ? 'grommetux-td--selected' : ''}
               >

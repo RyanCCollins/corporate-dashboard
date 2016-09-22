@@ -22,7 +22,7 @@ describe('<EmployeeTable />', () => {
   const wrapper = shallow(
     <EmployeeTable
       employees={employees}
-      onSelctItem={(e) => e}
+      onSelectItem={(e) => e}
       selectedIndex={1}
     />
   );
