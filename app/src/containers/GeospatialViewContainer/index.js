@@ -50,7 +50,7 @@ class GeospatialView extends Component {
         :
           <Section>
             <Box
-              pad={{ vertical: 'small', horizontal: 'medium' }}
+              pad={{ vertical: 'small', horizontal: 'large' }}
               direction="column"
               justify="start"
               full={{ horizontal: true }}

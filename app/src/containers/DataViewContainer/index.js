@@ -91,22 +91,32 @@ class DataView extends Component {
               onApplyFilters={this.applyFilters}
               filter={currentFilter}
             />
-            <Box align="end">
+            <Box
+              pad={{ horizontal: 'large' }}
+              align="end"
+            >
               <DataFilter
                 filter={secondaryFilter}
                 onSelectItem={this.handleSelectItem}
                 items={filterOptions}
               />
             </Box>
-            {store &&
-              <IssueTable
-                issues={visibleIssues} // eslint-disable-line
-                headers={headers}
-                isMobile={this.state.isMobile}
-                isLoadingMore={loading}
-                onRequestMore={this.handleRequestMore}
-              />
-            }
+            <Box
+              pad={{ vertical: 'small', horizontal: 'large' }}
+              direction="column"
+              justify="start"
+              full={{ horizontal: true }}
+            >
+              {store &&
+                <IssueTable
+                  issues={visibleIssues} // eslint-disable-line
+                  headers={headers}
+                  isMobile={this.state.isMobile}
+                  isLoadingMore={loading}
+                  onRequestMore={this.handleRequestMore}
+                />
+              }
+            </Box>
           </Section>
         }
       </div>

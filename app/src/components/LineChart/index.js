@@ -52,18 +52,19 @@ class LineChart extends Component {
   constructor() {
     super();
     this.setActive = this.setActive.bind(this);
-    this.stateFromActive = this.stateFromActive.bind(this);
     this.handleSetIndex = this.handleSetIndex.bind(this);
     this.dateForIndex = this.dateForIndex.bind(this);
     this.state = {
-      active: 0,
+      active: { start: 0, end: 8 },
       activeValues: [],
       index: 1,
     };
   }
   componentDidMount() {
-    const active = { start: 8, end: 16 };
-    this.state = this.stateFromActive(active);
+    const {
+      active,
+    } = this.state;
+    this.setActive(active);
   }
   setActive({ start, end }) {
     const {
@@ -76,28 +77,6 @@ class LineChart extends Component {
       },
       activeValues: data.slice(start, end).map(o => o.num_customers),
     });
-  }
-  stateFromActive(active) {
-    const {
-      data,
-    } = this.props;
-    if (!data) {
-      return {};
-    }
-    const {
-      start,
-      end,
-    } = active;
-    const getActiveValues = () =>
-      data
-        .slice(start, end)
-        .map(o => o.num_customers);
-    const activeValues = getActiveValues();
-    return {
-      active,
-      activeValues,
-      index: (activeValues.length - 1),
-    };
   }
   handleSetIndex(index) {
     const {

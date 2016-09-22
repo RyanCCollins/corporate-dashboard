@@ -7,6 +7,8 @@ import { graphql } from 'react-apollo';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
+import Section from 'grommet/components/Section';
+import Box from 'grommet/components/Box';
 import { LineChart, LoadingIndicator } from 'components';
 
 class KeyMetricsView extends Component {
@@ -24,10 +26,19 @@ class KeyMetricsView extends Component {
         {loading ?
           <LoadingIndicator isLoading={loading} />
         :
-          <LineChart
-            data={store.customers}
-            labels={areaChartLabels}
-          />
+          <Section>
+            <Box
+              pad={{ vertical: 'small', horizontal: 'large' }}
+              direction="column"
+              justify="start"
+              full={{ horizontal: true }}
+            >
+              <LineChart
+                data={store.customers}
+                labels={areaChartLabels}
+              />
+            </Box>
+          </Section>
         }
       </div>
     );

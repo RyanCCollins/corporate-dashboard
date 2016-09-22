@@ -59,7 +59,7 @@ class SidebarNav extends Component {
       children,
     } = this.props;
     return (
-      <Split flex="right" priority="right">
+      <Split flex="right" priority={navActive ? 'left' : 'right'}>
         {navActive &&
           this.renderMenu()
         }
