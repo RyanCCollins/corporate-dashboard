@@ -18,19 +18,18 @@ import Chart, {
 } from 'grommet/components/chart/Chart';
 
 const AXIS_LABELS = [
-  { index: 0, month: 'January' },
-  { index: 1, month: 'February' },
-  { index: 2, month: 'March' },
-  { index: 3, month: 'April' },
-  { index: 4, month: 'May' },
-  { index: 5, month: 'June' },
-  { index: 6, month: 'June' },
-  { index: 7, month: 'July' },
-  { index: 8, month: 'August' },
-  { index: 9, month: 'September' },
-  { index: 10, month: 'October' },
-  { index: 11, month: 'November' },
-  { index: 12, month: 'December' },
+  { month: 'January' },
+  { month: 'February' },
+  { month: 'March' },
+  { month: 'April' },
+  { month: 'May' },
+  { month: 'June' },
+  { month: 'July' },
+  { month: 'August' },
+  { month: 'September' },
+  { month: 'October' },
+  { month: 'November' },
+  { month: 'December' },
 ];
 
 const MarkerDateLabel = ({
@@ -109,8 +108,11 @@ class LineChart extends Component {
     });
   }
   dateForIndex(index) {
-    const label = AXIS_LABELS[index];
-    return `${label.month}`;
+    if (index) {
+      const adjustedIndex = index > 4 ? (parseInt(index / 4, 10) - 1) : index - 1;
+      return `${AXIS_LABELS[adjustedIndex].month}`;
+    }
+    return '';
   }
   render() {
     const {

@@ -9,6 +9,8 @@ import { initialState as dataView } from './containers/DataViewContainer/reducer
 import { initialState as employees } from './containers/GeospatialViewContainer/reducer';
 import { initialState as keyMetrics } from './containers/KeyMetricsViewContainer/reducer';
 
+const isProduction = process.env.NODE_ENV !== 'development';
+
 const initialState = {
   employees,
   keyMetrics,
@@ -17,15 +19,19 @@ const initialState = {
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
-const loggerMiddleware = createLogger();
-const middlewares = [thunk, loggerMiddleware, client.middleware()];
+const middlewares = [thunk, client.middleware()];
+
+if (isProduction) {
+  const loggerMiddleware = createLogger();
+  middlewares.push(loggerMiddleware);
+}
 
 /* Everyone should use redux dev tools */
 /* https://github.com/gaearon/redux-devtools */
 /* https://medium.com/@meagle/understanding-87566abcfb7a */
 const enhancers = [];
 const devToolsExtension = window.devToolsExtension;
-if (typeof devToolsExtension === 'function') {
+if (typeof devToolsExtension === 'function' && !isProduction) {
   enhancers.push(devToolsExtension());
 }
 
