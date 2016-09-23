@@ -68,9 +68,6 @@ class DataView extends Component {
     } = this.props;
     actions.incrementPage();
   }
-  getIssues() {
-
-  }
   render() {
     const {
       headers,
@@ -175,13 +172,14 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MoreIssuesQuery = gql`
-  query MoreIssues($offset: Int, $limit: Int) {
+  query MoreIssues {
     store {
       issues {
         id
         submission
         closed
         status
+        isActive
         customer {
           ...Person
         }
@@ -200,22 +198,9 @@ const MoreIssuesQuery = gql`
 `;
 
 const ContainerWithData = graphql(MoreIssuesQuery, {
-  options: (props) => ({
-    variables: {
-      offset: 90,
-      limit: 90,
-    },
-  }),
-  props: ({ data: { loading, store, fetchMore } }) => ({
+  props: ({ data: { loading, store } }) => ({
     store,
     loading,
-    loadMoreEntries: () =>
-      fetchMore({
-        variables: {
-          offset: 90,
-          limit: 90,
-        },
-      }),
   }),
 })(DataView);
 
