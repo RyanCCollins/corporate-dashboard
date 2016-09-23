@@ -15,6 +15,7 @@ export const initialState = {
   pageIncrementor: 9,
   currentPage: 1,
   visibleIssues: null,
+  searchValue: null,
   currentFilter: {
     isFiltering: false,
     employee: 'All',
@@ -32,7 +33,7 @@ export const initialState = {
     isFiltering: false,
     status: 'All',
     state: 'All',
-    order: 'Ascending',
+    order: 'None',
     options: {
       statuses: [
         'All',
@@ -48,6 +49,7 @@ export const initialState = {
         'Inactive',
       ],
       orders: [
+        'None',
         'Ascending',
         'Descending',
       ],
@@ -66,6 +68,13 @@ const visibleIssues = (state, action) =>
       return item.isActive;
     } else if (state.secondaryFilter.state === 'Inactive') {
       return !item.isActive;
+    }
+    return true;
+  }).sort((a, b) => {
+    if (state.secondaryFilter.order === 'Descending') {
+      return new Date(b.submission.split('T')) - new Date(a.submission.split('T'));
+    } else if (state.secondaryFilter.order === 'Ascending') {
+      return new Date(a.submission.split('T')) - new Date(b.submission.split('T'));
     }
     return true;
   });

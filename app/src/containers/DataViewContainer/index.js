@@ -7,6 +7,7 @@ import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
+import Search from 'grommet/components/Search';
 import _ from 'lodash';
 import {
   LoadingIndicator,
@@ -27,6 +28,7 @@ class DataView extends Component {
     this.handleRequestMore = this.handleRequestMore.bind(this);
     this.handleApplyFilters = this.handleApplyFilters.bind(this);
     this.handleClearFilter = this.handleClearFilter.bind(this);
+    this.handleSearching = this.handleSearching.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
     };
@@ -81,6 +83,9 @@ class DataView extends Component {
     } = this.props;
     actions.incrementPage();
   }
+  handleSearching(value) {
+
+  }
   render() {
     const {
       headers,
@@ -91,6 +96,7 @@ class DataView extends Component {
       store,
       pageIncrementor,
       visibleIssues,
+      searchValue,
     } = this.props;
     let computedVisibleIssues;
     if (!visibleIssues) {
@@ -118,17 +124,22 @@ class DataView extends Component {
               onApplyFilters={this.handleApplyFilters}
               filter={currentFilter}
             />
-            <Box
-              pad={{ horizontal: 'large' }}
-              align="end"
-            >
-              {!currentFilter.isFiltering &&
-                <DataFilter
-                  filter={secondaryFilter}
-                  onSelectItem={this.handleSelectItem}
-                />
-              }
-            </Box>
+            {!currentFilter.isFiltering &&
+              <Box
+                pad={{ horizontal: 'large' }}
+                align="end"
+              >
+                  <Search
+                    dropAlign={{ right: 'right' }}
+                    value={searchValue}
+                    onDOMChange={this.handleSearching}
+                  />
+                  <DataFilter
+                    filter={secondaryFilter}
+                    onSelectItem={this.handleSelectItem}
+                  />
+              </Box>
+            }
             <Box
               pad={{ vertical: 'small', horizontal: 'large' }}
               direction="column"
@@ -164,6 +175,7 @@ DataView.propTypes = {
   actions: PropTypes.object.isRequired,
   pageIncrementor: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
+  searchValue: PropTypes.string,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -174,6 +186,7 @@ const mapStateToProps = (state) => ({
   currentPage: state.dataView.currentPage,
   pageIncrementor: state.dataView.pageIncrementor,
   visibleIssues: state.dataView.visibleIssues,
+  searchValue: state.dataView.searchValue,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
