@@ -71,6 +71,14 @@ class DataView extends Component {
       clearSearchValue,
     } = this.props.actions;
     clearSearchValue(this.props.store.issues);
+    if (typeof window !== 'undefined') {
+      const event = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      document.body.dispatchEvent(event);
+    }
   }
   handleApplyFilters() {
     const {

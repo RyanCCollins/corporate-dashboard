@@ -18,6 +18,7 @@ import Chart, {
 } from 'grommet/components/chart/Chart';
 
 const AXIS_LABELS = [
+  { month: 'December'},
   { month: 'January' },
   { month: 'February' },
   { month: 'March' },
@@ -88,7 +89,7 @@ class LineChart extends Component {
   }
   dateForIndex(index) {
     if (index) {
-      const adjustedIndex = index > 4 ? (parseInt(index / 4, 10) - 1) : index - 1;
+      const adjustedIndex = index > 4 ? (parseInt(index / 4, 10)) : 0;
       return `${AXIS_LABELS[adjustedIndex].month}`;
     }
     return '';

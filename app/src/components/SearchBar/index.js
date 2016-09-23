@@ -16,7 +16,7 @@ const SearchBar = ({
       dropAlign={{ left: 'left' }}
       value={searchValue}
       onDOMChange={onChangeValue}
-      onBlur={onClear}
+      onBlur={(e) => onClear(e)}
     />
     {isSearching &&
       <Button

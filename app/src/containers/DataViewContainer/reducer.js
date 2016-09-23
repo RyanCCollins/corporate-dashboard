@@ -18,7 +18,7 @@ export const initialState = {
   currentPage: 1,
   visibleIssues: null,
   search: {
-    value: null,
+    value: '',
     isSearching: false,
   },
   currentFilter: {
@@ -216,7 +216,7 @@ const issueReducer =
         return update(state, {
           search: {
             value: {
-              $set: null,
+              $set: '',
             },
             isSearching: {
               $set: false,
