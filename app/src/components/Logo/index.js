@@ -5,7 +5,7 @@ const Logo = ({
   inverse,
 }) => (
   <DashboardIcon
-    size="large"
+    size="medium"
     type="logo"
     colorIndex={inverse ? 'light-2' : 'brand'}
   />

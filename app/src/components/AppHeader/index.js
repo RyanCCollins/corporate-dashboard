@@ -16,7 +16,6 @@ const AppHeader = ({
     justify="between"
     pad={{ horizontal: 'medium' }}
     large
-    className={styles.navHeader}
   >
     <Title onClick={onToggleNav}>
       <Logo inverse />

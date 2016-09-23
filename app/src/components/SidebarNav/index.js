@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Section from 'grommet/components/Section';
 import Split from 'grommet/components/Split';
 import Sidebar from 'grommet/components/Sidebar';
 import Menu from 'grommet/components/Menu';
