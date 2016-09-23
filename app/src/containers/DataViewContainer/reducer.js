@@ -1,14 +1,16 @@
+import update from 'react-addons-update';
 import {
   SET_SECONDARY_FILTER_STATUS,
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
   INCREMENT_DATA_VIEW_PAGE,
+  APPLY_SECONDARY_FILTER,
 } from './constants';
 
 export const initialState = {
   pageIncrementor: 9,
   currentPage: 0,
-  filteredIssues: null,
+  visibleIssues: null,
   currentFilter: {
     employee: 'All',
     customer: 'All',
@@ -47,14 +49,18 @@ export const initialState = {
   },
 };
 
-const filteredIssues = (state, action) =>
-  action.issues.filter(item =>
-    state.secondaryFilter.status !== 'All' ?
-      item.status === action.status : true
-  ).filter(item =>
-    state.secondaryFilter.state !== 'All' ?
-      item.state === action.state : true
-  );
+const visibleIssues = (state, action) =>
+  action.issues.filter(item => {
+    if (state.secondaryFilter.status === 'All') {
+      return true;
+    }
+    return item.status === state.secondaryFilter.status.toLowerCase();
+  }).filter(item => {
+    if (state.secondaryFilter.state === 'All') {
+      return true;
+    }
+    return state.secondaryFilter.state === 'Active' ? item.isActive : !item.isActive;
+  });
 
 const secondaryFilter =
   (state = initialState.secondaryFilter, action) => {
@@ -86,17 +92,18 @@ const issueReducer =
       case SET_SECONDARY_FILTER_STATUS:
         return Object.assign({}, state, {
           secondaryFilter: secondaryFilter(state.secondaryFilter, action),
-          filteredIssues: filteredIssues(state, action),
         });
       case SET_SECONDARY_FILTER_STATE:
         return Object.assign({}, state, {
           secondaryFilter: secondaryFilter(state.secondaryFilter, action),
-          filteredIssues: filteredIssues(state, action),
         });
       case SET_SECONDARY_FILTER_ORDER:
         return Object.assign({}, state, {
           secondaryFilter: secondaryFilter(state.secondaryFilter, action),
-          filteredIssues: filteredIssues(state, action),
+        });
+      case APPLY_SECONDARY_FILTER:
+        return Object.assign({}, state, {
+          visibleIssues: visibleIssues(state, action),
         });
       default:
         return state;

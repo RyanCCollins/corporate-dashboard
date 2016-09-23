@@ -56,7 +56,9 @@ class DataView extends Component {
   handleFiltering(type) {
     switch (type) {
       case 'employee':
+        break;
       case 'customer':
+        break;
       default: break;
     }
   }
@@ -66,19 +68,27 @@ class DataView extends Component {
     } = this.props;
     actions.incrementPage();
   }
+  getIssues() {
+
+  }
   render() {
     const {
       headers,
       currentFilter,
-      filterOptions,
       secondaryFilter,
       loading,
       currentPage,
       store,
       pageIncrementor,
+      visibleIssues,
     } = this.props;
-    const visibleIssues = store &&
-    store.issues.slice(0, currentPage * pageIncrementor);
+    let computedVisibleIssues;
+    if (!visibleIssues) {
+      computedVisibleIssues = store &&
+        store.issues.slice(0, currentPage * pageIncrementor);
+    } else {
+      computedVisibleIssues = visibleIssues.slice(0, currentPage * pageIncrementor);
+    }
     const employees = store && store.issues.map(i => i.employee.name);
     const customers = store && store.issues.map(i => i.customer.name);
     return (
@@ -105,7 +115,6 @@ class DataView extends Component {
               <DataFilter
                 filter={secondaryFilter}
                 onSelectItem={this.handleSelectItem}
-                items={filterOptions}
               />
             </Box>
             <Box
@@ -116,7 +125,7 @@ class DataView extends Component {
             >
               {store &&
                 <IssueTable
-                  issues={visibleIssues} // eslint-disable-line
+                  issues={computedVisibleIssues}
                   headers={headers}
                   isMobile={this.state.isMobile}
                   isLoadingMore={loading}
@@ -133,14 +142,13 @@ class DataView extends Component {
 
 DataView.propTypes = {
   currentPage: PropTypes.number.isRequired,
-  filteredIssues: PropTypes.array,
+  visibleIssues: PropTypes.array,
   employees: PropTypes.array.isRequired,
   customers: PropTypes.array.isRequired,
   headers: PropTypes.array.isRequired,
   error: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   currentFilter: PropTypes.object.isRequired,
-  filterOptions: PropTypes.object.isRequired,
   secondaryFilter: PropTypes.object.isRequired,
   store: PropTypes.object,
   actions: PropTypes.object.isRequired,
@@ -150,13 +158,12 @@ DataView.propTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  filteredIssues: state.dataView.filteredIssues,
   headers: state.dataView.tableHeaders,
   currentFilter: state.dataView.currentFilter,
-  filterOptions: state.dataView.secondaryFilter.options,
   secondaryFilter: state.dataView.secondaryFilter,
   currentPage: state.dataView.currentPage,
   pageIncrementor: state.dataView.pageIncrementor,
+  visibleIssues: state.dataView.visibleIssues,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

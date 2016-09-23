@@ -13,14 +13,16 @@ const StatusLabel = ({
 }) => (
   <span>
     {status !== 'All' &&
-      <Status size="small" value={status.toLowerCase()} />
+      <Status
+        size="small"
+        value={status.toLowerCase()}
+      />
     }
     {status}
   </span>
 );
 
 const DataFilter = ({
-  items,
   onSelectItem,
   filter,
 }) => (
@@ -37,7 +39,7 @@ const DataFilter = ({
       >
         <Heading tag="h3">Status</Heading>
         <Box direction="column" pad={{ between: 'small' }}>
-          {items.statuses.map((item, i) =>
+          {filter.options.statuses.map((item, i) =>
             <CheckBox
               key={i}
               label={<StatusLabel status={item} />}
@@ -53,7 +55,7 @@ const DataFilter = ({
       >
         <Heading tag="h3">State</Heading>
         <Box direction="column" pad={{ between: 'small' }}>
-          {items.states.map((item, i) =>
+          {filter.options.states.map((item, i) =>
             <CheckBox
               key={i}
               label={item}
@@ -69,7 +71,7 @@ const DataFilter = ({
       >
         <Heading tag="h3">Order</Heading>
         <Box direction="column" pad={{ between: 'small' }}>
-          {items.orders.map((item, i) =>
+          {filter.options.orders.map((item, i) =>
             <CheckBox
               key={i}
               label={item}
@@ -84,7 +86,6 @@ const DataFilter = ({
 );
 
 DataFilter.propTypes = {
-  items: PropTypes.object.isRequired,
   onSelectItem: PropTypes.func.isRequired,
   filter: PropTypes.object.isRequired,
 };

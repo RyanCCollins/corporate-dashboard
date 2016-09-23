@@ -4,6 +4,7 @@ import {
   GraphQLInt,
   GraphQLString,
   GraphQLList,
+  GraphQLBoolean,
 } from 'graphql';
 
 import issuesJSON from '../data/issues.json';
@@ -70,6 +71,7 @@ const IssueType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLString },
     submission: { type: GraphQLString },
+    isActive: { type: GraphQLBoolean },
     closed: { type: GraphQLString },
     status: { type: GraphQLString },
     customer: { type: PersonType },

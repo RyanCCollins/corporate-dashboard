@@ -3,6 +3,7 @@ import {
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
   INCREMENT_DATA_VIEW_PAGE,
+  APPLY_SECONDARY_FILTER,
 } from './constants';
 
 // setSecondaryFilterStatus :: String -> {Action}
@@ -26,6 +27,16 @@ export const setSecondaryFilterOrder = (order, issues) => ({
   issues,
 });
 
+// incrementPage :: None -> {Action}
+export const incrementPage = () => ({
+  type: INCREMENT_DATA_VIEW_PAGE,
+});
+
+export const applySecondaryFilter = (issues) => ({
+  type: APPLY_SECONDARY_FILTER,
+  issues,
+});
+
 export const setSecondaryFilter = (filter, type, issues) =>
   (dispatch) => {
     switch (type) {
@@ -41,9 +52,7 @@ export const setSecondaryFilter = (filter, type, issues) =>
       default:
         break;
     }
+    dispatch(
+      applySecondaryFilter(issues)
+    );
   };
-
-// incrementPage :: None -> {Action}
-export const incrementPage = () => ({
-  type: INCREMENT_DATA_VIEW_PAGE,
-});
