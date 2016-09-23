@@ -56,7 +56,7 @@ const FilterIssueTable = ({
       <Footer className={styles.footerContainer}>
         {filter.isFiltering ?
           <Button
-            classname={styles.clearButton}
+            classname={styles.button}
             icon={<Close a11yTitle="" />}
             label="Clear Filters"
             plain
@@ -65,6 +65,7 @@ const FilterIssueTable = ({
         :
           <Button
             label="Apply Filters"
+            classname={styles.button}
             primary
             onClick={
               canApply(filter) ?
