@@ -153,6 +153,7 @@ class DataView extends Component {
                 pad={{ horizontal: 'large' }}
                 align="end"
                 direction="row"
+                className={styles.filterBar}
               >
                 <SearchBar
                   onChangeValue={this.handleSearching}

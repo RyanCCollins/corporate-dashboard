@@ -1,3 +1,12 @@
 .search {
   flex: 1;
 }
+
+.filterBar {
+  @media screen and (min-width: 768px) {
+    transform: translateY(-70px);
+  }
+  @media screen and (max-width: 768px) {
+    align-items: flex-end !important;
+  }
+}
