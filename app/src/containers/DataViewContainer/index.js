@@ -25,6 +25,8 @@ class DataView extends Component {
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.getWindowWidth = this.getWindowWidth.bind(this);
     this.handleRequestMore = this.handleRequestMore.bind(this);
+    this.handleApplyFilters = this.handleApplyFilters.bind(this);
+    this.handleClearFilter = this.handleClearFilter.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
     };
@@ -53,6 +55,18 @@ class DataView extends Component {
       store,
     } = this.props;
     actions.setSecondaryFilter(item, type, store.issues);
+  }
+  handleApplyFilters() {
+    const {
+      applyCurrentFilter,
+    } = this.props.actions;
+    applyCurrentFilter();
+  }
+  handleClearFilter() {
+    const {
+      clearCurrentFilter,
+    } = this.props.actions;
+    clearCurrentFilter();
   }
   handleFiltering(type, filter) {
     const {
@@ -100,7 +114,7 @@ class DataView extends Component {
               customers={customers}
               onFilter={this.handleFiltering}
               onClearFilter={this.handleClearFilter}
-              onApplyFilters={this.applyFilters}
+              onApplyFilters={this.handleApplyFilters}
               filter={currentFilter}
             />
             <Box
@@ -118,15 +132,13 @@ class DataView extends Component {
               justify="start"
               full={{ horizontal: true }}
             >
-              {store &&
-                <IssueTable
-                  issues={computedVisibleIssues}
-                  headers={headers}
-                  isMobile={this.state.isMobile}
-                  isLoadingMore={loading}
-                  onRequestMore={this.handleRequestMore}
-                />
-              }
+              <IssueTable
+                issues={computedVisibleIssues}
+                headers={headers}
+                isMobile={this.state.isMobile}
+                isLoadingMore={loading}
+                onRequestMore={this.handleRequestMore}
+              />
             </Box>
           </Section>
         }
