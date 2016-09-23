@@ -58,9 +58,10 @@ class DataView extends Component {
   }
   handleApplyFilters() {
     const {
-      applyCurrentFilter,
-    } = this.props.actions;
-    applyCurrentFilter();
+      actions,
+      store,
+    } = this.props;
+    actions.applyCurrentFilter(store.issues);
   }
   handleClearFilter() {
     const {
@@ -121,10 +122,12 @@ class DataView extends Component {
               pad={{ horizontal: 'large' }}
               align="end"
             >
-              <DataFilter
-                filter={secondaryFilter}
-                onSelectItem={this.handleSelectItem}
-              />
+              {!currentFilter.isFiltering &&
+                <DataFilter
+                  filter={secondaryFilter}
+                  onSelectItem={this.handleSelectItem}
+                />
+              }
             </Box>
             <Box
               pad={{ vertical: 'small', horizontal: 'large' }}

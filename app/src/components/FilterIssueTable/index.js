@@ -7,7 +7,20 @@ import Menu from 'grommet/components/Menu';
 import Button from 'grommet/components/button';
 import Close from 'grommet/components/icons/base/Close';
 import Footer from 'grommet/components/Footer';
-import shouldBeEnabled from 'utils/filter';
+
+const canApply = (filter) => {
+  let returnValue = false;
+  Object
+    .keys(filter)
+    .forEach((key) => {
+      if (key === 'employee' || key === 'customer') {
+        if (filter[key] !== 'All') {
+          returnValue = true;
+        }
+      }
+    });
+  return returnValue;
+};
 
 const FilterIssueTable = ({
   employees,
@@ -16,7 +29,6 @@ const FilterIssueTable = ({
   filter,
   onApplyFilters,
   onClearFilter,
-  isFiltering,
 }) => (
   <Section
     className={styles.filterIssueTable}
@@ -30,17 +42,19 @@ const FilterIssueTable = ({
       >
         <FilterMenu
           menuItems={employees}
+          selectedItem={filter.employee}
           onSelectItem={(value) => onFilter('employee', value)}
           label="Employee"
         />
         <FilterMenu
           menuItems={customers}
+          selectedItem={filter.customer}
           onSelectItem={(value) => onFilter('customer', value)}
           label="Customer"
         />
       </Menu>
       <Footer className={styles.footerContainer}>
-        {isFiltering ?
+        {filter.isFiltering ?
           <Button
             classname={styles.clearButton}
             icon={<Close a11yTitle="" />}
@@ -53,7 +67,7 @@ const FilterIssueTable = ({
             label="Apply Filters"
             primary
             onClick={
-              shouldBeEnabled(filter) ?
+              canApply(filter) ?
                 onApplyFilters : null
               }
           />
@@ -69,7 +83,6 @@ FilterIssueTable.propTypes = {
   onFilter: PropTypes.func.isRequired,
   filter: PropTypes.object.isRequired,
   onApplyFilters: PropTypes.func.isRequired,
-  isFiltering: PropTypes.bool.isRequired,
   onClearFilter: PropTypes.func.isRequired,
 };
 

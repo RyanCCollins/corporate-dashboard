@@ -29,7 +29,7 @@ export const initialState = {
     'Description',
   ],
   secondaryFilter: {
-    isFilter: false,
+    isFiltering: false,
     status: 'All',
     state: 'All',
     order: 'Ascending',
@@ -108,6 +108,19 @@ const currentFilter = (state = initialState.currentFilter, action) => {
   }
 };
 
+const filteredIssues = (state = initialState, action) =>
+  action.issues.filter((item) => {
+    if (state.currentFilter.employee !== 'All') {
+      return item.employee.name === state.currentFilter.employee;
+    }
+    return true;
+  }).filter((item) => {
+    if (state.currentFilter.customer !== 'All') {
+      return item.customer.name === state.currentFilter.customer;
+    }
+    return true;
+  });
+
 const issueReducer =
   (state = initialState, action) => {
     switch (action.type) {
@@ -133,18 +146,21 @@ const issueReducer =
         });
       case SET_EMPLOYEE_FILTER:
         return Object.assign({}, state, {
-          currentFilter: currentFilter(state, action),
+          currentFilter: currentFilter(state.currentFilter, action),
         });
       case SET_CUSTOMER_FILTER:
         return Object.assign({}, state, {
-          currentFilter: currentFilter(state, action),
+          currentFilter: currentFilter(state.currentFilter, action),
         });
       case APPLY_CURRENT_FILTER:
         return update(state, {
           currentFilter: {
-            $set: {
+            $merge: {
               isFiltering: true,
             },
+          },
+          visibleIssues: {
+            $set: filteredIssues(state, action),
           },
         });
       case CLEAR_CURRENT_FILTER:
@@ -155,6 +171,9 @@ const issueReducer =
               employee: 'All',
               customer: 'All',
             },
+          },
+          visibleIssues: {
+            $set: action.issues,
           },
         });
       default:

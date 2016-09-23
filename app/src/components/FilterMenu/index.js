@@ -38,7 +38,7 @@ class FilterMenu extends Component {
             a11yTitleId={`${parseLabel(label)}-${DOMUtils.generateUUID()}`}
           />
         }
-        closeOnClick={false}
+        closeOnClick
         label={label}
         className={styles.filterMenu}
         a11yTitle={label}

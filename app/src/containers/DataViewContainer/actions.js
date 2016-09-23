@@ -93,8 +93,9 @@ export const setCustomFilter = (type, filter) =>
   };
 
 // applyCurrentFilter :: None -> {Action}
-export const applyCurrentFilter = () => ({
+export const applyCurrentFilter = (issues) => ({
   type: APPLY_CURRENT_FILTER,
+  issues,
 });
 
 // clearCurrentFilter :: None -> {Action}
