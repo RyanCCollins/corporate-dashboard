@@ -7,6 +7,7 @@ import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
+import _ from 'lodash';
 import {
   LoadingIndicator,
   IssueTable,
@@ -83,8 +84,8 @@ class DataView extends Component {
     } else {
       computedVisibleIssues = visibleIssues.slice(0, currentPage * pageIncrementor);
     }
-    const employees = store && store.issues.map(i => i.employee.name);
-    const customers = store && store.issues.map(i => i.customer.name);
+    const employees = store && _.uniq(store.issues.map(i => i.employee.name));
+    const customers = store && _.uniq(store.issues.map(i => i.customer.name));
     return (
       <div className={styles.dataView}>
         <Heading align="center">

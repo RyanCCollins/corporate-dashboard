@@ -50,13 +50,10 @@ class FilterMenu extends Component {
           <Anchor
             kef={i}
             ref="anchorRef"
-            className={itemsAreEqual(selectedItem, item.value) ?
+            className={itemsAreEqual(selectedItem, item) ?
               styles.anchorSelected : styles.anchor}
             href="#"
-            onClick={() => {
-              console.log(`Called on click, ${item.value}`);
-              onSelectItem(item.value);
-            }}
+            onClick={() => onSelectItem(item)}
           >
             {item}
           </Anchor>
