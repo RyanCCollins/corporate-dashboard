@@ -9,7 +9,7 @@ import {
 
 export const initialState = {
   pageIncrementor: 9,
-  currentPage: 0,
+  currentPage: 1,
   visibleIssues: null,
   currentFilter: {
     employee: 'All',
@@ -56,10 +56,12 @@ const visibleIssues = (state, action) =>
     }
     return item.status === state.secondaryFilter.status.toLowerCase();
   }).filter(item => {
-    if (state.secondaryFilter.state === 'All') {
-      return true;
+    if (state.secondaryFilter.state === 'Active') {
+      return item.isActive;
+    } else if (state.secondaryFilter.state === 'Inactive') {
+      return !item.isActive;
     }
-    return state.secondaryFilter.state === 'Active' ? item.isActive : !item.isActive;
+    return true;
   });
 
 const secondaryFilter =
