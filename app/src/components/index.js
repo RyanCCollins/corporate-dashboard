@@ -1,4 +1,5 @@
 /* Assemble all components for export */
+export SearchBar from './SearchBar';
 export AboutInfo from './AboutInfo';
 export AppHeader from './AppHeader';
 export LoadingIndicator from './LoadingIndicator';

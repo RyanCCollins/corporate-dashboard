@@ -7,13 +7,13 @@ import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
-import Search from 'grommet/components/Search';
 import _ from 'lodash';
 import {
   LoadingIndicator,
   IssueTable,
   FilterIssueTable,
   DataFilter,
+  SearchBar,
 } from 'components';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
@@ -29,6 +29,8 @@ class DataView extends Component {
     this.handleApplyFilters = this.handleApplyFilters.bind(this);
     this.handleClearFilter = this.handleClearFilter.bind(this);
     this.handleSearching = this.handleSearching.bind(this);
+    this.handleSelectSearch = this.handleSelectSearch.bind(this);
+    this.handleSearchClear = this.handleSearchClear.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
     };
@@ -58,6 +60,18 @@ class DataView extends Component {
     } = this.props;
     actions.setSecondaryFilter(item, type, store.issues);
   }
+  handleSelectSearch(__, selected) {
+    const {
+      toggleSearchMode,
+    } = this.props.actions;
+    toggleSearchMode(selected);
+  }
+  handleSearchClear() {
+    const {
+      clearSearchValue,
+    } = this.props.actions;
+    clearSearchValue(this.props.store.issues);
+  }
   handleApplyFilters() {
     const {
       actions,
@@ -83,8 +97,18 @@ class DataView extends Component {
     } = this.props;
     actions.incrementPage();
   }
-  handleSearching(value) {
-
+  handleSearching(e) {
+    const {
+      setSearchValue,
+      clearSearchValue,
+    } = this.props.actions;
+    const issues = this.props.store.issues || [];
+    const searchValue = e.target.value;
+    if (searchValue.length === 0) {
+      clearSearchValue(issues);
+    } else {
+      setSearchValue(searchValue, issues);
+    }
   }
   render() {
     const {
@@ -96,7 +120,7 @@ class DataView extends Component {
       store,
       pageIncrementor,
       visibleIssues,
-      searchValue,
+      search,
     } = this.props;
     let computedVisibleIssues;
     if (!visibleIssues) {
@@ -128,16 +152,18 @@ class DataView extends Component {
               <Box
                 pad={{ horizontal: 'large' }}
                 align="end"
+                direction="row"
               >
-                  <Search
-                    dropAlign={{ right: 'right' }}
-                    value={searchValue}
-                    onDOMChange={this.handleSearching}
-                  />
-                  <DataFilter
-                    filter={secondaryFilter}
-                    onSelectItem={this.handleSelectItem}
-                  />
+                <SearchBar
+                  onChangeValue={this.handleSearching}
+                  searchValue={search.value}
+                  isSearching={search.isSearching}
+                  onClear={this.handleSearchClear}
+                />
+                <DataFilter
+                  filter={secondaryFilter}
+                  onSelectItem={this.handleSelectItem}
+                />
               </Box>
             }
             <Box
@@ -175,7 +201,7 @@ DataView.propTypes = {
   actions: PropTypes.object.isRequired,
   pageIncrementor: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
-  searchValue: PropTypes.string,
+  search: PropTypes.string,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -186,7 +212,7 @@ const mapStateToProps = (state) => ({
   currentPage: state.dataView.currentPage,
   pageIncrementor: state.dataView.pageIncrementor,
   visibleIssues: state.dataView.visibleIssues,
-  searchValue: state.dataView.searchValue,
+  search: state.dataView.search,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

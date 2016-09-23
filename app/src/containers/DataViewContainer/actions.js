@@ -8,6 +8,8 @@ import {
   SET_CUSTOMER_FILTER,
   APPLY_CURRENT_FILTER,
   CLEAR_CURRENT_FILTER,
+  SET_DATA_VIEW_SEARCH_VALUE,
+  CLEAR_DATA_VIEW_SEARCH_VALUE,
 } from './constants';
 
 // setSecondaryFilterStatus :: String -> {Action}
@@ -101,4 +103,15 @@ export const applyCurrentFilter = (issues) => ({
 // clearCurrentFilter :: None -> {Action}
 export const clearCurrentFilter = () => ({
   type: CLEAR_CURRENT_FILTER,
+});
+
+export const setSearchValue = (value, issues) => ({
+  type: SET_DATA_VIEW_SEARCH_VALUE,
+  value,
+  issues,
+});
+
+export const clearSearchValue = (issues) => ({
+  type: CLEAR_DATA_VIEW_SEARCH_VALUE,
+  issues,
 });

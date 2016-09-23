@@ -9,13 +9,18 @@ import {
   SET_CUSTOMER_FILTER,
   APPLY_CURRENT_FILTER,
   CLEAR_CURRENT_FILTER,
+  SET_DATA_VIEW_SEARCH_VALUE,
+  CLEAR_DATA_VIEW_SEARCH_VALUE,
 } from './constants';
 
 export const initialState = {
   pageIncrementor: 9,
   currentPage: 1,
   visibleIssues: null,
-  searchValue: null,
+  search: {
+    value: null,
+    isSearching: false,
+  },
   currentFilter: {
     isFiltering: false,
     employee: 'All',
@@ -130,6 +135,10 @@ const filteredIssues = (state = initialState, action) =>
     return true;
   });
 
+const searchedIssues = (state = initialState, action) => {
+  action.issues.filter((item) => item.employee.name.includes(action.value));
+};
+
 const issueReducer =
   (state = initialState, action) => {
     switch (action.type) {
@@ -179,6 +188,34 @@ const issueReducer =
               isFiltering: false,
               employee: 'All',
               customer: 'All',
+            },
+          },
+          visibleIssues: {
+            $set: action.issues,
+          },
+        });
+      case SET_DATA_VIEW_SEARCH_VALUE:
+        return update(state, {
+          search: {
+            value: {
+              $set: action.value,
+            },
+            isSearching: {
+              $set: action.value.length > 0,
+            },
+          },
+          visibleIssues: {
+            $set: searchedIssues(state, action),
+          },
+        });
+      case CLEAR_DATA_VIEW_SEARCH_VALUE:
+        return update(state, {
+          search: {
+            value: {
+              $set: null,
+            },
+            isSearching: {
+              $set: false,
             },
           },
           visibleIssues: {

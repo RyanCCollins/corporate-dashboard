@@ -95,4 +95,26 @@ describe('<DataViewContainer /> actions', () => {
       actions.clearCurrentFilter()
     ).toEqual(expectedAction);
   });
+  it('should have a type of SET_DATA_VIEW_SEARCH_VALUE', () => {
+    const issues = [];
+    const value = 'Bananas';
+    const expectedAction = {
+      type: types.SET_DATA_VIEW_SEARCH_VALUE,
+      value,
+      issues,
+    };
+    expect(
+      actions.setSearchValue(value, issues)
+    ).toEqual(expectedAction);
+  });
+  it('should have a type of CLEAR_DATA_VIEW_SEARCH_VALUE', () => {
+    const issues = [];
+    const expectedAction = {
+      type: types.CLEAR_DATA_VIEW_SEARCH_VALUE,
+      issues,
+    };
+    expect(
+      actions.clearSearchValue(issues)
+    ).toEqual(expectedAction);
+  });
 });
