@@ -38,5 +38,11 @@ describe('<DataFilter />', () => {
         filter={filter}
       />
     );
+    expect(wrapper.find(<Menu />)).toExist();
+    expect(wrapper.find(<Box />)).toExist();
+    expect(wrapper.find(<Heading />)).toExist();
+    expect(wrapper.find(<CheckBox />)).toExist();
+    expect(wrapper.find(<Status />)).toExist();
+    expect(wrapper.find(<Filter />)).toExist();
   });
 });

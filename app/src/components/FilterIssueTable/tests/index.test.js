@@ -16,6 +16,11 @@ describe('<FilterIssueTable />', () => {
       employees={[]}
       customers={[]}
       onFilter={mockFn}
+      filter={{
+        employee: 'All',
+        customer: 'All',
+        isFiltering: false,
+      }}
       onApplyFilters={mockFn}
       onClearFilter={mockFn}
       isFiltering

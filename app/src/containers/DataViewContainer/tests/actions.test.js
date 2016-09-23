@@ -78,11 +78,13 @@ describe('<DataViewContainer /> actions', () => {
     ).toEqual(expectedAction);
   });
   it('should have a type of APPLY_CURRENT_FILTER', () => {
+    const issues = [];
     const expectedAction = {
       type: types.APPLY_CURRENT_FILTER,
+      issues,
     };
     expect(
-      actions.applyCurrentFilter()
+      actions.applyCurrentFilter(issues)
     ).toEqual(expectedAction);
   });
   it('should have a type of CLEAR_CURRENT_FILTER', () => {
