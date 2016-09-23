@@ -30,12 +30,12 @@ const FilterIssueTable = ({
       >
         <FilterMenu
           menuItems={employees}
-          onSelectItem={onFilter.bind('employee')}
+          onSelectItem={(value) => onFilter('employee', value)}
           label="Employee"
         />
         <FilterMenu
           menuItems={customers}
-          onSelectItem={onFilter.bind('customer')}
+          onSelectItem={(value) => onFilter('customer', value)}
           label="Customer"
         />
       </Menu>

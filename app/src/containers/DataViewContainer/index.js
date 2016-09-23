@@ -53,14 +53,11 @@ class DataView extends Component {
     } = this.props;
     actions.setSecondaryFilter(item, type, store.issues);
   }
-  handleFiltering(type) {
-    switch (type) {
-      case 'employee':
-        break;
-      case 'customer':
-        break;
-      default: break;
-    }
+  handleFiltering(type, filter) {
+    const {
+      setCustomFilter,
+    } = this.props.actions;
+    setCustomFilter(type, filter);
   }
   handleRequestMore() {
     const {

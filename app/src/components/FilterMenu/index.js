@@ -53,9 +53,10 @@ class FilterMenu extends Component {
             className={itemsAreEqual(selectedItem, item.value) ?
               styles.anchorSelected : styles.anchor}
             href="#"
-            onClick={() => // eslint-disable-line react/jsx-no-bind
-              onSelectItem({ value: item.value })
-            }
+            onClick={() => {
+              console.log(`Called on click, ${item.value}`);
+              onSelectItem(item.value);
+            }}
           >
             {item}
           </Anchor>

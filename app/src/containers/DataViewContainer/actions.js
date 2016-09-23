@@ -1,9 +1,12 @@
 import {
+  SET_EMPLOYEE_FILTER,
+  SET_CUSTOMER_FILTER,
   SET_SECONDARY_FILTER_STATUS,
   SET_SECONDARY_FILTER_STATE,
   SET_SECONDARY_FILTER_ORDER,
   INCREMENT_DATA_VIEW_PAGE,
   APPLY_SECONDARY_FILTER,
+  APPLY_CURRENT_FILTER,
 } from './constants';
 
 // setSecondaryFilterStatus :: String -> {Action}
@@ -56,3 +59,36 @@ export const setSecondaryFilter = (filter, type, issues) =>
       applySecondaryFilter(issues)
     );
   };
+
+
+export const setEmployeeFilter = (employee) => ({
+  type: SET_EMPLOYEE_FILTER,
+  employee,
+});
+
+export const setCustomerFilter = (customer) => ({
+  type: SET_CUSTOMER_FILTER,
+  customer,
+});
+
+export const setCustomFilter = (type, filter) =>
+  (dispatch) => {
+    switch (type) {
+      case 'employee':
+        dispatch(
+          setEmployeeFilter(filter)
+        );
+        break;
+      case 'customer':
+        dispatch(
+          setCustomerFilter(filter)
+        );
+        break;
+      default:
+        break;
+    }
+  };
+
+export const applyCurrentFilter = () => ({
+  type: APPLY_CURRENT_FILTER,
+});
