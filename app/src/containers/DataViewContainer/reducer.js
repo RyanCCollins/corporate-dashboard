@@ -135,9 +135,13 @@ const filteredIssues = (state = initialState, action) =>
     return true;
   });
 
-const searchedIssues = (state = initialState, action) => {
-  action.issues.filter((item) => item.employee.name.includes(action.value));
-};
+const searchedIssues = (state = initialState, action) =>
+  action.issues
+    .filter((item) =>
+      item.employee.name.toLowerCase().includes(action.value.toLowerCase()) ||
+      item.customer.name.toLowerCase().includes(action.value.toLowerCase()) ||
+      item.description.toLowerCase().includes(action.value.toLowerCase())
+    );
 
 const issueReducer =
   (state = initialState, action) => {
