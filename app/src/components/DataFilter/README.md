@@ -1,5 +1,5 @@
 ## DataFilter Component
-A component that ...
+A component that allows for filtering.
 
 ### Example
 
