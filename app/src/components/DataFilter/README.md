@@ -4,14 +4,15 @@ A component that ...
 ### Example
 
 ```js
-<DataFilter />
+<DataFilter
+  onSelectItem={this.selectItem}
+  filter={{ status: 'All', order: 'None', state: 'All' }}
+/>
 ```
 
 ### Props
 
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
-### Other Information
+| **onSelectItem**    | Func   |             | A callback function
+| **filter**    | Object   |             | An object with the keys shown above.  Represents a complex filter type.
