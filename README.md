@@ -2,7 +2,14 @@
 ![Code Ship Badge](https://codeship.com/projects/940a8cf0-626f-0134-d657-165525e8bcef/status?branch=master)
 
 # Corporate Data Analytic Dashboard
-A corporate dashboard web application, built with a focus on component oriented design.  MVP for a client data analytic platform.  In development
+A corporate dashboard web application, built with a focus on component oriented design, UI / UX and performance.  MVP for a client data analytic platform.  In development.
+
+# Built With
+- GraphQL
+- ApolloClient
+- React
+- Redux
+- Grommet UX
 
 ## Screen Shots
 ![Home View](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/home-main.png?raw=true)
