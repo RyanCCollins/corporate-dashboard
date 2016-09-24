@@ -1,17 +1,8 @@
 ## AboutInfo Component
-A component that ...
+A component that shows information about the project.
 
 ### Example
 
 ```js
 <AboutInfo />
 ```
-
-### Props
-
-| Prop          | Type     | Default     | Possible Values
-| ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
-### Other Information
