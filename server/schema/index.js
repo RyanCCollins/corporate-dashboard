@@ -7,7 +7,11 @@ import {
   GraphQLBoolean,
 } from 'graphql';
 
-import issuesJSON from '../data/issues.json';
+import issuesJSONOne from '../data/issues/one.json';
+import issuesJSONTwo from '../data/issues/two.json';
+import issuesJSONThree from '../data/issues/three.json';
+import issuesJSONFour from '../data/issues/four.json';
+import issuesJSONFive from '../data/issues/five.json';
 import employeesJSON from '../data/employees.json';
 import _ from 'lodash';
 import fs from 'fs';
@@ -52,7 +56,6 @@ const PersonType = new GraphQLObjectType({
   name: 'Person',
   fields: () => ({
     name: { type: GraphQLString },
-    avatar: { type: GraphQLString },
     company: { type: GraphQLString },
   }),
 });
@@ -89,7 +92,11 @@ const StoreType = new GraphQLObjectType({
     },
     issues: {
       type: new GraphQLList(IssueType),
-      resolve: () => issuesJSON,
+      resolve: () => issuesJSONOne,
+    },
+    liveIssues: {
+      type: new GraphQLList(IssueType),
+      resolve: () => issuesJSONOne,
     },
     customers: {
       type: new GraphQLList(CustomerType),
