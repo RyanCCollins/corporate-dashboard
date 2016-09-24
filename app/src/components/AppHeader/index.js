@@ -8,7 +8,6 @@ import Button from 'grommet/components/Button';
 import CloseIcon from 'grommet/components/icons/base/Close';
 import { Logo } from 'components';
 
-
 const AppHeader = ({
   onToggleNav,
 }) => (
