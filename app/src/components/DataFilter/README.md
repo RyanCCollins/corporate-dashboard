@@ -1,12 +1,12 @@
 ## DataFilter Component
-A component that ...
+A component that allows for filtering.
 
 ### Example
 
 ```js
 <DataFilter
   onSelectItem={this.handleSelectItem}
-  filter={filter}
+  filter={{ status: 'All', order: 'None', state: 'All' }}
 />
 ```
 
@@ -15,4 +15,4 @@ A component that ...
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
 | **onSelectItem**    | Func   |             | A callback function
-| **filter**    | Object   |             | An object with keys for the set filter.
+| **filter**    | Object   |             | An object with the keys shown above.  Represents a complex filter type.

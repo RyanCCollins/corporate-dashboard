@@ -1,11 +1,15 @@
 ## AppHeader Component
-A component that ...
+A component that acts as the main header / nav for the app.
 
 ### Example
 
 ```js
-<AppHeader />
+<AppHeader onToggleNav={this.handleToggleNav} />
 ```
 
+### Props
 
-### Other Information
+| Prop          | Type     | Default     | Possible Values
+| ------------- | -------- | ----------- | ---------------------------------------------
+| **onToggleNav**    | Func   |             | A callback function
+
