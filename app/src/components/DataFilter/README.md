@@ -4,14 +4,15 @@ A component that ...
 ### Example
 
 ```js
-<DataFilter />
+<DataFilter
+  onSelectItem={this.handleSelectItem}
+  filter={filter}
+/>
 ```
 
 ### Props
 
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
-### Other Information
+| **onSelectItem**    | Func   |             | A callback function
+| **filter**    | Object   |             | An object with keys for the set filter.

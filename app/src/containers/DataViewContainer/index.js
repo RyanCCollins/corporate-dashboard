@@ -254,7 +254,7 @@ const MoreIssuesQuery = gql`
 
   fragment Person on Person {
     name
-    avatar
+    company
   }
 `;
 

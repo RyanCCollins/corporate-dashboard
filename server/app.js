@@ -56,6 +56,18 @@ graphql(schema, query).then((result) => {
       );
     });
 
+    // WebSocket server for subscriptions
+    const websocketServer = createServer((request, response) => {
+      response.writeHead(404);
+      response.end();
+    });
+
+    websocketServer.listen(WS_PORT, () => console.log( // eslint-disable-line no-console
+      `Websocket Server is now running on http://localhost:${WS_PORT}`
+    ));
+
+    const server = new SubscriptionServer({ subscriptionManager }, websocketServer);
+
     let json = await graphql(schema, introspectionQuery);
     fs.writeFile(
       './server/schema/schema.json',
@@ -69,15 +81,4 @@ graphql(schema, query).then((result) => {
   }
 })();
 
-// WebSocket server for subscriptions
-const websocketServer = createServer((request, response) => {
-  response.writeHead(404);
-  response.end();
-});
-
-websocketServer.listen(WS_PORT, () => console.log( // eslint-disable-line no-console
-  `Websocket Server is now running on http://localhost:${WS_PORT}`
-));
-
-const server = new SubscriptionServer({ subscriptionManager }, websocketServer);
 /* eslint-enable */
