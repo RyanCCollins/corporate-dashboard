@@ -66,7 +66,15 @@ graphql(schema, query).then((result) => {
       `Websocket Server is now running on http://localhost:${WS_PORT}`
     ));
 
-    const server = new SubscriptionServer({ subscriptionManager }, websocketServer);
+    const server = new SubscriptionServer(
+      {
+        subscriptionManager,
+        onSubscribe: () => {
+          console.log('Called on subscribe')
+        },
+      },
+      websocketServer
+    );
 
     let json = await graphql(schema, introspectionQuery);
     fs.writeFile(

@@ -31,12 +31,16 @@ class DataView extends Component {
     this.handleSearching = this.handleSearching.bind(this);
     this.handleSelectSearch = this.handleSelectSearch.bind(this);
     this.handleSearchClear = this.handleSearchClear.bind(this);
+    this.handlePolling = this.handlePolling.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
     };
   }
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
+    setInterval(() => {
+      this.handlePolling();
+    }, 20000);
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
@@ -46,6 +50,12 @@ class DataView extends Component {
       return undefined;
     }
     return window.innerWidth || document.body.clientWidth;
+  }
+  handlePolling() {
+    const {
+      incrementCounter,
+    } = this.props.actions;
+    incrementCounter();
   }
   handleResize() {
     const width = this.getWindowWidth();
@@ -211,6 +221,7 @@ DataView.propTypes = {
   pageIncrementor: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   search: PropTypes.string,
+  counter: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -222,6 +233,7 @@ const mapStateToProps = (state) => ({
   pageIncrementor: state.dataView.pageIncrementor,
   visibleIssues: state.dataView.visibleIssues,
   search: state.dataView.search,
+  counter: state.dataView.counter,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -233,9 +245,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MoreIssuesQuery = gql`
-  query MoreIssues {
+  query MoreIssues($counter: Int!) {
     store {
-      issues {
+      issues(counter: $counter) {
         id
         submission
         closed
@@ -259,6 +271,10 @@ const MoreIssuesQuery = gql`
 `;
 
 const ContainerWithData = graphql(MoreIssuesQuery, {
+  options: (ownProps) => ({
+    pollInterval: 20000,
+    variables: { counter: ownProps.counter },
+  }),
   props: ({ data: { loading, store } }) => ({
     store,
     loading,

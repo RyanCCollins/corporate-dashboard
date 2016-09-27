@@ -37,6 +37,9 @@ const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
 
 const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions,
+  shouldBatch: true,
+  initialState: window.__INITIAL_STATE__, // eslint-disable-line no-underscore-dangle
+  ssrForceFetchDelay: 100,
 });
 
 export default client;

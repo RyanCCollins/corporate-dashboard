@@ -10,6 +10,7 @@ import {
   CLEAR_CURRENT_FILTER,
   SET_DATA_VIEW_SEARCH_VALUE,
   CLEAR_DATA_VIEW_SEARCH_VALUE,
+  INCREMENT_DATA_VIEW_COUNTER,
 } from './constants';
 
 // setSecondaryFilterStatus :: String -> {Action}
@@ -36,6 +37,10 @@ export const setSecondaryFilterOrder = (order, issues) => ({
 // incrementPage :: None -> {Action}
 export const incrementPage = () => ({
   type: INCREMENT_DATA_VIEW_PAGE,
+});
+
+export const incrementCounter = () => ({
+  type: INCREMENT_DATA_VIEW_COUNTER,
 });
 
 // applySecondaryFilter :: Array -> {Action}

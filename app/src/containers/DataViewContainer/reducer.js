@@ -11,11 +11,13 @@ import {
   CLEAR_CURRENT_FILTER,
   SET_DATA_VIEW_SEARCH_VALUE,
   CLEAR_DATA_VIEW_SEARCH_VALUE,
+  INCREMENT_DATA_VIEW_COUNTER,
 } from './constants';
 
 export const initialState = {
   pageIncrementor: 9,
   currentPage: 1,
+  counter: 0,
   visibleIssues: null,
   search: {
     value: '',
@@ -224,6 +226,12 @@ const issueReducer =
           },
           visibleIssues: {
             $set: action.issues,
+          },
+        });
+      case INCREMENT_DATA_VIEW_COUNTER:
+        return update(state, {
+          counter: {
+            $set: state.counter === 5 ? 0 : state.counter + 1,
           },
         });
       default:
