@@ -7,26 +7,19 @@ import Sidebar from 'grommet/components/Sidebar';
 import Menu from 'grommet/components/Menu';
 
 describe('<SidebarNav />', () => {
+  const wrapper = shallow(
+    <SidebarNav onToggleNav={(e) => e} navActive={false}>
+      <div>
+        Hello World
+      </div>
+    </SidebarNav>
+  );
   it('should have expected components when in default state.', () => {
-    const wrapper = shallow(
-      <SidebarNav navActive={false}>
-        <div>
-          Hello World
-        </div>
-      </SidebarNav>
-    );
     expect(
       wrapper.find(<Split />)
     ).toExist();
   });
   it('should render as expected when active', () => {
-    const wrapper = shallow(
-      <SidebarNav navActive={false}>
-        <div>
-          Hello World
-        </div>
-      </SidebarNav>
-    );
     expect(
       wrapper.find(<Sidebar />)
     ).toExist();
