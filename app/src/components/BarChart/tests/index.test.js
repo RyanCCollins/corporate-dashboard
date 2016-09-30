@@ -18,11 +18,15 @@ describe('<BarChart />', () => {
   const wrapper = shallow(
     <BarChart
       keyMetrics={{
-        data: [
-          { week_num: 1, num_customers: 16554 },
-          { week_num: 2, num_customers: 16554 },
-          { week_num: 3, num_customers: 16554 },
+        months: [
+          { label: 'January', issues: 80 },
+          { label: 'February', issues: 80 },
+          { label: 'March', issues: 80 },
         ],
+        stats: {
+          total: 300,
+          open: 122,
+        },
       }}
       onSelectIndex={(e) => e}
       onClearIndex={(e) => e}

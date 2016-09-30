@@ -1,7 +1,7 @@
 import * as types from './constants';
 import update from 'react-addons-update';
 
-const initialState = {
+export const initialState = {
   activeIndex: null,
   labels: [
     { index: 0, label: '0' },

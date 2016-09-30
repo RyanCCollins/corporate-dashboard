@@ -1,17 +1,17 @@
 ## OpenIssues Component
-A component that ...
+A component that shows the number of open issues
 
 ### Example
 
 ```js
-<OpenIssues />
+<OpenIssues stats={store.keyMetrics.stats} />
 ```
 
 ### Props
 
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
+| **stats**    | Object   |             | An object value containing two keys, open and total.
 
 
 ### Other Information

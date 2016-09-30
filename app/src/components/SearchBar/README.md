@@ -1,17 +1,22 @@
 ## SearchBar Component
-A component that ...
+A reactive search component.
 
 ### Example
 
 ```js
-<SearchBar />
+<SearchBar
+  onChangeValue={this.handleChangeValue}
+  searchValue="Hello World"
+  isSearching={true}
+  onClear={this.handleClearSearch}
+/>
 ```
 
 ### Props
 
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
-### Other Information
+| **onChangeValue**    | Func   |             | A callback function
+| **onClear**    | Func   |             | A callback function
+| **searchValue**    | String   |             | Any string value
+| **isSearching**    | Bool   |             | True / False

@@ -81,7 +81,7 @@ const BarChart = ({
 );
 
 BarChart.propTypes = {
-  data: PropTypes.object.isRequired,
+  keyMetrics: PropTypes.object.isRequired,
   onSelectIndex: PropTypes.func.isRequired,
   onClearIndex: PropTypes.func.isRequired,
   activeIndex: PropTypes.number.isRequired,

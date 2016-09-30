@@ -37,7 +37,10 @@ const OpenIssues = ({
 );
 
 OpenIssues.propTypes = {
-  stats: PropTypes.object.isRequired,
+  stats: PropTypes.shape({
+    open: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+  }),
 };
 
 export default cssModules(OpenIssues, styles);
