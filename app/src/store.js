@@ -10,6 +10,7 @@ import { initialState as employees } from './containers/GeospatialViewContainer/
 import { initialState as keyMetrics } from './containers/KeyMetricsViewContainer/reducer';
 
 const isProduction = process.env.NODE_ENV !== 'development';
+const isClient = typeof document !== 'undefined';
 
 const initialState = {
   employees,
@@ -20,19 +21,16 @@ const initialState = {
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
 const middlewares = [thunk, client.middleware()];
+const enhancers = [];
 
-if (isProduction) {
+if (!isProduction && isClient) {
   const loggerMiddleware = createLogger();
   middlewares.push(loggerMiddleware);
-}
 
-/* Everyone should use redux dev tools */
-/* https://github.com/gaearon/redux-devtools */
-/* https://medium.com/@meagle/understanding-87566abcfb7a */
-const enhancers = [];
-if (typeof devToolsExtension === 'function') {
-  const devToolsExtension = window.devToolsExtension;
-  enhancers.push(devToolsExtension());
+  if (typeof devToolsExtension === 'function') {
+    const devToolsExtension = window.devToolsExtension;
+    enhancers.push(devToolsExtension());
+  }
 }
 
 const composedEnhancers = compose(
