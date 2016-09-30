@@ -1,0 +1,37 @@
+{
+  "months": [{
+    "label": "january",
+    "issues": 80
+  }, {
+    "label": "february",
+    "issues": 23
+  }, {
+    "label": "march",
+    "issues": 29
+  }, {
+    "label": "april",
+    "issues": 99
+  }, {
+    "label": "may",
+    "issues": 20
+  }, {
+    "label": "june",
+    "issues": 40
+  }, {
+    "label": "july",
+    "issues": 53
+  }, {
+    "label": "august",
+    "issues": 55
+  }, {
+    "label": "september",
+    "issues": 93
+  }, {
+    "label": "october",
+    "issues": 22
+  }],
+  "stats": {
+    "open": 123,
+    "total": 177
+  }
+}

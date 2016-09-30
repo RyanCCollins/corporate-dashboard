@@ -12,6 +12,7 @@ import issuesJSONTwo from '../data/issues/two.json';
 import issuesJSONThree from '../data/issues/three.json';
 import issuesJSONFour from '../data/issues/four.json';
 import issuesJSONFive from '../data/issues/five.json';
+import keyMetricsJSON from '../data/keyMetrics.json';
 import employeesJSON from '../data/employees.json';
 import _ from 'lodash';
 import fs from 'fs';
@@ -83,6 +84,30 @@ const IssueType = new GraphQLObjectType({
   }),
 });
 
+const MonthType = new GraphQLObjectType({
+  name: 'Month',
+  fields: () => ({
+    label: { type: GraphQLString },
+    issues: { type: GraphQLInt },
+  }),
+});
+
+const StatsType = new GraphQLObjectType({
+  name: 'Stats',
+  fields: () => ({
+    open: { type: GraphQLInt },
+    total: { type: GraphQLInt },
+  }),
+});
+
+const KeyMetricType = new GraphQLObjectType({
+  name: 'KeyMetrics',
+  fields: () => ({
+    months: { type: new GraphQLList(MonthType) },
+    stats: { type: StatsType },
+  }),
+});
+
 const StoreType = new GraphQLObjectType({
   name: 'Store',
   fields: () => ({
@@ -105,6 +130,10 @@ const StoreType = new GraphQLObjectType({
         ];
         return [].concat.apply([], issueArray[counter]);
       },
+    },
+    keyMetrics: {
+      type: KeyMetricType,
+      resolve: () => keyMetricsJSON,
     },
     customers: {
       type: new GraphQLList(CustomerType),

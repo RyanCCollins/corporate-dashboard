@@ -8,6 +8,7 @@ import client from './apolloClient';
 import { initialState as dataView } from './containers/DataViewContainer/reducer';
 import { initialState as employees } from './containers/GeospatialViewContainer/reducer';
 import { initialState as keyMetrics } from './containers/KeyMetricsViewContainer/reducer';
+import { initialState as issueKeyMetrics } from './containers/IssueKeyMetricsContainer/reducer';
 
 const isProduction = process.env.NODE_ENV !== 'development';
 const isClient = typeof document !== 'undefined';
@@ -16,6 +17,7 @@ const initialState = {
   employees,
   keyMetrics,
   dataView,
+  issueKeyMetrics,
 };
 
 /* Commonly used middlewares and enhancers */

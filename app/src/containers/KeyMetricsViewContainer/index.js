@@ -10,6 +10,7 @@ import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
 import { LineChart, LoadingIndicator } from 'components';
+import { IssueKeyMetricsContainer } from 'containers';
 
 class KeyMetricsView extends Component {
   render() {
@@ -27,6 +28,9 @@ class KeyMetricsView extends Component {
           <LoadingIndicator isLoading={loading} />
         :
           <Section>
+            <Heading tag="h3" align="center">
+              Customers (Last 12 Months)
+            </Heading>
             <Box
               pad={{ vertical: 'small', horizontal: 'large' }}
               direction="column"
@@ -40,6 +44,7 @@ class KeyMetricsView extends Component {
             </Box>
           </Section>
         }
+        <IssueKeyMetricsContainer />
       </div>
     );
   }
