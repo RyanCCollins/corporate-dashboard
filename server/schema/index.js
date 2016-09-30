@@ -12,6 +12,9 @@ import issuesJSONTwo from '../data/issues/two.json';
 import issuesJSONThree from '../data/issues/three.json';
 import issuesJSONFour from '../data/issues/four.json';
 import issuesJSONFive from '../data/issues/five.json';
+import issuesJSONSix from '../data/issues/six.json';
+import issuesJSONSeven from '../data/issues/seven.json';
+
 import keyMetricsJSON from '../data/keyMetrics.json';
 import employeesJSON from '../data/employees.json';
 import _ from 'lodash';
@@ -127,6 +130,8 @@ const StoreType = new GraphQLObjectType({
           issuesJSONThree,
           issuesJSONFour,
           issuesJSONFive,
+          issuesJSONSix,
+          issuesJSONSeven,
         ];
         return [].concat.apply([], issueArray[counter]);
       },

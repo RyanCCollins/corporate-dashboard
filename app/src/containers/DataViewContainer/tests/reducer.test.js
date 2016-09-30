@@ -384,9 +384,9 @@ describe('dataViewReducer', () => {
       })
     ).toEqual(stateAfter);
   });
-  it('handles INCREMENT_DATA_VIEW_COUNTER cycling back to 0 from 4', () => {
+  it('handles INCREMENT_DATA_VIEW_COUNTER cycling back to 0 from 6', () => {
     const stateBefore = {
-      counter: 4,
+      counter: 6,
     };
     const stateAfter = {
       counter: 0,

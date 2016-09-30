@@ -13,23 +13,46 @@ class SidebarNav extends Component {
     this.renderMenu = this.renderMenu.bind(this);
   }
   renderMenu() {
+    const {
+      onToggleNav,
+    } = this.props;
     return (
       <Sidebar size="medium" colorIndex="neutral-1" fixed seperator="right">
         <AppHeader {...this.props} />
         <Menu primary className={styles.menu}>
-          <IndexLink to="/home" activeClassName="active">
+          <IndexLink
+            to="/home"
+            activeClassName="active"
+            onClick={() => onToggleNav()}
+          >
             Home
           </IndexLink>
-          <Link to="geo-spatial" activeClassName="active">
+          <Link
+            to="geo-spatial"
+            activeClassName="active"
+            onClick={() => onToggleNav()}
+          >
             Geospatial View
           </Link>
-          <Link to="key-metrics" activeClassName="active">
+          <Link
+            to="key-metrics"
+            activeClassName="active"
+            onClick={() => onToggleNav()}
+          >
             Key Metrics
           </Link>
-          <Link to="data" activeClassName="active">
+          <Link
+            to="data"
+            activeClassName="active"
+            onClick={() => onToggleNav()}
+          >
             Data
           </Link>
-          <Link to="about" activeClassName="active">
+          <Link
+            to="about"
+            activeClassName="active"
+            onClick={() => onToggleNav()}
+          >
             About
           </Link>
         </Menu>

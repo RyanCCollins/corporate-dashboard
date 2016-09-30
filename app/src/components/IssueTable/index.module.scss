@@ -1,3 +1,8 @@
-.issueTable {
-  
+.issueTableParagraph {
+  @media screen and (max-width: 576px) {
+    max-width: 400px !important;
+  }
+  @media screen and (max-width: 400px) {
+    max-width: 300px !important;
+  }
 }

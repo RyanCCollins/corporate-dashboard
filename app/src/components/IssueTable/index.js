@@ -22,14 +22,14 @@ const IssueTable = ({
       <div>
         {isMobile ?
           <Table onMore={onRequestMore}>
-            <Tiles fill>
-              <Box justify="center" align="center" pad="small" size="large">
+            <Tiles>
+              <Box justify="center" align="start" pad="small">
                 <tbody>
                   {issues.map((issue, i) =>
                     <Tile
                       key={i}
                       align="start"
-                      direction="row" pad={{ horizontal: 'medium', vertical: 'small' }}
+                      direction="row" pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box
                         a11yTitle={`Open ${parseIssue(issue).customer}`}
@@ -46,7 +46,11 @@ const IssueTable = ({
                           <h4>{parseIssue(issue).customer}</h4>
                           <span>{parseIssue(issue).employee}</span>
                           <span>{parseIssue(issue).submitted}</span>
-                          <Paragraph>{parseIssue(issue).description}</Paragraph>
+                          <Paragraph
+                            className={styles.issueTableParagraph}
+                          >
+                            {parseIssue(issue).description}
+                          </Paragraph>
                         </Box>
                       </Box>
                     </Tile>
