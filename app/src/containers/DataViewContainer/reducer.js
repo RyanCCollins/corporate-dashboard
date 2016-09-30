@@ -12,9 +12,11 @@ import {
   SET_DATA_VIEW_SEARCH_VALUE,
   CLEAR_DATA_VIEW_SEARCH_VALUE,
   INCREMENT_DATA_VIEW_COUNTER,
+  SET_POLLING_INTERVAL,
 } from './constants';
 
 export const initialState = {
+  pollInterval: 20000,
   pageIncrementor: 9,
   currentPage: 1,
   counter: 0,
@@ -231,6 +233,12 @@ const issueReducer =
         return update(state, {
           counter: {
             $set: state.counter === 6 ? 0 : state.counter + 1,
+          },
+        });
+      case SET_POLLING_INTERVAL:
+        return update(state, {
+          pollInterval: {
+            $set: parseInt(action.value, 10),
           },
         });
       default:

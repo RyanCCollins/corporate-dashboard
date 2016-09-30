@@ -117,4 +117,13 @@ describe('<DataViewContainer /> actions', () => {
       actions.clearSearchValue(issues)
     ).toEqual(expectedAction);
   });
+  it('should have a type of SET_POLLING_INTERVAL', () => {
+    const expectedAction = {
+      type: types.SET_POLLING_INTERVAL,
+      value: 20000,
+    };
+    expect(
+      actions.setPollValue(20000)
+    ).toEqual(expectedAction);
+  });
 });

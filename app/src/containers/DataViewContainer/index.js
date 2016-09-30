@@ -14,6 +14,7 @@ import {
   FilterIssueTable,
   DataFilter,
   SearchBar,
+  Slider,
 } from 'components';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
@@ -32,18 +33,21 @@ class DataView extends Component {
     this.handleSelectSearch = this.handleSelectSearch.bind(this);
     this.handleSearchClear = this.handleSearchClear.bind(this);
     this.handlePolling = this.handlePolling.bind(this);
+    this.handleSlide = this.handleSlide.bind(this);
+    this.pollIntervalHelper = this.pollIntervalHelper.bind(this);
     this.state = {
       isMobile: this.getWindowWidth() <= 768,
     };
   }
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
-    setInterval(() => {
-      this.handlePolling();
-    }, 20000);
+    this.pollIntervalHelper();
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+    if (window.intervalHandler) {
+      clearInterval(window.intervalHandler);
+    }
   }
   getWindowWidth() {
     if (!window) {
@@ -128,6 +132,22 @@ class DataView extends Component {
       setSearchValue(searchValue, issues);
     }
   }
+  handleSlide(e) {
+    const {
+      setPollValue,
+    } = this.props.actions;
+    setPollValue(parseInt(e.target.value, 10));
+    if (window.intervalHandler) {
+      clearInterval(window.intervalHandler);
+    }
+    this.pollIntervalHelper();
+  }
+  pollIntervalHelper() {
+    const { pollInterval } = this.props;
+    window.intervalHandler = setInterval(() => {
+      this.handlePolling();
+    }, pollInterval);
+  }
   render() {
     const {
       headers,
@@ -139,6 +159,7 @@ class DataView extends Component {
       pageIncrementor,
       visibleIssues,
       search,
+      pollInterval,
     } = this.props;
     let computedVisibleIssues;
     if (!visibleIssues) {
@@ -154,9 +175,6 @@ class DataView extends Component {
         <Heading align="center">
           Data View
         </Heading>
-        {loading &&
-          <LoadingIndicator isLoading={loading} />
-        }
         <Section>
           {employees && customers &&
             <FilterIssueTable
@@ -168,6 +186,20 @@ class DataView extends Component {
               filter={currentFilter}
             />
           }
+          <Box
+            pad={{ horizontal: 'large' }}
+            align="center"
+            justify="center"
+            direction="row"
+          >
+            <Slider
+              onSlide={this.handleSlide}
+              max={40000}
+              min={5000}
+              defaultValue={20000}
+              value={pollInterval}
+            />
+          </Box>
           {!currentFilter.isFiltering &&
             <Box
               pad={{ horizontal: 'large' }}
@@ -193,6 +225,9 @@ class DataView extends Component {
             justify="start"
             full={{ horizontal: true }}
           >
+            {loading &&
+              <LoadingIndicator message="Loading" isLoading={loading} />
+            }
             <IssueTable
               issues={computedVisibleIssues}
               headers={headers}
@@ -223,6 +258,7 @@ DataView.propTypes = {
   loading: PropTypes.bool.isRequired,
   search: PropTypes.string,
   counter: PropTypes.number.isRequired,
+  pollInterval: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -235,6 +271,7 @@ const mapStateToProps = (state) => ({
   visibleIssues: state.dataView.visibleIssues,
   search: state.dataView.search,
   counter: state.dataView.counter,
+  pollInterval: state.dataView.pollInterval,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -270,7 +307,7 @@ const MoreIssuesQuery = gql`
 
 const ContainerWithData = graphql(MoreIssuesQuery, {
   options: (ownProps) => ({
-    pollInterval: 20000,
+    pollInterval: ownProps.pollInterval,
     variables: { counter: ownProps.counter },
   }),
   props: ({ data: { loading, store } }) => ({

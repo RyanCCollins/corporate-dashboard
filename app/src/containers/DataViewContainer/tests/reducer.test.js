@@ -397,4 +397,18 @@ describe('dataViewReducer', () => {
       })
     ).toEqual(stateAfter);
   });
+  it('should handle SET_POLLING_INTERVAL', () => {
+    const stateBefore = {
+      pollInterval: 10000,
+    };
+    const stateAfter = {
+      pollInterval: 20000,
+    };
+    expect(
+      reducer(stateBefore, {
+        type: types.SET_POLLING_INTERVAL,
+        value: 20000,
+      })
+    ).toEqual(stateAfter);
+  });
 });

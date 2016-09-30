@@ -11,6 +11,7 @@ import {
   SET_DATA_VIEW_SEARCH_VALUE,
   CLEAR_DATA_VIEW_SEARCH_VALUE,
   INCREMENT_DATA_VIEW_COUNTER,
+  SET_POLLING_INTERVAL,
 } from './constants';
 
 // setSecondaryFilterStatus :: String -> {Action}
@@ -119,4 +120,9 @@ export const setSearchValue = (value, issues) => ({
 export const clearSearchValue = (issues) => ({
   type: CLEAR_DATA_VIEW_SEARCH_VALUE,
   issues,
+});
+
+export const setPollValue = (value) => ({
+  type: SET_POLLING_INTERVAL,
+  value,
 });
