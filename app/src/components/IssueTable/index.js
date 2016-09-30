@@ -20,36 +20,40 @@ const IssueTable = ({
     {issues && issues.length > 0 ?
       <div>
         {isMobile ?
-          <Tiles fill>
-            <Box justify="center" align="center" pad="small" size="large">
-              {issues.map((issue, i) =>
-                <Tile
-                  key={i}
-                  align="start"
-                  direction="row" pad={{ horizontal: 'medium', vertical: 'small' }}
-                >
-                  <Box
-                    a11yTitle={`Open ${parseIssue(issue).customer}`}
-                    align="center"
-                    direction="row"
-                  >
-                    <Status value={parseIssue(issue).status} />
-                    <Box
-                      key="contents"
-                      direction="column"
-                      pad="none"
-                      tag="div"
+          <Table onMore={onRequestMore}>
+            <Tiles fill>
+              <Box justify="center" align="center" pad="small" size="large">
+                <tbody>
+                  {issues.map((issue, i) =>
+                    <Tile
+                      key={i}
+                      align="start"
+                      direction="row" pad={{ horizontal: 'medium', vertical: 'small' }}
                     >
-                      <h4>{parseIssue(issue).customer}</h4>
-                      <span>{parseIssue(issue).employee}</span>
-                      <span>{parseIssue(issue).submitted}</span>
-                      <p>{parseIssue(issue).description}</p>
-                    </Box>
-                  </Box>
-                </Tile>
-              )}
-            </Box>
-          </Tiles>
+                      <Box
+                        a11yTitle={`Open ${parseIssue(issue).customer}`}
+                        align="center"
+                        direction="row"
+                      >
+                        <Status value={parseIssue(issue).status} />
+                        <Box
+                          key="contents"
+                          direction="column"
+                          pad="none"
+                          tag="div"
+                        >
+                          <h4>{parseIssue(issue).customer}</h4>
+                          <span>{parseIssue(issue).employee}</span>
+                          <span>{parseIssue(issue).submitted}</span>
+                          <p>{parseIssue(issue).description}</p>
+                        </Box>
+                      </Box>
+                    </Tile>
+                  )}
+                </tbody>
+              </Box>
+            </Tiles>
+          </Table>
         :
           <Table onMore={onRequestMore}>
             <thead>
