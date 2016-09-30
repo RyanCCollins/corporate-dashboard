@@ -9,6 +9,7 @@ import Tile from 'grommet/components/Tile';
 import Box from 'grommet/components/Box';
 import Section from 'grommet/components/Section';
 import Heading from 'grommet/components/Heading';
+import Paragraph from 'grommet/components/Paragraph';
 
 const IssueTable = ({
   issues,
@@ -39,13 +40,13 @@ const IssueTable = ({
                         <Box
                           key="contents"
                           direction="column"
-                          pad="none"
+                          pad={{ horizontal: 'small' }}
                           tag="div"
                         >
                           <h4>{parseIssue(issue).customer}</h4>
                           <span>{parseIssue(issue).employee}</span>
                           <span>{parseIssue(issue).submitted}</span>
-                          <p>{parseIssue(issue).description}</p>
+                          <Paragraph>{parseIssue(issue).description}</Paragraph>
                         </Box>
                       </Box>
                     </Tile>
