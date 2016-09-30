@@ -63,7 +63,7 @@ export const initialState = {
   },
 };
 
-export const visibleIssues = (state, action) =>
+const visibleIssues = (state, action) =>
   action.issues.filter(item => {
     if (state.secondaryFilter.status === 'All') {
       return true;
@@ -85,7 +85,7 @@ export const visibleIssues = (state, action) =>
     return true;
   });
 
-export const secondaryFilter =
+const secondaryFilter =
   (state = initialState.secondaryFilter, action) => {
     switch (action.type) {
       case SET_SECONDARY_FILTER_STATUS:
@@ -105,7 +105,7 @@ export const secondaryFilter =
     }
   };
 
-export const currentFilter = (state = initialState.currentFilter, action) => {
+const currentFilter = (state = initialState.currentFilter, action) => {
   switch (action.type) {
     case SET_EMPLOYEE_FILTER:
       return update(state, {
@@ -123,7 +123,7 @@ export const currentFilter = (state = initialState.currentFilter, action) => {
   }
 };
 
-export const filteredIssues = (state = initialState, action) =>
+const filteredIssues = (state = initialState, action) =>
   action.issues.filter((item) => {
     if (state.currentFilter.employee !== 'All') {
       return item.employee.name === state.currentFilter.employee;
@@ -136,7 +136,7 @@ export const filteredIssues = (state = initialState, action) =>
     return true;
   });
 
-export const searchedIssues = (state = initialState, action) =>
+const searchedIssues = (state = initialState, action) =>
   action.issues
     .filter((item) =>
       item.employee.name.toLowerCase().includes(action.value.toLowerCase()) ||
