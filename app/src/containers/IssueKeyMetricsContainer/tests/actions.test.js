@@ -1,18 +1,21 @@
 import expect from 'expect';
-import {
-  issueKeyMetricsDefaultAction,
-} from '../actions';
-import {
-  ISSUEKEYMETRICS_DEFAULT_ACTION,
-} from '../constants';
+import * as actions from '../actions';
+import * as types from '../constants';
 
 describe('IssueKeyMetrics actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('index actions', () => {
+    it('has a type of KEY_METRICS_SET_ACTIVE_INDEX', () => {
       const expected = {
-        type: ISSUEKEYMETRICS_DEFAULT_ACTION,
+        type: types.KEY_METRICS_SET_ACTIVE_INDEX,
+        index: 0,
       };
-      expect(issueKeyMetricsDefaultAction()).toEqual(expected);
+      expect(actions.setActiveIndex(0)).toEqual(expected);
+    });
+    it('has a type of KEY_METRICS_CLEAR_ACTIVE_INDEX', () => {
+      const expected = {
+        type: types.KEY_METRICS_CLEAR_ACTIVE_INDEX,
+      };
+      expect(actions.clearActiveIndex()).toEqual(expected);
     });
   });
 });

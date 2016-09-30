@@ -8,9 +8,27 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
-import { BarChart } from 'components';
+import Heading from 'grommet/components/Heading';
+import { BarChart, OpenIssues } from 'components';
 
-class IssueKeyMetrics extends Component { // eslint-disable-line react/prefer-stateless-function
+class IssueKeyMetrics extends Component {
+  constructor() {
+    super();
+    this.handleClearIndex = this.handleClearIndex.bind(this);
+    this.handleSelectIndex = this.handleSelectIndex.bind(this);
+  }
+  handleClearIndex() {
+    const {
+      clearActiveIndex,
+    } = this.props.actions;
+    clearActiveIndex();
+  }
+  handleSelectIndex(index) {
+    const {
+      setActiveIndex,
+    } = this.props.actions;
+    setActiveIndex(index);
+  }
   render() {
     const {
       store,
@@ -21,19 +39,32 @@ class IssueKeyMetrics extends Component { // eslint-disable-line react/prefer-st
     return (
       <Section className={styles.issueKeyMetrics}>
         {!loading &&
-          <Box
-            pad={{ vertical: 'small', horizontal: 'large' }}
-            direction="column"
-            justify="start"
-            full={{ horizontal: true }}
-          >
-            <BarChart
-              onSelectIndex={this.handleSelectIndex}
-              onClearIndex={this.handleClearIndex}
-              activeIndex={activeIndex}
-              labels={labels}
-              keyMetrics={store.keyMetrics}
-            />
+          <Box>
+            <Heading align="center">
+              Issues Per Month
+            </Heading>
+            <Box
+              pad={{ vertical: 'small', horizontal: 'small' }}
+              direction="column"
+              justify="center"
+              align="center"
+              className={styles.barChartBox}
+              full={false}
+            >
+              <BarChart
+                onSelectIndex={this.handleSelectIndex}
+                onClearIndex={this.handleClearIndex}
+                activeIndex={activeIndex}
+                labels={labels}
+                keyMetrics={store.keyMetrics}
+              />
+            </Box>
+            <Section
+              align="center"
+              pad={{ horizontal: 'large', vertical: 'small' }}
+            >
+              <OpenIssues stats={store.keyMetrics.stats} />
+            </Section>
           </Box>
         }
       </Section>
@@ -46,6 +77,7 @@ IssueKeyMetrics.propTypes = {
   loading: PropTypes.bool.isRequired,
   activeIndex: PropTypes.number.isRequired,
   labels: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}

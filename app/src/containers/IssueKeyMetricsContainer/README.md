@@ -1,5 +1,5 @@
 ## IssueKeyMetricsContainer
-A container that does ...
+A container that shows a bar chart representing the issue statistics.  Loads data from the graphQL endpoint.
 
 ### Example Usage
 
@@ -9,3 +9,4 @@ A container that does ...
 
 
 ### Other Information
+N/A

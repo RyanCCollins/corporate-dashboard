@@ -4,12 +4,12 @@ import cssModules from 'react-css-modules';
 import Value from 'grommet/components/Value';
 import Label from 'grommet/components/Label';
 import Box from 'grommet/components/Box';
+import Meter from 'grommet/components/Meter';
 import Chart, {
   Axis,
   Layers,
   Base,
   Marker,
-  Meter,
   MarkerLabel,
 } from 'grommet/components/chart/Chart';
 
@@ -21,7 +21,11 @@ const BarChart = ({
   labels,
 }) => (
   <div className={styles.barChart}>
-    <Chart vertical={false} verticalAlignWith="meter-1-id">
+    <Chart
+      className={styles.chart}
+      vertical={false}
+      verticalAlignWith="meter-1-id"
+    >
       <Axis
         vertical
         ticks
@@ -46,9 +50,9 @@ const BarChart = ({
             onMouseOver={() => onSelectIndex(i)}
             onMouseOut={() => onClearIndex()}
           >
-            <Value value={item.value} active={activeIndex === i} />
+            <Value value={item.issues} active={activeIndex === i} />
             <Meter
-              id={i === 0 ? 'meter-1-id' : undefined}
+              id={`meter-${i + 1}-id`}
               vertical
               label={false}
               max={100}
@@ -56,7 +60,13 @@ const BarChart = ({
               value={item.issues}
               active={activeIndex === i}
             />
-            <Label margin="small">{item.label}</Label>
+            <Label
+              margin="small"
+              onMouseOver={() => onSelectIndex(i)}
+              onMouseOut={() => onClearIndex()}
+            >
+              {`${item.label.charAt(0).toUpperCase()}${item.label.slice(1, 2)}`}
+            </Label>
           </Box>
         )}
       </Base>

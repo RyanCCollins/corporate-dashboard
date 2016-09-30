@@ -1,4 +1,5 @@
 /* Assemble all components for export */
+export OpenIssues from './OpenIssues';
 export BarChart from './BarChart';
 export SearchBar from './SearchBar';
 export AboutInfo from './AboutInfo';
