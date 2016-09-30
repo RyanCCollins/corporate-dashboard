@@ -46,7 +46,7 @@ class FilterMenu extends Component {
         pad="medium"
         dropAlign={{ left: 'left', top: 'bottom' }}
       >
-        {menuItems.map((item, i) =>
+        {menuItems && menuItems.map((item, i) =>
           <Anchor
             kef={i}
             ref="anchorRef"

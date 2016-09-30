@@ -8,17 +8,13 @@ import { introspectionQuery } from 'graphql/utilities';
 import schema from './schema';
 import morgan from 'morgan';
 import cors from 'cors';
-import { createServer } from 'http';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
-import { subscriptionManager } from './subscriptionManager';
 
 // constants needed
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 1338 : process.env.PORT;
 const app = express();
 const graphqlHTTP = require('express-graphql');
-const query = 'query { store {employees { id, numemployees, location }}}';
-const WS_PORT = process.env.WS_PORT || 8007;
+const query = 'query { employees { id, numemployees, location }}';
 
 if (isDeveloping) {
   app.all('*', (req, res, next) => {
@@ -56,26 +52,6 @@ graphql(schema, query).then((result) => {
       );
     });
 
-    // WebSocket server for subscriptions
-    const websocketServer = createServer((request, response) => {
-      response.writeHead(404);
-      response.end();
-    });
-
-    websocketServer.listen(WS_PORT, () => console.log( // eslint-disable-line no-console
-      `Websocket Server is now running on http://localhost:${WS_PORT}`
-    ));
-
-    const server = new SubscriptionServer(
-      {
-        subscriptionManager,
-        onSubscribe: () => {
-          console.log('Called on subscribe')
-        },
-      },
-      websocketServer
-    );
-
     let json = await graphql(schema, introspectionQuery);
     fs.writeFile(
       './server/schema/schema.json',
@@ -88,5 +64,4 @@ graphql(schema, query).then((result) => {
     console.log(err);
   }
 })();
-
 /* eslint-enable */

@@ -17,7 +17,7 @@ const IssueTable = ({
   onRequestMore,
 }) => (
   <Section>
-    {issues.length > 0 ?
+    {issues && issues.length > 0 ?
       <div>
         {isMobile ?
           <Tiles fill>
@@ -82,14 +82,14 @@ const IssueTable = ({
       </div>
     :
       <Heading align="center">
-        No Issues Found
+        No Issues
       </Heading>
     }
   </Section>
 );
 
 IssueTable.propTypes = {
-  issues: PropTypes.array.isRequired,
+  issues: PropTypes.array,
   headers: PropTypes.array.isRequired,
   isMobile: PropTypes.bool.isRequired,
   onRequestMore: PropTypes.func.isRequired,

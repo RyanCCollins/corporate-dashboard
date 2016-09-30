@@ -154,10 +154,11 @@ class DataView extends Component {
         <Heading align="center">
           Data View
         </Heading>
-        {loading ?
+        {loading &&
           <LoadingIndicator isLoading={loading} />
-        :
-          <Section>
+        }
+        <Section>
+          {employees && customers &&
             <FilterIssueTable
               employees={employees}
               customers={customers}
@@ -166,41 +167,41 @@ class DataView extends Component {
               onApplyFilters={this.handleApplyFilters}
               filter={currentFilter}
             />
-            {!currentFilter.isFiltering &&
-              <Box
-                pad={{ horizontal: 'large' }}
-                align="end"
-                direction="row"
-                className={styles.filterBar}
-              >
-                <SearchBar
-                  onChangeValue={this.handleSearching}
-                  searchValue={search.value}
-                  isSearching={search.isSearching}
-                  onClear={this.handleSearchClear}
-                />
-                <DataFilter
-                  filter={secondaryFilter}
-                  onSelectItem={this.handleSelectItem}
-                />
-              </Box>
-            }
+          }
+          {!currentFilter.isFiltering &&
             <Box
-              pad={{ vertical: 'small', horizontal: 'large' }}
-              direction="column"
-              justify="start"
-              full={{ horizontal: true }}
+              pad={{ horizontal: 'large' }}
+              align="end"
+              direction="row"
+              className={styles.filterBar}
             >
-              <IssueTable
-                issues={computedVisibleIssues}
-                headers={headers}
-                isMobile={this.state.isMobile}
-                isLoadingMore={loading}
-                onRequestMore={this.handleRequestMore}
+              <SearchBar
+                onChangeValue={this.handleSearching}
+                searchValue={search.value}
+                isSearching={search.isSearching}
+                onClear={this.handleSearchClear}
+              />
+              <DataFilter
+                filter={secondaryFilter}
+                onSelectItem={this.handleSelectItem}
               />
             </Box>
-          </Section>
-        }
+          }
+          <Box
+            pad={{ vertical: 'small', horizontal: 'large' }}
+            direction="column"
+            justify="start"
+            full={{ horizontal: true }}
+          >
+            <IssueTable
+              issues={computedVisibleIssues}
+              headers={headers}
+              isMobile={this.state.isMobile}
+              isLoadingMore={loading}
+              onRequestMore={this.handleRequestMore}
+            />
+          </Box>
+        </Section>
       </div>
     );
   }
@@ -209,8 +210,8 @@ class DataView extends Component {
 DataView.propTypes = {
   currentPage: PropTypes.number.isRequired,
   visibleIssues: PropTypes.array,
-  employees: PropTypes.array.isRequired,
-  customers: PropTypes.array.isRequired,
+  employees: PropTypes.array,
+  customers: PropTypes.array,
   headers: PropTypes.array.isRequired,
   error: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
@@ -245,7 +246,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MoreIssuesQuery = gql`
-  query MoreIssues($counter: Int!) {
+  query MoreIssues($counter: Int) {
     store {
       issues(counter: $counter) {
         id
@@ -254,19 +255,16 @@ const MoreIssuesQuery = gql`
         status
         isActive
         customer {
-          ...Person
+          name
+          company
         }
         employee {
-          ...Person
+          name
+          company
         }
         description
       }
     }
-  }
-
-  fragment Person on Person {
-    name
-    company
   }
 `;
 

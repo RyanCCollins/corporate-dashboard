@@ -231,7 +231,7 @@ const issueReducer =
       case INCREMENT_DATA_VIEW_COUNTER:
         return update(state, {
           counter: {
-            $set: state.counter === 5 ? 0 : state.counter + 1,
+            $set: state.counter === 4 ? 0 : state.counter + 1,
           },
         });
       default:

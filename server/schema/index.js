@@ -80,7 +80,6 @@ const IssueType = new GraphQLObjectType({
     customer: { type: PersonType },
     employee: { type: PersonType },
     description: { type: GraphQLString },
-    counter: { type: GraphQLInt },
   }),
 });
 
@@ -92,8 +91,11 @@ const StoreType = new GraphQLObjectType({
       resolve: () => employeesJSON,
     },
     issues: {
+      args: {
+        counter: { type: GraphQLInt },
+      },
       type: new GraphQLList(IssueType),
-      resolve: (issue) => {
+      resolve: (__, { counter }) => {
         const issueArray = [
           issuesJSONOne,
           issuesJSONTwo,
@@ -101,7 +103,7 @@ const StoreType = new GraphQLObjectType({
           issuesJSONFour,
           issuesJSONFive,
         ];
-        return [].concat.apply([], issueArray[issue.counter]);
+        return [].concat.apply([], issueArray[counter]);
       },
     },
     customers: {
