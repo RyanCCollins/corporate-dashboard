@@ -73,7 +73,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Troubleshooting
 When working with a team on a project that uses Node, it is important that everyone use the same version of node and npm.
-In the case of this project, we are using Node version 4.2.4.
+In the case of this project, we are using Node version 5.2.0.
 
 Instructions for installing NVM and setting your node version for the project can be [found here](https://gist.github.com/RyanCCollins/1a5686ff9dd51b72eb2d4dc70aa6c1f4).
 
