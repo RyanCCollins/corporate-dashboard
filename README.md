@@ -7,7 +7,7 @@ A corporate dashboard web application, built with a focus on component oriented 
 The app is deployed to [heroku](https://corporate-dashboard-client.herokuapp.com/), serving production optimized bundle chunks.
 
 ## Background
-A performance oriented single page web application built using cutting edge techniques and technologies, including the Flux Unidirectional Data Flow, and Component Oriented Design. Written in cutting-edge Functional JavaScript transpiled via Babel and Webpack, following the AirBnB Style Guide.  The application has full test coverage on ever component, container and page.
+A performance oriented single page web application built using cutting edge techniques and technologies, including the Flux Unidirectional Data Flow, and Component Oriented Design. Written in cutting-edge Functional JavaScript transpiled via Babel and Webpack, following the AirBnB Style Guide.  The application has full test coverage on every component, container and page.
 
 Runs a GraphQL-based backend and serves data from JSON and CSV files.  Uses accessibility and UX best practices to provide a reactive mobile-first web user interface.  Loading a complex data model via Apollo Client, the application handles all of the data flow through the Flux pattern, while still allowing for colocated component oriented design.  It loads data in realtime, polling the server at regular intervals.
 
