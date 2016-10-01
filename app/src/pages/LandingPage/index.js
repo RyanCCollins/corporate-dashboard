@@ -8,10 +8,36 @@ import Box from 'grommet/components/Box';
 import Menu from 'grommet/components/Menu';
 
 class LandingPage extends Component {
+  constructor() {
+    super();
+    this.handleMobile = this.handleMobile.bind(this);
+    this.state = {
+      isMobile: false,
+    };
+  }
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', this.handleMobile);
+    }
+  }
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.handleMobile);
+    }
+  }
+  handleMobile() {
+    const isMobile = window.innerWidth <= 768;
+    this.setState({
+      isMobile,
+    });
+  }
   render() {
     const {
       router,
     } = this.context;
+    const {
+      isMobile,
+    } = this.state;
     return (
       <div className={styles.container}>
         <Box pad={{ vertical: 'medium' }}>
@@ -24,7 +50,7 @@ class LandingPage extends Component {
         </Box>
         <Footer>
           <Box align="center" justify="center" full="horizontal">
-            <Menu direction="row"> {/* eslint-disable */}
+            <Menu direction={isMobile ? 'column' : 'row'} responsive={false}> {/* eslint-disable */}
               <Button onClick={() => router.push('/geo-spatial')}>
                 Geospatial
               </Button>
