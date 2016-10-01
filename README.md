@@ -4,8 +4,6 @@
 # Corporate Data Analytic Dashboard
 A corporate dashboard web application, built with a focus on component oriented design, UI / UX and performance.
 
-The app is deployed to [heroku](https://corporate-dashboard-client.herokuapp.com/), serving production optimized bundle chunks.
-
 ## Background
 A performance oriented single page web application built using cutting edge techniques and technologies, including the Flux Unidirectional Data Flow, and Component Oriented Design. Written in cutting-edge Functional JavaScript transpiled via Babel and Webpack, following the AirBnB Style Guide.  The application has full test coverage on every component, container and page.
 
