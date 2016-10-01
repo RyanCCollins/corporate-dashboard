@@ -1,17 +1,13 @@
 ## IssueTable Component
-A component that ...
+A component that shows as a table with issues.  Has a callback to request more data to be loaded.
 
 ### Example
 
 ```js
-<IssueTable />
+<IssueTable
+  issues={issues}
+  headers={headers}
+  isMobile={true}
+  onRequestMore={this.handleRequestMore}
+/>
 ```
-
-### Props
-
-| Prop          | Type     | Default     | Possible Values
-| ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
-### Other Information

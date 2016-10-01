@@ -1,6 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './index.module.scss';
-import cssModules from 'react-css-modules';
 import Split from 'grommet/components/Split';
 import Sidebar from 'grommet/components/Sidebar';
 import Menu from 'grommet/components/Menu';
@@ -19,7 +17,7 @@ class SidebarNav extends Component {
     return (
       <Sidebar size="medium" colorIndex="neutral-1" fixed seperator="right">
         <AppHeader {...this.props} />
-        <Menu primary className={styles.menu}>
+        <Menu primary>
           <IndexLink
             to="/home"
             activeClassName="active"
@@ -82,4 +80,4 @@ SidebarNav.propTypes = {
   onToggleNav: PropTypes.func.isRequired,
 };
 
-export default cssModules(SidebarNav, styles);
+export default SidebarNav;

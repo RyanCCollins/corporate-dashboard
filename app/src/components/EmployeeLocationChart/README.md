@@ -1,5 +1,5 @@
 ## EmployeeLocationChart Component
-A component that ...
+A component that shows the employee locations in a chart.
 
 ### Example
 
@@ -7,11 +7,5 @@ A component that ...
 <EmployeeLocationChart />
 ```
 
-### Props
-
-| Prop          | Type     | Default     | Possible Values
-| ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
 ### Other Information
+Not really all that reusable outside this app.

@@ -1,11 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as KeyMetricsViewActionCreators from './actions';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Heading from 'grommet/components/Heading';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
@@ -20,7 +16,7 @@ class KeyMetricsView extends Component {
       areaChartLabels,
     } = this.props;
     return (
-      <div className={styles.keyMetricsView}>
+      <div>
         <Heading align="center">
           Key Metrics
         </Heading>
@@ -62,14 +58,6 @@ const mapStateToProps = (state) => ({
   areaChartLabels: state.keyMetrics.areaChartLabels,
 });
 
-// mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(
-    KeyMetricsViewActionCreators,
-    dispatch
-  ),
-});
-
 const allCustomers = gql`
   query allCustomer {
     store {
@@ -88,9 +76,6 @@ const ContainerWithData = graphql(allCustomers, {
   }),
 })(KeyMetricsView);
 
-const Container = cssModules(ContainerWithData, styles);
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(Container);
+)(ContainerWithData);

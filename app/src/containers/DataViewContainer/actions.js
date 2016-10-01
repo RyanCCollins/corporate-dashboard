@@ -111,17 +111,20 @@ export const clearCurrentFilter = () => ({
   type: CLEAR_CURRENT_FILTER,
 });
 
+// setSearchValue :: String -> Array -> {Action}
 export const setSearchValue = (value, issues) => ({
   type: SET_DATA_VIEW_SEARCH_VALUE,
   value,
   issues,
 });
 
+// clearSearchValue :: Array -> {Action}
 export const clearSearchValue = (issues) => ({
   type: CLEAR_DATA_VIEW_SEARCH_VALUE,
   issues,
 });
 
+// setPollValue :: Int -> {Action}
 export const setPollValue = (value) => ({
   type: SET_POLLING_INTERVAL,
   value,

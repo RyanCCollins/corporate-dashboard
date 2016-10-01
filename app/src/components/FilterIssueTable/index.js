@@ -7,20 +7,7 @@ import Menu from 'grommet/components/Menu';
 import Button from 'grommet/components/button';
 import Close from 'grommet/components/icons/base/Close';
 import Footer from 'grommet/components/Footer';
-
-const canApply = (filter) => {
-  let returnValue = false;
-  Object
-    .keys(filter)
-    .forEach((key) => {
-      if (key === 'employee' || key === 'customer') {
-        if (filter[key] !== 'All') {
-          returnValue = true;
-        }
-      }
-    });
-  return returnValue;
-};
+import { canApply } from './utils';
 
 const FilterIssueTable = ({
   employees,

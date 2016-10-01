@@ -1,17 +1,19 @@
 ## LoadingIndicator Component
-A component that ...
+A component that acts as a loading indicator.
 
 ### Example
 
 ```js
-<LoadingIndicator />
+<LoadingIndicator isLoading={true} message="Loading" />
 ```
 
 ### Props
 
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
+| **isLoading**    | Bool   |  True      | Whether the loading indicator is currently loading or not
+| **message**    | Bool   | "Loading"  | The message to display with the spinner.
 
 
 ### Other Information
+Will be centered in whatever box it is in.

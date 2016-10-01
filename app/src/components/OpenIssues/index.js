@@ -6,9 +6,7 @@ import Heading from 'grommet/components/Heading';
 import Value from 'grommet/components/Value';
 import GlobeIcon from 'grommet/components/icons/base/Globe';
 import LinkUpIcon from 'grommet/components/icons/base/LinkUp';
-
-const percent = (value) =>
-  Math.round(value * 100);
+import { percent } from './utils';
 
 const OpenIssues = ({
   stats,

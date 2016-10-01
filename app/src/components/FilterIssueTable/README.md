@@ -1,5 +1,5 @@
 ## FilterIssueTable Component
-A component that ...
+A component that filters the issue table, containing multiple FilterMenus.
 
 ### Example
 
@@ -12,6 +12,3 @@ A component that ...
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
 | **myProp**    | String   |             | Any string value
-
-
-### Other Information

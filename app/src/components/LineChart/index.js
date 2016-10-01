@@ -1,6 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './index.module.scss';
-import cssModules from 'react-css-modules';
 import Box from 'grommet/components/Box';
 import Value from 'grommet/components/Value';
 import Label from 'grommet/components/Label';
@@ -16,22 +14,7 @@ import Chart, {
   Range,
   MarkerLabel,
 } from 'grommet/components/chart/Chart';
-
-const AXIS_LABELS = [
-  { month: 'December' },
-  { month: 'January' },
-  { month: 'February' },
-  { month: 'March' },
-  { month: 'April' },
-  { month: 'May' },
-  { month: 'June' },
-  { month: 'July' },
-  { month: 'August' },
-  { month: 'September' },
-  { month: 'October' },
-  { month: 'November' },
-  { month: 'December' },
-];
+import { labels as AXIS_LABELS } from './constants';
 
 const MarkerDateLabel = ({
   value,
@@ -129,7 +112,7 @@ class LineChart extends Component {
     const calculatedValue = isMobile && data[activeHotSpot] ?
       data[activeHotSpot].num_customers : 0;
     return (
-      <Box className={styles.lineChart}>
+      <Box>
         <Axis
           ticks
           count={13}
@@ -223,4 +206,4 @@ LineChart.propTypes = {
   data: PropTypes.array.isRequired,
 };
 
-export default cssModules(LineChart, styles);
+export default LineChart;

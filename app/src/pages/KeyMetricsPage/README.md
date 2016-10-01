@@ -9,6 +9,3 @@ An paramaters that might be part of the route.
 ```js
 <KeyMetricsPage  />
 ```
-
-
-### Other Information

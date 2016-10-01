@@ -22,7 +22,7 @@ const itemsAreEqual = (item, value) =>
 const parseLabel = (label) =>
   label.toLowerCase().split(' ').join('-');
 
-class FilterMenu extends Component {
+class FilterMenu extends Component { // eslint-disable-line
   render() {
     const {
       menuItems,

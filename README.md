@@ -7,7 +7,7 @@ A corporate dashboard web application, built with a focus on component oriented 
 The app is deployed to [heroku](https://corporate-dashboard-client.herokuapp.com/), serving production optimized bundle chunks.
 
 ## Background
-A performance oriented single page web application built using cutting edge techniques and technologies, including the Flux Unidirectional Data Flow, and Component Oriented Design. Written in cutting-edge JavaScript transpiled via Babel and Webpack.
+A performance oriented single page web application built using cutting edge techniques and technologies, including the Flux Unidirectional Data Flow, and Component Oriented Design. Written in cutting-edge Functional JavaScript transpiled via Babel and Webpack, following the AirBnB Style Guide.  The application has full test coverage on ever component, container and page.
 
 Runs a GraphQL-based backend and serves data from JSON and CSV files.  Uses accessibility and UX best practices to provide a reactive mobile-first web user interface.  Loading a complex data model via Apollo Client, the application handles all of the data flow through the Flux pattern, while still allowing for colocated component oriented design.  It loads data in realtime, polling the server at regular intervals.
 
@@ -23,18 +23,12 @@ The application includes the following views:
 ## Getting Started
 The project started as a fork of the [Scalable React Boilerplate](https://github.com/RyanCCollins/scalable-react-boilerplate) project.  Please reference the repository for details on the features and conventions of the boilerplate.
 
-
 ## Installing
 The package.json file includes over a dozen npm scripts to make most tasks a breeze.
 
 Installation can be achieved by running
 ```
 npm run setup
-```
-
-Also install webpack and webpack dev server globally.
-```
-npm install -g webpack-dev-server webpack
 ```
 
 To get the development server running, please run
@@ -49,6 +43,20 @@ If you just want to serve the minified and chunked bundles, which might be faste
 ```
 npm run serve:bundle
 ```
+
+In production, the client connects to the heroku server.  You can run the server locally with the following command.
+```
+NODE_ENV=development node server
+```
+
+#### Testing
+The test suite contains over 70 tests and can be run with
+```
+npm run test
+```
+
+## Deployment
+The app is deployed to Heroku and has a CI suite running with Codeship.  It is running Express JS and GraphQL on the server.
 
 # Built With
 - [GraphQL](http://graphql.org/learn/)

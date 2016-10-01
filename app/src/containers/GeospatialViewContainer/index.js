@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as GeospatialViewActionCreators from './actions';
-import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { EmployeeLocationChart, EmployeeTable, LoadingIndicator } from 'components';
@@ -71,7 +69,7 @@ class GeospatialView extends Component {
       isMobile,
     } = this.state;
     return (
-      <div className={styles.geospatialView}>
+      <div>
         <Heading tag="h1" align="center">
           Geospatial View
         </Heading>
@@ -130,8 +128,6 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-const Container = cssModules(GeospatialView, styles);
-
 const allEmployees = gql`
   query allEmployees {
     store {
@@ -149,7 +145,7 @@ const ContainerWithData = graphql(allEmployees, {
     store,
     loading,
   }),
-})(Container);
+})(GeospatialView);
 
 export default connect(
   mapStateToProps,

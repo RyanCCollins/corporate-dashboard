@@ -1,7 +1,7 @@
 {
   "name": "corporate-dashboard",
   "version": "1.0.1",
-  "description": "A highly scalable React corporate dashboard, built in a component oriented manner",
+  "description": "A highly scalable and interactive React corporate dashboard, built in a component oriented manner",
   "main": "index.js",
   "babel": {
     "presets": [
@@ -21,15 +21,15 @@
     "test:safari": "npm run test -- --browsers Safari",
     "test:ie": "npm run test -- --browsers IE",
     "coveralls": "cat ./coverage/lcov/lcov.info | coveralls",
-    "build": "webpack",
-    "dev": "webpack-dev-server",
+    "build": "./node_modules/.bin/webpack",
+    "dev": "./node_modules/.bin/webpack-dev-server",
     "generate": "plop --plopfile config/generators/index.js",
     "generator": "npm run generate",
     "generate:component": "plop --plopfile config/generators/index.js component",
     "generate:container": "plop --plopfile config/generators/index.js container",
     "generate:page": "plop --plopfile config/generators/index.js page",
     "lint": "eslint . --ext .js --ext .jsx; exit 0",
-    "deploy": "cross-env NODE_ENV=production webpack",
+    "deploy": "cross-env NODE_ENV=production ./node_modules/.bin/webpack",
     "start": "npm run dev",
     "clean": "rm -rf app/dist app/build",
     "setup": "npm install",
@@ -71,7 +71,7 @@
     "expect-jsx": "^2.6.0",
     "express": "^4.14.0",
     "express-graphql": "^0.5.4",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^v2.0.0-beta.3",
     "file-loader": "^0.9.0",
     "graphiql": "^0.7.8",
     "graphql": "^0.7.0",
@@ -110,7 +110,7 @@
     "subscriptions-transport-ws": "^0.2.2",
     "svg-react-loader": "^0.3.6",
     "utils": "^0.3.1",
-    "webpack": "^1.12.9"
+    "webpack": "v2.1.0-beta.19"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta4",
@@ -150,7 +150,7 @@
     "redux-mock-store": "^1.2.0",
     "regenerator-runtime": "^0.9.5",
     "reselect": "^2.5.4",
-    "webpack-dev-server": "^1.14.0",
+    "webpack-dev-server": "2.1.0-beta.3",
     "webpack-visualizer-plugin": "^0.1.5"
   }
 }
