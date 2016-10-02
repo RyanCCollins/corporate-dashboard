@@ -95,8 +95,4 @@ const AboutInfo = () => (
   </Section>
 );
 
-AboutInfo.propTypes = {
-
-};
-
 export default cssModules(AboutInfo, styles);
