@@ -81,7 +81,8 @@ If you get an error message, such as "Unexpected token import", that means that 
 Many thanks to the Grommet UX teams and the teams building React, Redux, GraphQL and Apollo.
 
 ## Screen Shots
-![Home View](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/home-main.png?raw=true)
-![Geospatial](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/geospatialview-main.png?raw=true)
-![Data View](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/dataview-main.png?raw=true)
-![Key Metrics](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/keymetricsview-main.png?raw=true)
+![Main](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-mockup.jpg?raw=true)
+![Data Page](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-view-main.png?raw=true)
+![Key Metrics](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/key-metrics-main.png?raw=true)
+![Geospatial](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/geospatial.png?raw=true)
+![Home With Nav](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home-nav.png?raw=true)
