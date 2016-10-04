@@ -2,7 +2,7 @@ import EmployeeLocationChart from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Box from 'grommet/components/Box';
+import Box from 'grommet-udacity/components/Box';
 import Chart,
 {
   Layers,
@@ -13,7 +13,7 @@ import Chart,
   MarkerLabel,
   HotSpots,
   Axis,
-} from 'grommet/components/chart/Chart';
+} from 'grommet-udacity/components/chart/Chart';
 
 describe('<EmployeeLocationChart />', () => {
   const wrapper = shallow(

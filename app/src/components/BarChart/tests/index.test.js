@@ -2,17 +2,17 @@ import BarChart from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Value from 'grommet/components/Value';
-import Label from 'grommet/components/Label';
-import Box from 'grommet/components/Box';
-import Meter from 'grommet/components/Meter';
+import Value from 'grommet-udacity/components/Value';
+import Label from 'grommet-udacity/components/Label';
+import Box from 'grommet-udacity/components/Box';
+import Meter from 'grommet-udacity/components/Meter';
 import Chart, {
   Axis,
   Layers,
   Base,
   Marker,
   MarkerLabel,
-} from 'grommet/components/chart/Chart';
+} from 'grommet-udacity/components/chart/Chart';
 
 describe('<BarChart />', () => {
   const wrapper = shallow(

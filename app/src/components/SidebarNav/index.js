@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import Split from 'grommet/components/Split';
-import Sidebar from 'grommet/components/Sidebar';
-import Menu from 'grommet/components/Menu';
+import Split from 'grommet-udacity/components/Split';
+import Sidebar from 'grommet-udacity/components/Sidebar';
+import Menu from 'grommet-udacity/components/Menu';
 import { AppHeader } from 'components';
 import { Link, IndexLink } from 'react-router';
 
@@ -63,7 +63,7 @@ class SidebarNav extends Component {
       children,
     } = this.props;
     return (
-      <Split flex="right" priority={navActive ? 'left' : 'right'}>
+      <Split flex={navActive ? '' : 'right'} priority={navActive ? 'left' : 'right'}>
         {navActive && this.renderMenu()}
         <main>
           {children}

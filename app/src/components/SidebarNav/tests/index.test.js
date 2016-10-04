@@ -2,9 +2,9 @@ import SidebarNav from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Split from 'grommet/components/Split';
-import Sidebar from 'grommet/components/Sidebar';
-import Menu from 'grommet/components/Menu';
+import Split from 'grommet-udacity/components/Split';
+import Sidebar from 'grommet-udacity/components/Sidebar';
+import Menu from 'grommet-udacity/components/Menu';
 
 describe('<SidebarNav />', () => {
   describe('Nav active is false', () => {

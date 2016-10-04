@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions';
 import { SidebarNav, Logo } from 'components';
-import App from 'grommet/components/App';
+import App from 'grommet-udacity/components/App';
 import { updatePageTitle, getTitleFromRoute } from 'utils/a11y';
-import Header from 'grommet/components/Header';
-import Title from 'grommet/components/Title';
-import MenuIcon from 'grommet/components/icons/base/Menu';
+import Header from 'grommet-udacity/components/Header';
+import Title from 'grommet-udacity/components/Title';
+import MenuIcon from 'grommet-udacity/components/icons/base/Menu';
 
 class Main extends Component {
   constructor() {

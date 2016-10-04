@@ -2,9 +2,9 @@ import LoadingIndicator from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Spinning from 'grommet/components/icons/Spinning';
-import Box from 'grommet/components/Box';
-import Heading from 'grommet/components/Heading';
+import Spinning from 'grommet-udacity/components/icons/Spinning';
+import Box from 'grommet-udacity/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
 
 describe('<LoadingIndicator />', () => {
   it('should render with an h2', () => {

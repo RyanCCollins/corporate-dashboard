@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Table from 'grommet/components/Table';
+import Table from 'grommet-udacity/components/Table';
 import { parseIssue } from 'utils/parsing';
-import Status from 'grommet/components/icons/Status';
-import Tiles from 'grommet/components/Tiles';
-import Tile from 'grommet/components/Tile';
-import Box from 'grommet/components/Box';
-import Section from 'grommet/components/Section';
-import Heading from 'grommet/components/Heading';
-import Paragraph from 'grommet/components/Paragraph';
+import Status from 'grommet-udacity/components/icons/Status';
+import Tiles from 'grommet-udacity/components/Tiles';
+import Tile from 'grommet-udacity/components/Tile';
+import Box from 'grommet-udacity/components/Box';
+import Section from 'grommet-udacity/components/Section';
+import Heading from 'grommet-udacity/components/Heading';
+import Paragraph from 'grommet-udacity/components/Paragraph';
 
 const IssueTable = ({
   issues,

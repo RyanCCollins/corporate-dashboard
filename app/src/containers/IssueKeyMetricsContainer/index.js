@@ -6,9 +6,9 @@ import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import Section from 'grommet/components/Section';
-import Box from 'grommet/components/Box';
-import Heading from 'grommet/components/Heading';
+import Section from 'grommet-udacity/components/Section';
+import Box from 'grommet-udacity/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
 import { BarChart, OpenIssues } from 'components';
 
 class IssueKeyMetrics extends Component {

@@ -11,9 +11,9 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Menu from 'grommet/components/Menu';
-import Filter from 'grommet/components/icons/base/Filter';
-import Anchor from 'grommet/components/Anchor';
+import Menu from 'grommet-udacity/components/Menu';
+import Filter from 'grommet-udacity/components/icons/base/Filter';
+import Anchor from 'grommet-udacity/components/Anchor';
 import DOMUtils from 'utils/DOM';
 
 const itemsAreEqual = (item, value) =>

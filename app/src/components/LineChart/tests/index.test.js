@@ -2,9 +2,9 @@ import LineChart from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Box from 'grommet/components/Box';
-import Value from 'grommet/components/Value';
-import Label from 'grommet/components/Label';
+import Box from 'grommet-udacity/components/Box';
+import Value from 'grommet-udacity/components/Value';
+import Label from 'grommet-udacity/components/Label';
 import Chart, {
   Axis,
   Layers,
@@ -16,7 +16,7 @@ import Chart, {
   HotSpots,
   Range,
   MarkerLabel,
-} from 'grommet/components/chart/Chart';
+} from 'grommet-udacity/components/chart/Chart';
 
 describe('<LineChart />', () => {
   const areaChartLabels = [

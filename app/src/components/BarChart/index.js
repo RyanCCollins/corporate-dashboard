@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Value from 'grommet/components/Value';
-import Label from 'grommet/components/Label';
-import Box from 'grommet/components/Box';
-import Meter from 'grommet/components/Meter';
+import Value from 'grommet-udacity/components/Value';
+import Label from 'grommet-udacity/components/Label';
+import Box from 'grommet-udacity/components/Box';
+import Meter from 'grommet-udacity/components/Meter';
 import Chart, {
   Axis,
   Layers,
   Base,
   Marker,
   MarkerLabel,
-} from 'grommet/components/chart/Chart';
+} from 'grommet-udacity/components/chart/Chart';
 
 const BarChart = ({
   keyMetrics,

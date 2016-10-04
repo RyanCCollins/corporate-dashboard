@@ -7,9 +7,9 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-import Heading from 'grommet/components/Heading';
-import Section from 'grommet/components/Section';
-import Box from 'grommet/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
+import Section from 'grommet-udacity/components/Section';
+import Box from 'grommet-udacity/components/Box';
 
 describe('<KeyMetricsView />', () => {
   const store = mockStore({

@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Search from 'grommet/components/Search';
-import Button from 'grommet/components/Button';
-import CloseIcon from 'grommet/components/icons/base/Close';
+import Search from 'grommet-udacity/components/Search';
+import Button from 'grommet-udacity/components/Button';
+import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 
 const SearchBar = ({
   onChangeValue,

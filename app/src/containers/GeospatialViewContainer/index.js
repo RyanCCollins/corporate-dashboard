@@ -6,9 +6,9 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { EmployeeLocationChart, EmployeeTable, LoadingIndicator } from 'components';
 import sortByNumber from 'utils/sortByNumber';
-import Section from 'grommet/components/Section';
-import Box from 'grommet/components/Box';
-import Heading from 'grommet/components/Heading';
+import Section from 'grommet-udacity/components/Section';
+import Box from 'grommet-udacity/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
 
 class GeospatialView extends Component {
   constructor() {

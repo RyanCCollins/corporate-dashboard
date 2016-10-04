@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Header from 'grommet/components/Header';
-import Menu from 'grommet/components/Menu';
-import Title from 'grommet/components/Title';
-import Button from 'grommet/components/Button';
-import CloseIcon from 'grommet/components/icons/base/Close';
+import Header from 'grommet-udacity/components/Header';
+import Menu from 'grommet-udacity/components/Menu';
+import Title from 'grommet-udacity/components/Title';
+import Button from 'grommet-udacity/components/Button';
+import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import { Logo } from 'components';
 
 const AppHeader = ({
