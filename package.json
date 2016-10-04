@@ -78,7 +78,7 @@
     "graphql-fetch": "^1.0.0",
     "graphql-relay": "^0.4.3",
     "graphql-tag": "^0.1.13",
-    "grommet": "https://github.com/ryanccollins/grommet/tarball/stable",
+    "grommet": "https://github.com/udacityalumni/grommet/tarball/stable",
     "history": "^1.14.0",
     "html-webpack-plugin": "^2.7.1",
     "immutable": "^3.7.5",
