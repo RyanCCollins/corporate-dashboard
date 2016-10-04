@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Box from 'grommet/components/Box';
-import Heading from 'grommet/components/Heading';
-import Value from 'grommet/components/Value';
-import GlobeIcon from 'grommet/components/icons/base/Globe';
-import LinkUpIcon from 'grommet/components/icons/base/LinkUp';
+import Box from 'grommet-udacity/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
+import Value from 'grommet-udacity/components/Value';
+import GlobeIcon from 'grommet-udacity/components/icons/base/Globe';
+import LinkUpIcon from 'grommet-udacity/components/icons/base/LinkUp';
 import { percent } from './utils';
 
 const OpenIssues = ({

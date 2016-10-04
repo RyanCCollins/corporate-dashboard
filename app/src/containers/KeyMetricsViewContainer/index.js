@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import Heading from 'grommet/components/Heading';
-import Section from 'grommet/components/Section';
-import Box from 'grommet/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
+import Section from 'grommet-udacity/components/Section';
+import Box from 'grommet-udacity/components/Box';
 import { LineChart, LoadingIndicator } from 'components';
 import { IssueKeyMetricsContainer } from 'containers';
 

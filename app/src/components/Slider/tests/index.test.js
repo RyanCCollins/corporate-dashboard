@@ -2,8 +2,8 @@ import Slider from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Form from 'grommet/components/Form';
-import FormField from 'grommet/components/FormField';
+import Form from 'grommet-udacity/components/Form';
+import FormField from 'grommet-udacity/components/FormField';
 
 describe('<Slider />', () => {
   it('should have the expected components', () => {

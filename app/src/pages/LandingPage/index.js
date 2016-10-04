@@ -1,11 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
-import Heading from 'grommet/components/Heading';
-import Footer from 'grommet/components/Footer';
-import Button from 'grommet/components/Button';
-import Box from 'grommet/components/Box';
-import Menu from 'grommet/components/Menu';
+import Heading from 'grommet-udacity/components/Heading';
+import Footer from 'grommet-udacity/components/Footer';
+import Button from 'grommet-udacity/components/Button';
+import Box from 'grommet-udacity/components/Box';
+import Menu from 'grommet-udacity/components/Menu';
 
 class LandingPage extends Component {
   constructor() {

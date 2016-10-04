@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Box from 'grommet/components/Box';
-import Table from 'grommet/components/Table';
-import TableRow from 'grommet/components/TableRow';
+import Box from 'grommet-udacity/components/Box';
+import Table from 'grommet-udacity/components/Table';
+import TableRow from 'grommet-udacity/components/TableRow';
 
 const EmployeeTable = ({
   employees,

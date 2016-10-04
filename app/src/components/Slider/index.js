@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import Form from 'grommet/components/Form';
-import FormField from 'grommet/components/FormField';
+import Form from 'grommet-udacity/components/Form';
+import FormField from 'grommet-udacity/components/FormField';
 
 const Slider = ({
   onSlide,

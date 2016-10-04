@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import { FilterMenu } from 'components';
-import Section from 'grommet/components/Section';
-import Menu from 'grommet/components/Menu';
-import Button from 'grommet/components/Button';
-import Close from 'grommet/components/icons/base/Close';
-import Footer from 'grommet/components/Footer';
+import Section from 'grommet-udacity/components/Section';
+import Menu from 'grommet-udacity/components/Menu';
+import Button from 'grommet-udacity/components/Button';
+import Close from 'grommet-udacity/components/icons/base/Close';
+import Footer from 'grommet-udacity/components/Footer';
 import { canApply } from './utils';
 
 const FilterIssueTable = ({

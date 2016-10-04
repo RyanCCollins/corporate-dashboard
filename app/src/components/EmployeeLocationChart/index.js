@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Box from 'grommet/components/Box';
+import Box from 'grommet-udacity/components/Box';
 import Chart,
 {
   Layers,
@@ -12,8 +12,8 @@ import Chart,
   MarkerLabel,
   HotSpots,
   Axis,
-} from 'grommet/components/chart/Chart';
-import Value from 'grommet/components/Value';
+} from 'grommet-udacity/components/chart/Chart';
+import Value from 'grommet-udacity/components/Value';
 
 const VerticalLabel = ({
   label,

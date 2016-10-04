@@ -2,11 +2,11 @@ import OpenIssues from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Box from 'grommet/components/Box';
-import Heading from 'grommet/components/Heading';
-import Value from 'grommet/components/Value';
-import GlobeIcon from 'grommet/components/icons/base/Globe';
-import LinkUpIcon from 'grommet/components/icons/base/LinkUp';
+import Box from 'grommet-udacity/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
+import Value from 'grommet-udacity/components/Value';
+import GlobeIcon from 'grommet-udacity/components/icons/base/Globe';
+import LinkUpIcon from 'grommet-udacity/components/icons/base/LinkUp';
 
 describe('<OpenIssues />', () => {
   const wrapper = shallow(

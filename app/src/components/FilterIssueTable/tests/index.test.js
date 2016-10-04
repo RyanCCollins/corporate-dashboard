@@ -2,11 +2,11 @@ import FilterIssueTable from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Section from 'grommet/components/Section';
-import Menu from 'grommet/components/Menu';
-import Button from 'grommet/components/button';
-import Close from 'grommet/components/icons/base/Close';
-import Footer from 'grommet/components/Footer';
+import Section from 'grommet-udacity/components/Section';
+import Menu from 'grommet-udacity/components/Menu';
+import Button from 'grommet-udacity/components/button';
+import Close from 'grommet-udacity/components/icons/base/Close';
+import Footer from 'grommet-udacity/components/Footer';
 
 const mockFn = (e) => e;
 

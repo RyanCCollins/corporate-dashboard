@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import Box from 'grommet/components/Box';
-import Value from 'grommet/components/Value';
-import Label from 'grommet/components/Label';
+import Box from 'grommet-udacity/components/Box';
+import Value from 'grommet-udacity/components/Value';
+import Label from 'grommet-udacity/components/Label';
 import Chart, {
   Axis,
   Layers,
@@ -13,7 +13,7 @@ import Chart, {
   HotSpots,
   Range,
   MarkerLabel,
-} from 'grommet/components/chart/Chart';
+} from 'grommet-udacity/components/chart/Chart';
 import { labels as AXIS_LABELS } from './constants';
 
 const MarkerDateLabel = ({

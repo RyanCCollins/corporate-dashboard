@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import DashboardIcon from 'grommet/components/icons/base/Dashboard';
+import DashboardIcon from 'grommet-udacity/components/icons/base/Dashboard';
 
 const Logo = ({
   inverse,

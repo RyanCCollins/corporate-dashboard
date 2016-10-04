@@ -2,9 +2,9 @@ import EmployeeTable from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Box from 'grommet/components/Box';
-import Table from 'grommet/components/Table';
-import TableRow from 'grommet/components/TableRow';
+import Box from 'grommet-udacity/components/Box';
+import Table from 'grommet-udacity/components/Table';
+import TableRow from 'grommet-udacity/components/TableRow';
 
 describe('<EmployeeTable />', () => {
   const employees = [

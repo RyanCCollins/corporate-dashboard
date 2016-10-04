@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Box from 'grommet/components/Box';
-import Section from 'grommet/components/Section';
-import Heading from 'grommet/components/Heading';
-import Markdown from 'grommet/components/Markdown';
-import Card from 'grommet/components/Card';
-import Footer from 'grommet/components/Footer';
-import Anchor from 'grommet/components/Anchor';
-import Button from 'grommet/components/Button';
+import Box from 'grommet-udacity/components/Box';
+import Section from 'grommet-udacity/components/Section';
+import Heading from 'grommet-udacity/components/Heading';
+import Markdown from 'grommet-udacity/components/Markdown';
+import Card from 'grommet-udacity/components/Card';
+import Footer from 'grommet-udacity/components/Footer';
+import Anchor from 'grommet-udacity/components/Anchor';
+import Button from 'grommet-udacity/components/Button';
 
 const AboutInfo = () => (
   <Section pad={{ vertical: 'large', horizontal: 'large' }}>

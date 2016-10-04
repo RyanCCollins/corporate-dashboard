@@ -2,9 +2,9 @@ import SearchBar from '../index';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Search from 'grommet/components/Search';
-import Button from 'grommet/components/Button';
-import CloseIcon from 'grommet/components/icons/base/Close';
+import Search from 'grommet-udacity/components/Search';
+import Button from 'grommet-udacity/components/Button';
+import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 
 describe('<SearchBar />', () => {
   it('should have the expected DOM', () => {

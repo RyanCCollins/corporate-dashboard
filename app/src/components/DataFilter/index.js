@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Menu from 'grommet/components/Menu';
-import Box from 'grommet/components/Box';
-import Heading from 'grommet/components/Heading';
-import CheckBox from 'grommet/components/CheckBox';
-import Status from 'grommet/components/icons/Status';
-import Filter from 'grommet/components/icons/base/Filter';
+import Menu from 'grommet-udacity/components/Menu';
+import Box from 'grommet-udacity/components/Box';
+import Heading from 'grommet-udacity/components/Heading';
+import CheckBox from 'grommet-udacity/components/CheckBox';
+import Status from 'grommet-udacity/components/icons/Status';
+import Filter from 'grommet-udacity/components/icons/base/Filter';
 
 const StatusLabel = ({
   status,
