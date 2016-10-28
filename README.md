@@ -2,7 +2,7 @@
 ![Code Ship Badge](https://codeship.com/projects/940a8cf0-626f-0134-d657-165525e8bcef/status?branch=master)
 
 # Corporate Dashboard
-A corporate dashboard web application, built with a focus on component oriented design, UI / UX and performance.
+A corporate dashboard web application, built with a focus on component oriented design, UI / UX and performance. Built with React, Redux and GraphQL.
 
 ## Background
 A performance oriented single page web application built using cutting edge techniques and technologies, including the Flux Unidirectional Data Flow, and Component Oriented Design. Written in cutting-edge Functional JavaScript transpiled via Babel and Webpack, following the AirBnB Style Guide.  The application has full test coverage on every component, container and page.
