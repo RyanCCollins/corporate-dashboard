@@ -1,4 +1,3 @@
-[![Codacy grade](https://img.shields.io/codacy/grade/5eb4488e336245dcbf803135531bc3ad.svg?maxAge=2592000)](https://github.com/RyanCCollins/corporate-dashboard)
 ![Code Ship Badge](https://codeship.com/projects/940a8cf0-626f-0134-d657-165525e8bcef/status?branch=master)
 
 # Corporate Dashboard
