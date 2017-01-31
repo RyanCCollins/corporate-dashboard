@@ -1,6 +1,8 @@
 ![Code Ship Badge](https://codeship.com/projects/940a8cf0-626f-0134-d657-165525e8bcef/status?branch=master)
 
 # Corporate Dashboard
+
+## About
 A corporate dashboard web application, built with a focus on component oriented design, UI / UX and performance. Built with React, Redux and GraphQL.
 
 ## Background
