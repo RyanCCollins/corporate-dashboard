@@ -50,7 +50,9 @@ KeyMetricsView.propTypes = {
   store: PropTypes.array.isRequired,
   areaChartLabels: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.object,
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+  }),
 };
 
 // mapStateToProps :: {State} -> {Props}
