@@ -67,7 +67,6 @@ The app is deployed to Heroku and has a CI suite running with Codeship.  It is r
 - [Scalable React Boilerplate](https://github.com/RyanCCollins/scalable-react-boilerplate)
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Troubleshooting
